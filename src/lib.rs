@@ -26,6 +26,8 @@ pub use internal::YGPrintOptions;
 pub use internal::YGUnit;
 pub use internal::YGWrap as Wrap;
 
+pub use std::f32::NAN as Undefined;
+
 // Custom Rust API
 
 #[derive(Debug)]
@@ -58,7 +60,7 @@ impl Node {
 		}
 	}
 
-	pub fn insert_child(&mut self, child: Node, index: u32) {
+	pub fn insert_child(&mut self, child: &mut Node, index: u32) {
 		let mut child = child;
 		child.should_free = false;
 
@@ -112,6 +114,12 @@ impl Node {
 	pub fn set_position_type(&mut self, position_type: PositionType) {
 		unsafe {
 			internal::YGNodeStyleSetPositionType(self.inner_node, position_type);
+		}
+	}
+
+	pub fn set_position(&mut self, edge: Edge, position: f32) {
+		unsafe {
+			internal::YGNodeStyleSetPosition(self.inner_node, edge, position);
 		}
 	}
 
@@ -245,4 +253,50 @@ impl Drop for Node {
 			}
 		}		
 	}
+}
+
+#[test]
+fn test_absolute_layout_width_height_start_top() {
+	let mut root = Node::new();
+	root.set_width(100.0);
+	root.set_height(100.0);
+
+	let mut root_child_0 = Node::new();
+
+	root_child_0.set_position_type(PositionType::YGPositionTypeAbsolute);
+	root_child_0.set_position(Edge::YGEdgeStart, 10.0);
+	root_child_0.set_position(Edge::YGEdgeTop, 10.0);
+	root_child_0.set_width(10.0);
+	root_child_0.set_height(10.0);
+
+	root.insert_child(&mut root_child_0, 0);
+	root.calculate_layout(Undefined, Undefined, Direction::YGDirectionLTR);
+
+	let root_layout = root.get_layout();
+	let child_layout = root_child_0.get_layout();
+
+	assert_eq!(0.0, root_layout.left);
+	assert_eq!(0.0, root_layout.top);
+	assert_eq!(100.0, root_layout.width);
+	assert_eq!(100.0, root_layout.height);
+
+	assert_eq!(10.0, child_layout.left);
+	assert_eq!(10.0, child_layout.top);
+	assert_eq!(10.0, child_layout.width);
+	assert_eq!(10.0, child_layout.height);
+
+	root.calculate_layout(Undefined, Undefined, Direction::YGDirectionRTL);
+
+	let root_layout = root.get_layout();
+	let child_layout = root_child_0.get_layout();
+
+	assert_eq!(0.0, root_layout.left);
+	assert_eq!(0.0, root_layout.top);
+	assert_eq!(100.0, root_layout.width);
+	assert_eq!(100.0, root_layout.height);
+
+	assert_eq!(80.0, child_layout.left);
+	assert_eq!(10.0, child_layout.top);
+	assert_eq!(10.0, child_layout.width);
+	assert_eq!(10.0, child_layout.height);
 }
