@@ -6,8 +6,6 @@ use std::path::PathBuf;
 
 
 fn main() {
-	// println!("cargo:fuck");
-
 	gcc::compile_library("libyoga.a", &["src/c/YGEnums.c", "src/c/YGNodeList.c", "src/c/Yoga.c"]);
 
 	let bindings = bindgen::Builder::default()
