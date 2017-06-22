@@ -3,10 +3,16 @@ extern crate gcc;
 
 use std::env;
 use std::path::PathBuf;
-
+use gcc::Config;
 
 fn main() {
-	gcc::compile_library("libyoga.a", &["src/c/YGEnums.c", "src/c/YGNodeList.c", "src/c/Yoga.c"]);
+	let mut c = Config::new();
+
+	c.flag("-std=c99");
+	c.file("src/c/YGEnums.c");
+	c.file("src/c/YGNodeList.c");
+	c.file("src/c/Yoga.c");
+	c.compile("libyoga.a");
 
 	let bindings = bindgen::Builder::default()
 		.no_unstable_rust()
