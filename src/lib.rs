@@ -330,6 +330,41 @@ impl From<StyleUnit> for internal::YGUnit {
 	}
 }
 
+#[macro_export]
+macro_rules! unit {
+	( $val:tt pt) => (
+		$val.point()
+	);
+	( $val:tt %) => {
+		$val.percent()
+	};
+	( $val:expr) => {
+		$val
+	};
+}
+
+#[macro_export]
+macro_rules! style {
+	( $x:expr, $($s:ident($($unit:tt)*)),* ) => {
+		$x.apply_styles(&vec!(
+			$(
+				$s(unit!($($unit)*)),
+			)*
+		))
+	};
+}
+
+#[macro_export]
+macro_rules! make_styles {
+	( $($s:ident($($unit:tt)*)),* ) => {
+		vec!(
+			$(
+				$s(unit!($($unit)*)),
+			)*
+		)
+	};
+}
+
 pub trait Percent {
 	fn percent(self) -> StyleUnit;
 }
@@ -720,24 +755,23 @@ impl Drop for Node {
 #[test]
 fn test_absolute_layout_width_height_start_top() {
 	use FlexStyle::*;
-	use StyleUnit::*;
 
 	let mut root = Node::new();
 
-	root.apply_styles(&vec!(
-		Width(100.point()),
-		Height(100.point())
-	));
+	style!(root,
+		Width(100 pt),
+		Height(100 pt)
+	);
 
 	let mut root_child_0 = Node::new();
 
-	root_child_0.apply_styles(&vec!(
+	style!(root_child_0,
 		Position(PositionType::Absolute),
-		Start(10.point()),
-		Top(10.point()),
-		Width(10.point()),
-		Height(10.point())
-	));
+		Start(10 pt),
+		Top(10 pt),
+		Width(10 pt),
+		Height(10 pt)
+	);
 
 	root.insert_child(&mut root_child_0, 0);
 	root.calculate_layout(Undefined, Undefined, Direction::LTR);
