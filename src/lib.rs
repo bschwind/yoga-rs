@@ -414,49 +414,53 @@ impl Node {
 		}
 	}
 
-	pub fn apply_styles(&mut self, styles: Vec<FlexStyle>) {
+	pub fn apply_styles<'a, I>(&mut self, styles: I) where I: IntoIterator<Item=&'a FlexStyle> {
+		for style in styles {
+			self.apply_style(style);
+		}
+	}
+
+	pub fn apply_style(&mut self, style: &FlexStyle) {
 		use FlexStyle::*;
 
-		for style in styles {
-			match style {
-				AlignItems(align) => self.set_align_items(align),
-				AlignSelf(align) => self.set_align_self(align),
-				BorderBottomWidth(w) => self.set_border(Edge::Bottom, w),
-				BorderLeftWidth(w) => self.set_border(Edge::Left, w),
-				BorderRightWidth(w) => self.set_border(Edge::Right, w),
-				BorderTopWidth(w) => self.set_border(Edge::Top, w),
-				BorderWidth(w) => self.set_border(Edge::All, w),
-				Bottom(b) => self.set_position(Edge::Bottom, b),
-				Flex(f) => self.set_flex(f),
-				FlexBasis(f) => self.set_flex_basis(f),
-				FlexDirection(flex_direction) => self.set_flex_direction(flex_direction),
-				FlexWrap(wrap) => self.set_flex_wrap(wrap),
-				Height(h) => self.set_height(h),
-				JustifyContent(justify) => self.set_justify_content(justify),
-				Left(l) => self.set_position(Edge::Left, l),
-				Margin(m) => self.set_margin(Edge::All, m),
-				MarginBottom(m) => self.set_margin(Edge::Bottom, m),
-				MarginHorizontal(m) => self.set_margin(Edge::Horizontal, m),
-				MarginLeft(m) => self.set_margin(Edge::Left, m),
-				MarginRight(m) => self.set_margin(Edge::Right, m),
-				MarginTop(m) => self.set_margin(Edge::Top, m),
-				MarginVertical(m) => self.set_margin(Edge::Vertical, m),
-				MaxHeight(h) => self.set_max_height(h),
-				MaxWidth(w) => self.set_max_width(w),
-				MinHeight(h) => self.set_min_height(h),
-				MinWidth(w) => self.set_min_width(w),
-				Padding(p) => self.set_padding(Edge::All, p),
-				PaddingHorizontal(p) => self.set_padding(Edge::Horizontal, p),
-				PaddingLeft(p) => self.set_padding(Edge::Left, p),
-				PaddingRight(p) => self.set_padding(Edge::Right, p),
-				PaddingTop(p) => self.set_padding(Edge::Top, p),
-				PaddingVertical(p) => self.set_padding(Edge::Vertical, p),
-				Position(position_type) => self.set_position_type(position_type),
-				Right(r) => self.set_position(Edge::Right, r),
-				Start(s) => self.set_position(Edge::Start, s),
-				Top(t) => self.set_position(Edge::Top, t),
-				Width(w) => self.set_width(w)
-			}
+		match *style {
+			AlignItems(align) => self.set_align_items(align),
+			AlignSelf(align) => self.set_align_self(align),
+			BorderBottomWidth(w) => self.set_border(Edge::Bottom, w),
+			BorderLeftWidth(w) => self.set_border(Edge::Left, w),
+			BorderRightWidth(w) => self.set_border(Edge::Right, w),
+			BorderTopWidth(w) => self.set_border(Edge::Top, w),
+			BorderWidth(w) => self.set_border(Edge::All, w),
+			Bottom(b) => self.set_position(Edge::Bottom, b),
+			Flex(f) => self.set_flex(f),
+			FlexBasis(f) => self.set_flex_basis(f),
+			FlexDirection(flex_direction) => self.set_flex_direction(flex_direction),
+			FlexWrap(wrap) => self.set_flex_wrap(wrap),
+			Height(h) => self.set_height(h),
+			JustifyContent(justify) => self.set_justify_content(justify),
+			Left(l) => self.set_position(Edge::Left, l),
+			Margin(m) => self.set_margin(Edge::All, m),
+			MarginBottom(m) => self.set_margin(Edge::Bottom, m),
+			MarginHorizontal(m) => self.set_margin(Edge::Horizontal, m),
+			MarginLeft(m) => self.set_margin(Edge::Left, m),
+			MarginRight(m) => self.set_margin(Edge::Right, m),
+			MarginTop(m) => self.set_margin(Edge::Top, m),
+			MarginVertical(m) => self.set_margin(Edge::Vertical, m),
+			MaxHeight(h) => self.set_max_height(h),
+			MaxWidth(w) => self.set_max_width(w),
+			MinHeight(h) => self.set_min_height(h),
+			MinWidth(w) => self.set_min_width(w),
+			Padding(p) => self.set_padding(Edge::All, p),
+			PaddingHorizontal(p) => self.set_padding(Edge::Horizontal, p),
+			PaddingLeft(p) => self.set_padding(Edge::Left, p),
+			PaddingRight(p) => self.set_padding(Edge::Right, p),
+			PaddingTop(p) => self.set_padding(Edge::Top, p),
+			PaddingVertical(p) => self.set_padding(Edge::Vertical, p),
+			Position(position_type) => self.set_position_type(position_type),
+			Right(r) => self.set_position(Edge::Right, r),
+			Start(s) => self.set_position(Edge::Start, s),
+			Top(t) => self.set_position(Edge::Top, t),
+			Width(w) => self.set_width(w)
 		}
 	}
 
@@ -720,14 +724,14 @@ fn test_absolute_layout_width_height_start_top() {
 
 	let mut root = Node::new();
 
-	root.apply_styles(vec!(
+	root.apply_styles(&vec!(
 		Width(100.point()),
 		Height(100.point())
 	));
 
 	let mut root_child_0 = Node::new();
 
-	root_child_0.apply_styles(vec!(
+	root_child_0.apply_styles(&vec!(
 		Position(PositionType::Absolute),
 		Start(10.point()),
 		Top(10.point()),
