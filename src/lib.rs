@@ -10,6 +10,7 @@ mod internal {
 
 use std::convert::From;
 
+#[derive(Debug)]
 pub enum FlexStyle {
 	AlignItems(Align),
 	AlignSelf(Align),
@@ -425,7 +426,7 @@ pub struct Node {
 	should_free: bool
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct Layout {
 	pub left: f32,
 	pub right: f32,
