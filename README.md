@@ -18,7 +18,7 @@ Run Example
 
 Example Code
 ------------
-```
+```rust
 #[macro_use]
 extern crate yoga;
 
