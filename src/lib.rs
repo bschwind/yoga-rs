@@ -14,15 +14,17 @@ use std::convert::From;
 pub enum FlexStyle {
 	AlignItems(Align),
 	AlignSelf(Align),
-	BorderBottomWidth(f32),
-	BorderLeftWidth(f32),
-	BorderRightWidth(f32),
-	BorderTopWidth(f32),
-	BorderWidth(f32),
+	BorderBottom(f32),
+	BorderLeft(f32),
+	BorderRight(f32),
+	BorderTop(f32),
+	Border(f32),
 	Bottom(StyleUnit),
+	End(StyleUnit),
 	Flex(f32),
 	FlexBasis(StyleUnit),
 	FlexDirection(FlexDirection),
+	FlexGrow(f32),
 	FlexWrap(Wrap),
 	Height(StyleUnit),
 	JustifyContent(Justify),
@@ -38,7 +40,9 @@ pub enum FlexStyle {
 	MaxWidth(StyleUnit),
 	MinHeight(StyleUnit),
 	MinWidth(StyleUnit),
+	Overflow(Overflow),
 	Padding(StyleUnit),
+	PaddingBottom(StyleUnit),
 	PaddingHorizontal(StyleUnit),
 	PaddingLeft(StyleUnit),
 	PaddingRight(StyleUnit),
@@ -462,14 +466,16 @@ impl Node {
 		match *style {
 			AlignItems(align) => self.set_align_items(align),
 			AlignSelf(align) => self.set_align_self(align),
-			BorderBottomWidth(w) => self.set_border(Edge::Bottom, w),
-			BorderLeftWidth(w) => self.set_border(Edge::Left, w),
-			BorderRightWidth(w) => self.set_border(Edge::Right, w),
-			BorderTopWidth(w) => self.set_border(Edge::Top, w),
-			BorderWidth(w) => self.set_border(Edge::All, w),
+			BorderBottom(w) => self.set_border(Edge::Bottom, w),
+			BorderLeft(w) => self.set_border(Edge::Left, w),
+			BorderRight(w) => self.set_border(Edge::Right, w),
+			BorderTop(w) => self.set_border(Edge::Top, w),
+			Border(w) => self.set_border(Edge::All, w),
 			Bottom(b) => self.set_position(Edge::Bottom, b),
+			End(e) => self.set_position(Edge::End, e),
 			Flex(f) => self.set_flex(f),
 			FlexBasis(f) => self.set_flex_basis(f),
+			FlexGrow(f) => self.set_flex_grow(f),
 			FlexDirection(flex_direction) => self.set_flex_direction(flex_direction),
 			FlexWrap(wrap) => self.set_flex_wrap(wrap),
 			Height(h) => self.set_height(h),
@@ -486,7 +492,9 @@ impl Node {
 			MaxWidth(w) => self.set_max_width(w),
 			MinHeight(h) => self.set_min_height(h),
 			MinWidth(w) => self.set_min_width(w),
+			Overflow(o) => self.set_overflow(o),
 			Padding(p) => self.set_padding(Edge::All, p),
+			PaddingBottom(p) => self.set_padding(Edge::Bottom, p),
 			PaddingHorizontal(p) => self.set_padding(Edge::Horizontal, p),
 			PaddingLeft(p) => self.set_padding(Edge::Left, p),
 			PaddingRight(p) => self.set_padding(Edge::Right, p),
@@ -751,57 +759,4 @@ impl Drop for Node {
 			}
 		}		
 	}
-}
-
-#[test]
-fn test_absolute_layout_width_height_start_top() {
-	use FlexStyle::*;
-
-	let mut root = Node::new();
-
-	style!(root,
-		Width(100 pt),
-		Height(100 pt)
-	);
-
-	let mut root_child_0 = Node::new();
-
-	style!(root_child_0,
-		Position(PositionType::Absolute),
-		Start(10 pt),
-		Top(10 pt),
-		Width(10 pt),
-		Height(10 pt)
-	);
-
-	root.insert_child(&mut root_child_0, 0);
-	root.calculate_layout(Undefined, Undefined, Direction::LTR);
-
-	let root_layout = root.get_layout();
-	let child_layout = root_child_0.get_layout();
-
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
-
-	assert_eq!(10.0, child_layout.left);
-	assert_eq!(10.0, child_layout.top);
-	assert_eq!(10.0, child_layout.width);
-	assert_eq!(10.0, child_layout.height);
-
-	root.calculate_layout(Undefined, Undefined, Direction::RTL);
-
-	let root_layout = root.get_layout();
-	let child_layout = root_child_0.get_layout();
-
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
-
-	assert_eq!(80.0, child_layout.left);
-	assert_eq!(10.0, child_layout.top);
-	assert_eq!(10.0, child_layout.width);
-	assert_eq!(10.0, child_layout.height);
 }
