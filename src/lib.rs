@@ -17,15 +17,17 @@ use ordered_float::OrderedFloat;
 pub enum FlexStyle {
 	AlignItems(Align),
 	AlignSelf(Align),
-	BorderBottomWidth(OrderedFloat<f32>),
-	BorderLeftWidth(OrderedFloat<f32>),
-	BorderRightWidth(OrderedFloat<f32>),
-	BorderTopWidth(OrderedFloat<f32>),
-	BorderWidth(OrderedFloat<f32>),
+	BorderBottom(OrderedFloat<f32>),
+	BorderLeft(OrderedFloat<f32>),
+	BorderRight(OrderedFloat<f32>),
+	BorderTop(OrderedFloat<f32>),
+	Border(OrderedFloat<f32>),
 	Bottom(StyleUnit),
+	End(StyleUnit),
 	Flex(OrderedFloat<f32>),
 	FlexBasis(StyleUnit),
 	FlexDirection(FlexDirection),
+	FlexGrow(OrderedFloat<f32>),
 	FlexWrap(Wrap),
 	Height(StyleUnit),
 	JustifyContent(Justify),
@@ -41,7 +43,9 @@ pub enum FlexStyle {
 	MaxWidth(StyleUnit),
 	MinHeight(StyleUnit),
 	MinWidth(StyleUnit),
+	Overflow(Overflow),
 	Padding(StyleUnit),
+	PaddingBottom(StyleUnit),
 	PaddingHorizontal(StyleUnit),
 	PaddingLeft(StyleUnit),
 	PaddingRight(StyleUnit),
@@ -354,23 +358,26 @@ macro_rules! flex_style {
 	//     Flex(1.0)
 	// will be converted to:
 	//     Flex(OrderedFloat(1.0))
-	(BorderBottomWidth($val:expr)) => (
-		BorderBottomWidth(OrderedFloat($val))
+	(BorderBottom($val:expr)) => (
+		BorderBottom(OrderedFloat($val))
 	);
-	(BorderLeftWidth($val:expr)) => (
-		BorderLeftWidth(OrderedFloat($val))
+	(BorderLeft($val:expr)) => (
+		BorderLeft(OrderedFloat($val))
 	);
-	(BorderRightWidth($val:expr)) => (
-		BorderRightWidth(OrderedFloat($val))
+	(BorderRight($val:expr)) => (
+		BorderRight(OrderedFloat($val))
 	);
-	(BorderTopWidth($val:expr)) => (
-		BorderTopWidth(OrderedFloat($val))
+	(BorderTop($val:expr)) => (
+		BorderTop(OrderedFloat($val))
 	);
-	(BorderWidth($val:expr)) => (
-		BorderWidth(OrderedFloat($val))
+	(Border($val:expr)) => (
+		Border(OrderedFloat($val))
 	);
 	(Flex($val:expr)) => (
 		Flex(OrderedFloat($val))
+	);
+	(FlexGrow($val:expr)) => (
+		FlexGrow(OrderedFloat($val))
 	);
 	($s:ident($($unit:tt)*)) => (
 		$s(unit!($($unit)*))
@@ -495,14 +502,16 @@ impl Node {
 		match *style {
 			AlignItems(align) => self.set_align_items(align),
 			AlignSelf(align) => self.set_align_self(align),
-			BorderBottomWidth(w) => self.set_border(Edge::Bottom, w.into_inner()),
-			BorderLeftWidth(w) => self.set_border(Edge::Left, w.into_inner()),
-			BorderRightWidth(w) => self.set_border(Edge::Right, w.into_inner()),
-			BorderTopWidth(w) => self.set_border(Edge::Top, w.into_inner()),
-			BorderWidth(w) => self.set_border(Edge::All, w.into_inner()),
+			BorderBottom(w) => self.set_border(Edge::Bottom, w.into_inner()),
+			BorderLeft(w) => self.set_border(Edge::Left, w.into_inner()),
+			BorderRight(w) => self.set_border(Edge::Right, w.into_inner()),
+			BorderTop(w) => self.set_border(Edge::Top, w.into_inner()),
+			Border(w) => self.set_border(Edge::All, w.into_inner()),
 			Bottom(b) => self.set_position(Edge::Bottom, b),
+			End(e) => self.set_position(Edge::End, e),
 			Flex(f) => self.set_flex(f.into_inner()),
 			FlexBasis(f) => self.set_flex_basis(f),
+			FlexGrow(f) => self.set_flex_grow(f.into_inner()),
 			FlexDirection(flex_direction) => self.set_flex_direction(flex_direction),
 			FlexWrap(wrap) => self.set_flex_wrap(wrap),
 			Height(h) => self.set_height(h),
@@ -519,7 +528,9 @@ impl Node {
 			MaxWidth(w) => self.set_max_width(w),
 			MinHeight(h) => self.set_min_height(h),
 			MinWidth(w) => self.set_min_width(w),
+			Overflow(o) => self.set_overflow(o),
 			Padding(p) => self.set_padding(Edge::All, p),
+			PaddingBottom(p) => self.set_padding(Edge::Bottom, p),
 			PaddingHorizontal(p) => self.set_padding(Edge::Horizontal, p),
 			PaddingLeft(p) => self.set_padding(Edge::Left, p),
 			PaddingRight(p) => self.set_padding(Edge::Right, p),
@@ -784,58 +795,4 @@ impl Drop for Node {
 			}
 		}
 	}
-}
-
-#[test]
-fn test_absolute_layout_width_height_start_top() {
-	use FlexStyle::*;
-
-	let mut root = Node::new();
-
-	style!(root,
-		Width(100 pt),
-		Height(100 pt)
-	);
-
-	let mut root_child_0 = Node::new();
-
-	style!(root_child_0,
-		Position(PositionType::Absolute),
-		Start(10 pt),
-		Top(10 pt),
-		Width(10 pt),
-		Height(10 pt),
-		Flex(1.0)
-	);
-
-	root.insert_child(&mut root_child_0, 0);
-	root.calculate_layout(Undefined, Undefined, Direction::LTR);
-
-	let root_layout = root.get_layout();
-	let child_layout = root_child_0.get_layout();
-
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
-
-	assert_eq!(10.0, child_layout.left);
-	assert_eq!(10.0, child_layout.top);
-	assert_eq!(10.0, child_layout.width);
-	assert_eq!(10.0, child_layout.height);
-
-	root.calculate_layout(Undefined, Undefined, Direction::RTL);
-
-	let root_layout = root.get_layout();
-	let child_layout = root_child_0.get_layout();
-
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
-
-	assert_eq!(80.0, child_layout.left);
-	assert_eq!(10.0, child_layout.top);
-	assert_eq!(10.0, child_layout.width);
-	assert_eq!(10.0, child_layout.height);
 }
