@@ -19,8 +19,8 @@ fn test_nested_overflowing_child() {
 
 	let mut root_child_0_child_0 = Node::new();
 
-	style!(root_child_0_child_0, 
-		Width(200 pt), 
+	style!(root_child_0_child_0,
+		Width(200 pt),
 		Height(200 pt)
 	);
 

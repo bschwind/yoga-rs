@@ -15,6 +15,7 @@ use ordered_float::OrderedFloat;
 
 #[derive(Debug, PartialEq, Eq, Hash)]
 pub enum FlexStyle {
+	AlignContent(Align),
 	AlignItems(Align),
 	AlignSelf(Align),
 	BorderBottom(OrderedFloat<f32>),
@@ -28,6 +29,7 @@ pub enum FlexStyle {
 	FlexBasis(StyleUnit),
 	FlexDirection(FlexDirection),
 	FlexGrow(OrderedFloat<f32>),
+	FlexShrink(OrderedFloat<f32>),
 	FlexWrap(Wrap),
 	Height(StyleUnit),
 	JustifyContent(Justify),
@@ -379,6 +381,9 @@ macro_rules! flex_style {
 	(FlexGrow($val:expr)) => (
 		FlexGrow(OrderedFloat($val))
 	);
+	(FlexShrink($val:expr)) => (
+		FlexShrink(OrderedFloat($val))
+	);
 	($s:ident($($unit:tt)*)) => (
 		$s(unit!($($unit)*))
 	);
@@ -500,6 +505,7 @@ impl Node {
 		use FlexStyle::*;
 
 		match *style {
+			AlignContent(align) => self.set_align_content(align),
 			AlignItems(align) => self.set_align_items(align),
 			AlignSelf(align) => self.set_align_self(align),
 			BorderBottom(w) => self.set_border(Edge::Bottom, w.into_inner()),
@@ -513,6 +519,7 @@ impl Node {
 			FlexBasis(f) => self.set_flex_basis(f),
 			FlexGrow(f) => self.set_flex_grow(f.into_inner()),
 			FlexDirection(flex_direction) => self.set_flex_direction(flex_direction),
+			FlexShrink(f) => self.set_flex_shrink(f.into_inner()),
 			FlexWrap(wrap) => self.set_flex_wrap(wrap),
 			Height(h) => self.set_height(h),
 			JustifyContent(justify) => self.set_justify_content(justify),
