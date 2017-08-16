@@ -3,7 +3,7 @@ extern crate yoga;
 extern crate ordered_float;
 
 use ordered_float::OrderedFloat;
-use yoga::{Align, Direction, FlexDirection, Justify, Overflow, Node, Point, Percent, PositionType, Undefined, Wrap};
+use yoga::{Align, Direction, FlexDirection, Node, Point, Percent, Undefined, Wrap};
 use yoga::FlexStyle::*;
 
 #[test]

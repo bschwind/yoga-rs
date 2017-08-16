@@ -8,7 +8,6 @@ use yoga::FlexStyle::*;
 
 #[test]
 fn test_absolute_layout_width_height_start_top() {
-
 	let mut root = Node::new();
 
 	style!(root,
