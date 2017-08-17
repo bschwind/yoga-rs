@@ -18,6 +18,7 @@ pub enum FlexStyle {
 	AlignContent(Align),
 	AlignItems(Align),
 	AlignSelf(Align),
+	AspectRatio(OrderedFloat<f32>),
 	BorderBottom(OrderedFloat<f32>),
 	BorderLeft(OrderedFloat<f32>),
 	BorderRight(OrderedFloat<f32>),
@@ -321,6 +322,22 @@ impl From<PrintOptions> for internal::YGPrintOptions {
 	}
 }
 
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct Size {
+	pub width: f32,
+	pub height: f32
+}
+
+impl From<Size> for internal::YGSize {
+	fn from(s: Size) -> internal::YGSize {
+		internal::YGSize {
+			width: s.width,
+			height: s.height
+		}
+	}
+}
+
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum StyleUnit {
 	UndefinedValue,
@@ -360,6 +377,9 @@ macro_rules! flex_style {
 	//     Flex(1.0)
 	// will be converted to:
 	//     Flex(OrderedFloat(1.0))
+	(AspectRatio($val:expr)) => (
+		AspectRatio(OrderedFloat($val))
+	);
 	(BorderBottom($val:expr)) => (
 		BorderBottom(OrderedFloat($val))
 	);
@@ -465,6 +485,7 @@ pub use std::f32::NAN as Undefined;
 
 // Custom Rust API
 
+#[repr(C)]
 #[derive(Debug, PartialEq, Eq, Hash)]
 pub struct Node {
 	inner_node: internal::YGNodeRef,
@@ -508,6 +529,7 @@ impl Node {
 			AlignContent(align) => self.set_align_content(align),
 			AlignItems(align) => self.set_align_items(align),
 			AlignSelf(align) => self.set_align_self(align),
+			AspectRatio(a) => self.set_aspect_ratio(a.into_inner()),
 			BorderBottom(w) => self.set_border(Edge::Bottom, w.into_inner()),
 			BorderLeft(w) => self.set_border(Edge::Left, w.into_inner()),
 			BorderRight(w) => self.set_border(Edge::Right, w.into_inner()),
@@ -732,8 +754,6 @@ impl Node {
 
 	pub fn set_min_height(&mut self, min_height: StyleUnit) {
 		unsafe {
-			// internal::YGNodeStyleSetMinHeight(self.inner_node, min_height);
-
 			match min_height {
 				StyleUnit::UndefinedValue => internal::YGNodeStyleSetMinHeight(self.inner_node, Undefined),
 				StyleUnit::Point(val) => internal::YGNodeStyleSetMinHeight(self.inner_node, val.into_inner()),
@@ -792,7 +812,22 @@ impl Node {
 			}
 		}
 	}
+
+	pub fn set_measure_func(&mut self, func: MeasureFunc) {
+		match func {
+			Some(f) => unsafe {
+				let casted_func: InternalMeasureFunc = std::mem::transmute(f as usize);
+				internal::YGNodeSetMeasureFunc(self.inner_node, Some(casted_func));
+			},
+			None => unsafe {
+				internal::YGNodeSetMeasureFunc(self.inner_node, None);
+			}
+		}
+	}
 }
+
+type InternalMeasureFunc = unsafe extern "C" fn(internal::YGNodeRef, f32, internal::YGMeasureMode, f32, internal::YGMeasureMode) -> internal::YGSize;
+pub type MeasureFunc = Option<fn(Node, f32, MeasureMode, f32, MeasureMode) -> Size>;
 
 impl Drop for Node {
 	fn drop(&mut self) {
