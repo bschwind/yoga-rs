@@ -1,15 +1,15 @@
 #[macro_use]
 extern crate yoga;
 
-use yoga::{Align, Direction, FlexDirection, Justify, MeasureMode, Node, NodeRef, Point, PositionType, Size, Undefined};
+use yoga::{Align, Direction, FlexDirection, Node, NodeRef, Point, Undefined};
 use yoga::FlexStyle::*;
 
 #[test]
 fn test_align_baseline_customer_func() {
 	extern fn baseline_func(
 		_: NodeRef,
-		width: f32,
-		height: f32
+		_: f32,
+		_: f32
 	) -> f32
 	{
 

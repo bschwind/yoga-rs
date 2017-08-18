@@ -20,8 +20,10 @@ pub enum FlexStyle {
 	AlignSelf(Align),
 	AspectRatio(OrderedFloat<f32>),
 	BorderBottom(OrderedFloat<f32>),
+	BorderEnd(OrderedFloat<f32>),
 	BorderLeft(OrderedFloat<f32>),
 	BorderRight(OrderedFloat<f32>),
+	BorderStart(OrderedFloat<f32>),
 	BorderTop(OrderedFloat<f32>),
 	Border(OrderedFloat<f32>),
 	Bottom(StyleUnit),
@@ -387,11 +389,17 @@ macro_rules! flex_style {
 	(BorderBottom($val:expr)) => (
 		BorderBottom(OrderedFloat($val))
 	);
+	(BorderEnd($val:expr)) => (
+		BorderEnd(OrderedFloat($val))
+	);
 	(BorderLeft($val:expr)) => (
 		BorderLeft(OrderedFloat($val))
 	);
 	(BorderRight($val:expr)) => (
 		BorderRight(OrderedFloat($val))
+	);
+	(BorderStart($val:expr)) => (
+		BorderStart(OrderedFloat($val))
 	);
 	(BorderTop($val:expr)) => (
 		BorderTop(OrderedFloat($val))
@@ -536,11 +544,13 @@ impl Node {
 			AlignItems(align) => self.set_align_items(align),
 			AlignSelf(align) => self.set_align_self(align),
 			AspectRatio(a) => self.set_aspect_ratio(a.into_inner()),
-			BorderBottom(w) => self.set_border(Edge::Bottom, w.into_inner()),
-			BorderLeft(w) => self.set_border(Edge::Left, w.into_inner()),
-			BorderRight(w) => self.set_border(Edge::Right, w.into_inner()),
-			BorderTop(w) => self.set_border(Edge::Top, w.into_inner()),
-			Border(w) => self.set_border(Edge::All, w.into_inner()),
+			BorderBottom(b) => self.set_border(Edge::Bottom, b.into_inner()),
+			BorderEnd(b) => self.set_border(Edge::End, b.into_inner()),
+			BorderLeft(b) => self.set_border(Edge::Left, b.into_inner()),
+			BorderRight(b) => self.set_border(Edge::Right, b.into_inner()),
+			BorderStart(b) => self.set_border(Edge::Start, b.into_inner()),
+			BorderTop(b) => self.set_border(Edge::Top, b.into_inner()),
+			Border(b) => self.set_border(Edge::All, b.into_inner()),
 			Bottom(b) => self.set_position(Edge::Bottom, b),
 			End(e) => self.set_position(Edge::End, e),
 			Flex(f) => self.set_flex(f.into_inner()),
