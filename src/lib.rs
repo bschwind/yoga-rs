@@ -830,10 +830,24 @@ impl Node {
 			}
 		}
 	}
+
+	pub fn set_baseline_func(&mut self, func: BaselineFunc) {
+		match func {
+			Some(f) => unsafe {
+				let casted_func: InternalBaselineFunc = std::mem::transmute(f as usize);
+				internal::YGNodeSetBaselineFunc(self.inner_node, Some(casted_func));
+			},
+			None => unsafe {
+				internal::YGNodeSetBaselineFunc(self.inner_node, None);
+			}
+		}
+	}
 }
 
 type InternalMeasureFunc = unsafe extern "C" fn(internal::YGNodeRef, f32, internal::YGMeasureMode, f32, internal::YGMeasureMode) -> internal::YGSize;
+type InternalBaselineFunc = unsafe extern "C" fn(internal::YGNodeRef, f32, f32) -> f32;
 pub type MeasureFunc = Option<extern fn(NodeRef, f32, MeasureMode, f32, MeasureMode) -> Size>;
+pub type BaselineFunc = Option<extern fn(NodeRef, f32, f32) -> f32>;
 
 impl Drop for Node {
 	fn drop(&mut self) {
