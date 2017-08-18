@@ -323,10 +323,14 @@ impl From<PrintOptions> for internal::YGPrintOptions {
 }
 
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy)]
 pub struct Size {
 	pub width: f32,
 	pub height: f32
+}
+
+impl Clone for Size {
+    fn clone(&self) -> Self { *self }
 }
 
 impl From<Size> for internal::YGSize {
@@ -485,10 +489,12 @@ pub use std::f32::NAN as Undefined;
 
 // Custom Rust API
 
+pub type NodeRef = internal::YGNodeRef;
+
 #[repr(C)]
 #[derive(Debug, PartialEq, Eq, Hash)]
 pub struct Node {
-	inner_node: internal::YGNodeRef,
+	inner_node: NodeRef,
 	should_free: bool
 }
 
@@ -827,7 +833,7 @@ impl Node {
 }
 
 type InternalMeasureFunc = unsafe extern "C" fn(internal::YGNodeRef, f32, internal::YGMeasureMode, f32, internal::YGMeasureMode) -> internal::YGSize;
-pub type MeasureFunc = Option<fn(Node, f32, MeasureMode, f32, MeasureMode) -> Size>;
+pub type MeasureFunc = Option<extern fn(NodeRef, f32, MeasureMode, f32, MeasureMode) -> Size>;
 
 impl Drop for Node {
 	fn drop(&mut self) {

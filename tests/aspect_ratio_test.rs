@@ -3,7 +3,7 @@ extern crate yoga;
 extern crate ordered_float;
 
 use ordered_float::OrderedFloat;
-use yoga::{Align, Direction, FlexDirection, Justify, MeasureMode, Node, Point, PositionType, Size, Undefined};
+use yoga::{Align, Direction, FlexDirection, Justify, MeasureMode, Node, NodeRef, Point, PositionType, Size, Undefined};
 use yoga::FlexStyle::*;
 
 #[test]
@@ -649,27 +649,24 @@ fn test_aspect_ratio_half_main() {
 
 #[test]
 fn test_aspect_ratio_with_measure_func() {
-	fn measure(
-		node: Node,
+	extern fn measure(
+		_: NodeRef,
 		width: f32,
-		widthMode: MeasureMode,
+		width_mode: MeasureMode,
 		height: f32,
-		heightMode: MeasureMode
+		height_mode: MeasureMode
 	) -> Size
 	{
 
-		let calc_width = match widthMode {
+		let calc_width = match width_mode {
 			MeasureMode::Exactly => width,
 			_ => 50.0
 		};
 
-		let calc_height = match heightMode {
+		let calc_height = match height_mode {
 			MeasureMode::Exactly => height,
 			_ => 50.0
 		};
-
-		println!("Width will be {}", calc_width);
-		println!("Height will be {}", calc_height);
 
 		Size {
 			width: calc_width,
