@@ -39,9 +39,11 @@ pub enum FlexStyle {
 	Left(StyleUnit),
 	Margin(StyleUnit),
 	MarginBottom(StyleUnit),
+	MarginEnd(StyleUnit),
 	MarginHorizontal(StyleUnit),
 	MarginLeft(StyleUnit),
 	MarginRight(StyleUnit),
+	MarginStart(StyleUnit),
 	MarginTop(StyleUnit),
 	MarginVertical(StyleUnit),
 	MaxHeight(StyleUnit),
@@ -564,9 +566,11 @@ impl Node {
 			Left(l) => self.set_position(Edge::Left, l),
 			Margin(m) => self.set_margin(Edge::All, m),
 			MarginBottom(m) => self.set_margin(Edge::Bottom, m),
+			MarginEnd(m) => self.set_margin(Edge::End, m),
 			MarginHorizontal(m) => self.set_margin(Edge::Horizontal, m),
 			MarginLeft(m) => self.set_margin(Edge::Left, m),
 			MarginRight(m) => self.set_margin(Edge::Right, m),
+			MarginStart(m) => self.set_margin(Edge::Start, m),
 			MarginTop(m) => self.set_margin(Edge::Top, m),
 			MarginVertical(m) => self.set_margin(Edge::Vertical, m),
 			MaxHeight(h) => self.set_max_height(h),
@@ -826,6 +830,30 @@ impl Node {
 				width: internal::YGNodeLayoutGetWidth(self.inner_node),
 				height: internal::YGNodeLayoutGetHeight(self.inner_node)
 			}
+		}
+	}
+
+	pub fn get_margin_left(&self) -> f32 {
+		unsafe {
+			internal::YGNodeLayoutGetMargin(self.inner_node, internal::YGEdge::from(Edge::Left))
+		}
+	}
+
+	pub fn get_margin_right(&self) -> f32 {
+		unsafe {
+			internal::YGNodeLayoutGetMargin(self.inner_node, internal::YGEdge::from(Edge::Right))
+		}
+	}
+
+	pub fn get_margin_top(&self) -> f32 {
+		unsafe {
+			internal::YGNodeLayoutGetMargin(self.inner_node, internal::YGEdge::from(Edge::Top))
+		}
+	}
+
+	pub fn get_margin_bottom(&self) -> f32 {
+		unsafe {
+			internal::YGNodeLayoutGetMargin(self.inner_node, internal::YGEdge::from(Edge::Bottom))
 		}
 	}
 
