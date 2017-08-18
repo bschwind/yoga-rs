@@ -53,9 +53,11 @@ pub enum FlexStyle {
 	Overflow(Overflow),
 	Padding(StyleUnit),
 	PaddingBottom(StyleUnit),
+	PaddingEnd(StyleUnit),
 	PaddingHorizontal(StyleUnit),
 	PaddingLeft(StyleUnit),
 	PaddingRight(StyleUnit),
+	PaddingStart(StyleUnit),
 	PaddingTop(StyleUnit),
 	PaddingVertical(StyleUnit),
 	Position(PositionType),
@@ -580,9 +582,11 @@ impl Node {
 			Overflow(o) => self.set_overflow(o),
 			Padding(p) => self.set_padding(Edge::All, p),
 			PaddingBottom(p) => self.set_padding(Edge::Bottom, p),
+			PaddingEnd(p) => self.set_padding(Edge::End, p),
 			PaddingHorizontal(p) => self.set_padding(Edge::Horizontal, p),
 			PaddingLeft(p) => self.set_padding(Edge::Left, p),
 			PaddingRight(p) => self.set_padding(Edge::Right, p),
+			PaddingStart(p) => self.set_padding(Edge::Start, p),
 			PaddingTop(p) => self.set_padding(Edge::Top, p),
 			PaddingVertical(p) => self.set_padding(Edge::Vertical, p),
 			Position(position_type) => self.set_position_type(position_type),
@@ -854,6 +858,30 @@ impl Node {
 	pub fn get_margin_bottom(&self) -> f32 {
 		unsafe {
 			internal::YGNodeLayoutGetMargin(self.inner_node, internal::YGEdge::from(Edge::Bottom))
+		}
+	}
+
+	pub fn get_padding_left(&self) -> f32 {
+		unsafe {
+			internal::YGNodeLayoutGetPadding(self.inner_node, internal::YGEdge::from(Edge::Left))
+		}
+	}
+
+	pub fn get_padding_right(&self) -> f32 {
+		unsafe {
+			internal::YGNodeLayoutGetPadding(self.inner_node, internal::YGEdge::from(Edge::Right))
+		}
+	}
+
+	pub fn get_padding_top(&self) -> f32 {
+		unsafe {
+			internal::YGNodeLayoutGetPadding(self.inner_node, internal::YGEdge::from(Edge::Top))
+		}
+	}
+
+	pub fn get_padding_bottom(&self) -> f32 {
+		unsafe {
+			internal::YGNodeLayoutGetPadding(self.inner_node, internal::YGEdge::from(Edge::Bottom))
 		}
 	}
 
