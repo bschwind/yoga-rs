@@ -694,6 +694,12 @@ impl Node {
 		}
 	}
 
+	pub fn remove_child(&mut self, child: &mut Node) {
+		unsafe {
+			internal::YGNodeRemoveChild(self.inner_node, child.inner_node);
+		}
+	}
+
 	pub fn child_count(&self) -> u32 {
 		unsafe {
 			internal::YGNodeGetChildCount(self.inner_node)
@@ -1325,6 +1331,18 @@ impl Node {
 	pub fn get_layout_direction(&self) -> Direction {
 		unsafe {
 			internal::YGNodeLayoutGetDirection(self.inner_node).into()
+		}
+	}
+
+	pub fn is_dirty(&self) -> bool {
+		unsafe {
+			internal::YGNodeIsDirty(self.inner_node)
+		}
+	}
+
+	pub fn set_display(&mut self, display: Display) {
+		unsafe {
+			internal::YGNodeStyleSetDisplay(self.inner_node, display.into());
 		}
 	}
 
