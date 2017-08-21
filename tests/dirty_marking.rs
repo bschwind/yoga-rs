@@ -94,16 +94,16 @@ fn test_dirty_mark_all_children_as_dirty_when_display_changes() {
 	);
 
 	let mut root_child_0 = Node::new();
-	root_child_0.set_display(Display::Flex);
 
 	style!(root_child_0,
+		Display(Display::Flex),
 		FlexGrow(1.0)
 	);
 
 	let mut root_child_1 = Node::new();
-	root_child_1.set_display(Display::None);
 
 	style!(root_child_1,
+		Display(Display::None),
 		FlexGrow(1.0)
 	);
 
