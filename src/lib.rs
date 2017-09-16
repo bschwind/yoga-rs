@@ -3,8 +3,8 @@
 #![allow(non_snake_case)]
 
 // API created by bindgen
-#![allow(dead_code)]
 mod internal {
+	#![allow(dead_code)]
 	include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 }
 
