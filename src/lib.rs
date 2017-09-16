@@ -2,6 +2,8 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 
+extern crate ordered_float;
+
 // API created by bindgen
 mod internal {
 	#![allow(dead_code)]
@@ -9,18 +11,19 @@ mod internal {
 }
 
 use std::convert::From;
+use ordered_float::OrderedFloat;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq, Hash)]
 pub enum FlexStyle {
 	AlignItems(Align),
 	AlignSelf(Align),
-	BorderBottomWidth(f32),
-	BorderLeftWidth(f32),
-	BorderRightWidth(f32),
-	BorderTopWidth(f32),
-	BorderWidth(f32),
+	BorderBottomWidth(OrderedFloat<f32>),
+	BorderLeftWidth(OrderedFloat<f32>),
+	BorderRightWidth(OrderedFloat<f32>),
+	BorderTopWidth(OrderedFloat<f32>),
+	BorderWidth(OrderedFloat<f32>),
 	Bottom(StyleUnit),
-	Flex(f32),
+	Flex(OrderedFloat<f32>),
 	FlexBasis(StyleUnit),
 	FlexDirection(FlexDirection),
 	FlexWrap(Wrap),
@@ -312,11 +315,11 @@ impl From<PrintOptions> for internal::YGPrintOptions {
 	}
 }
 
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum StyleUnit {
 	UndefinedValue,
-	Point(f32),
-	Percent(f32),
+	Point(OrderedFloat<f32>),
+	Percent(OrderedFloat<f32>),
 	Auto
 }
 
@@ -372,13 +375,13 @@ pub trait Percent {
 
 impl Percent for f32 {
 	fn percent(self) -> StyleUnit {
-		StyleUnit::Percent(self)
+		StyleUnit::Percent(OrderedFloat(self))
 	}
 }
 
 impl Percent for i32 {
 	fn percent(self) -> StyleUnit {
-		StyleUnit::Percent(self as f32)
+		StyleUnit::Percent(OrderedFloat(self as f32))
 	}
 }
 
@@ -388,13 +391,13 @@ pub trait Point {
 
 impl Point for f32 {
 	fn point(self) -> StyleUnit {
-		StyleUnit::Point(self)
+		StyleUnit::Point(OrderedFloat(self))
 	}
 }
 
 impl Point for i32 {
 	fn point(self) -> StyleUnit {
-		StyleUnit::Point(self as f32)
+		StyleUnit::Point(OrderedFloat(self as f32))
 	}
 }
 
@@ -420,7 +423,7 @@ pub use std::f32::NAN as Undefined;
 
 // Custom Rust API
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq, Hash)]
 pub struct Node {
 	inner_node: internal::YGNodeRef,
 	should_free: bool
@@ -462,13 +465,13 @@ impl Node {
 		match *style {
 			AlignItems(align) => self.set_align_items(align),
 			AlignSelf(align) => self.set_align_self(align),
-			BorderBottomWidth(w) => self.set_border(Edge::Bottom, w),
-			BorderLeftWidth(w) => self.set_border(Edge::Left, w),
-			BorderRightWidth(w) => self.set_border(Edge::Right, w),
-			BorderTopWidth(w) => self.set_border(Edge::Top, w),
-			BorderWidth(w) => self.set_border(Edge::All, w),
+			BorderBottomWidth(w) => self.set_border(Edge::Bottom, w.into_inner()),
+			BorderLeftWidth(w) => self.set_border(Edge::Left, w.into_inner()),
+			BorderRightWidth(w) => self.set_border(Edge::Right, w.into_inner()),
+			BorderTopWidth(w) => self.set_border(Edge::Top, w.into_inner()),
+			BorderWidth(w) => self.set_border(Edge::All, w.into_inner()),
 			Bottom(b) => self.set_position(Edge::Bottom, b),
-			Flex(f) => self.set_flex(f),
+			Flex(f) => self.set_flex(f.into_inner()),
 			FlexBasis(f) => self.set_flex_basis(f),
 			FlexDirection(flex_direction) => self.set_flex_direction(flex_direction),
 			FlexWrap(wrap) => self.set_flex_wrap(wrap),
@@ -561,8 +564,8 @@ impl Node {
 		unsafe {
 			match position {
 				StyleUnit::UndefinedValue => internal::YGNodeStyleSetPosition(self.inner_node, internal::YGEdge::from(edge), Undefined),
-				StyleUnit::Point(val) => internal::YGNodeStyleSetPosition(self.inner_node, internal::YGEdge::from(edge), val),
-				StyleUnit::Percent(val) => internal::YGNodeStyleSetPositionPercent(self.inner_node, internal::YGEdge::from(edge), val),
+				StyleUnit::Point(val) => internal::YGNodeStyleSetPosition(self.inner_node, internal::YGEdge::from(edge), val.into_inner()),
+				StyleUnit::Percent(val) => internal::YGNodeStyleSetPositionPercent(self.inner_node, internal::YGEdge::from(edge), val.into_inner()),
 				// auto is not a valid value for position
 				StyleUnit::Auto => internal::YGNodeStyleSetPosition(self.inner_node, internal::YGEdge::from(edge), Undefined),
 			}
@@ -603,8 +606,8 @@ impl Node {
 		unsafe {
 			match flex_basis {
 				StyleUnit::UndefinedValue => internal::YGNodeStyleSetFlexBasis(self.inner_node, Undefined),
-				StyleUnit::Point(val) => internal::YGNodeStyleSetFlexBasis(self.inner_node, val),
-				StyleUnit::Percent(val) => internal::YGNodeStyleSetFlexBasisPercent(self.inner_node, val),
+				StyleUnit::Point(val) => internal::YGNodeStyleSetFlexBasis(self.inner_node, val.into_inner()),
+				StyleUnit::Percent(val) => internal::YGNodeStyleSetFlexBasisPercent(self.inner_node, val.into_inner()),
 				StyleUnit::Auto => internal::YGNodeStyleSetFlexBasisAuto(self.inner_node)
 			}
 		}
@@ -620,8 +623,8 @@ impl Node {
 		unsafe {
 			match margin {
 				StyleUnit::UndefinedValue => internal::YGNodeStyleSetMargin(self.inner_node, internal::YGEdge::from(edge), Undefined),
-				StyleUnit::Point(val) => internal::YGNodeStyleSetMargin(self.inner_node, internal::YGEdge::from(edge), val),
-				StyleUnit::Percent(val) => internal::YGNodeStyleSetMarginPercent(self.inner_node, internal::YGEdge::from(edge), val),
+				StyleUnit::Point(val) => internal::YGNodeStyleSetMargin(self.inner_node, internal::YGEdge::from(edge), val.into_inner()),
+				StyleUnit::Percent(val) => internal::YGNodeStyleSetMarginPercent(self.inner_node, internal::YGEdge::from(edge), val.into_inner()),
 				StyleUnit::Auto => internal::YGNodeStyleSetMarginAuto(self.inner_node, internal::YGEdge::from(edge))
 			}
 		}
@@ -631,8 +634,8 @@ impl Node {
 		unsafe {
 			match padding {
 				StyleUnit::UndefinedValue => internal::YGNodeStyleSetPadding(self.inner_node, internal::YGEdge::from(edge), Undefined),
-				StyleUnit::Point(val) => internal::YGNodeStyleSetPadding(self.inner_node, internal::YGEdge::from(edge), val),
-				StyleUnit::Percent(val) => internal::YGNodeStyleSetPaddingPercent(self.inner_node, internal::YGEdge::from(edge), val),
+				StyleUnit::Point(val) => internal::YGNodeStyleSetPadding(self.inner_node, internal::YGEdge::from(edge), val.into_inner()),
+				StyleUnit::Percent(val) => internal::YGNodeStyleSetPaddingPercent(self.inner_node, internal::YGEdge::from(edge), val.into_inner()),
 				// auto is not a valid value for padding
 				StyleUnit::Auto => internal::YGNodeStyleSetPadding(self.inner_node, internal::YGEdge::from(edge), Undefined)
 			}
@@ -649,8 +652,8 @@ impl Node {
 		unsafe {
 			match width {
 				StyleUnit::UndefinedValue => internal::YGNodeStyleSetWidth(self.inner_node, Undefined),
-				StyleUnit::Point(val) => internal::YGNodeStyleSetWidth(self.inner_node, val),
-				StyleUnit::Percent(val) => internal::YGNodeStyleSetWidthPercent(self.inner_node, val),
+				StyleUnit::Point(val) => internal::YGNodeStyleSetWidth(self.inner_node, val.into_inner()),
+				StyleUnit::Percent(val) => internal::YGNodeStyleSetWidthPercent(self.inner_node, val.into_inner()),
 				StyleUnit::Auto => internal::YGNodeStyleSetWidthAuto(self.inner_node)
 			}
 		}
@@ -660,8 +663,8 @@ impl Node {
 		unsafe {
 			match height {
 				StyleUnit::UndefinedValue => internal::YGNodeStyleSetHeight(self.inner_node, Undefined),
-				StyleUnit::Point(val) => internal::YGNodeStyleSetHeight(self.inner_node, val),
-				StyleUnit::Percent(val) => internal::YGNodeStyleSetHeightPercent(self.inner_node, val),
+				StyleUnit::Point(val) => internal::YGNodeStyleSetHeight(self.inner_node, val.into_inner()),
+				StyleUnit::Percent(val) => internal::YGNodeStyleSetHeightPercent(self.inner_node, val.into_inner()),
 				StyleUnit::Auto => internal::YGNodeStyleSetHeightAuto(self.inner_node)
 			}
 		}
@@ -671,8 +674,8 @@ impl Node {
 		unsafe {
 			match min_width {
 				StyleUnit::UndefinedValue => internal::YGNodeStyleSetMinWidth(self.inner_node, Undefined),
-				StyleUnit::Point(val) => internal::YGNodeStyleSetMinWidth(self.inner_node, val),
-				StyleUnit::Percent(val) => internal::YGNodeStyleSetMinWidthPercent(self.inner_node, val),
+				StyleUnit::Point(val) => internal::YGNodeStyleSetMinWidth(self.inner_node, val.into_inner()),
+				StyleUnit::Percent(val) => internal::YGNodeStyleSetMinWidthPercent(self.inner_node, val.into_inner()),
 				// auto is not a valid value for min_width
 				StyleUnit::Auto => internal::YGNodeStyleSetMinWidth(self.inner_node, Undefined),
 			}
@@ -685,8 +688,8 @@ impl Node {
 
 			match min_height {
 				StyleUnit::UndefinedValue => internal::YGNodeStyleSetMinHeight(self.inner_node, Undefined),
-				StyleUnit::Point(val) => internal::YGNodeStyleSetMinHeight(self.inner_node, val),
-				StyleUnit::Percent(val) => internal::YGNodeStyleSetMinHeightPercent(self.inner_node, val),
+				StyleUnit::Point(val) => internal::YGNodeStyleSetMinHeight(self.inner_node, val.into_inner()),
+				StyleUnit::Percent(val) => internal::YGNodeStyleSetMinHeightPercent(self.inner_node, val.into_inner()),
 				// auto is not a valid value for min_height
 				StyleUnit::Auto => internal::YGNodeStyleSetMinHeight(self.inner_node, Undefined),
 			}
@@ -697,8 +700,8 @@ impl Node {
 		unsafe {
 			match max_width {
 				StyleUnit::UndefinedValue => internal::YGNodeStyleSetMaxWidth(self.inner_node, Undefined),
-				StyleUnit::Point(val) => internal::YGNodeStyleSetMaxWidth(self.inner_node, val),
-				StyleUnit::Percent(val) => internal::YGNodeStyleSetMaxWidthPercent(self.inner_node, val),
+				StyleUnit::Point(val) => internal::YGNodeStyleSetMaxWidth(self.inner_node, val.into_inner()),
+				StyleUnit::Percent(val) => internal::YGNodeStyleSetMaxWidthPercent(self.inner_node, val.into_inner()),
 				// auto is not a valid value for max_width
 				StyleUnit::Auto => internal::YGNodeStyleSetMaxWidth(self.inner_node, Undefined),
 			}
@@ -709,8 +712,8 @@ impl Node {
 		unsafe {
 			match max_height {
 				StyleUnit::UndefinedValue => internal::YGNodeStyleSetMaxHeight(self.inner_node, Undefined),
-				StyleUnit::Point(val) => internal::YGNodeStyleSetMaxHeight(self.inner_node, val),
-				StyleUnit::Percent(val) => internal::YGNodeStyleSetMaxHeightPercent(self.inner_node, val),
+				StyleUnit::Point(val) => internal::YGNodeStyleSetMaxHeight(self.inner_node, val.into_inner()),
+				StyleUnit::Percent(val) => internal::YGNodeStyleSetMaxHeightPercent(self.inner_node, val.into_inner()),
 				// auto is not a valid value for max_height
 				StyleUnit::Auto => internal::YGNodeStyleSetMaxHeight(self.inner_node, Undefined),
 			}
@@ -749,7 +752,7 @@ impl Drop for Node {
 			unsafe {
 				internal::YGNodeFreeRecursive(self.inner_node);
 			}
-		}		
+		}
 	}
 }
 
