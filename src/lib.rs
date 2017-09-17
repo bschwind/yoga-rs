@@ -348,11 +348,41 @@ macro_rules! unit {
 }
 
 #[macro_export]
+macro_rules! flex_style {
+	// Manually match on styles which require an OrderedFloat
+	// This way the styles like
+	//     Flex(1.0)
+	// will be converted to:
+	//     Flex(OrderedFloat(1.0))
+	(BorderBottomWidth($val:expr)) => (
+		BorderBottomWidth(OrderedFloat($val))
+	);
+	(BorderLeftWidth($val:expr)) => (
+		BorderLeftWidth(OrderedFloat($val))
+	);
+	(BorderRightWidth($val:expr)) => (
+		BorderRightWidth(OrderedFloat($val))
+	);
+	(BorderTopWidth($val:expr)) => (
+		BorderTopWidth(OrderedFloat($val))
+	);
+	(BorderWidth($val:expr)) => (
+		BorderWidth(OrderedFloat($val))
+	);
+	(Flex($val:expr)) => (
+		Flex(OrderedFloat($val))
+	);
+	($s:ident($($unit:tt)*)) => (
+		$s(unit!($($unit)*))
+	);
+}
+
+#[macro_export]
 macro_rules! style {
 	( $x:expr, $($s:ident($($unit:tt)*)),* ) => {
 		$x.apply_styles(&vec!(
 			$(
-				$s(unit!($($unit)*)),
+				flex_style!($s(unit!($($unit)*))),
 			)*
 		))
 	};
@@ -774,7 +804,8 @@ fn test_absolute_layout_width_height_start_top() {
 		Start(10 pt),
 		Top(10 pt),
 		Width(10 pt),
-		Height(10 pt)
+		Height(10 pt),
+		Flex(1.0)
 	);
 
 	root.insert_child(&mut root_child_0, 0);
