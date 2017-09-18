@@ -1,6 +1,8 @@
 #[macro_use]
 extern crate yoga;
+extern crate ordered_float;
 
+use ordered_float::OrderedFloat;
 use yoga::{Align, Direction, Display, FlexDirection, Node, Point, Undefined};
 use yoga::FlexStyle::*;
 
