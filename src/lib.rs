@@ -13,7 +13,7 @@ mod internal {
 use std::convert::From;
 use ordered_float::OrderedFloat;
 
-#[derive(Debug, PartialEq, Eq, Hash)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub enum FlexStyle {
 	AlignItems(Align),
 	AlignSelf(Align),
