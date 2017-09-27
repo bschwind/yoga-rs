@@ -688,7 +688,6 @@ impl Node {
 	}
 
 	pub fn insert_child(&mut self, child: &mut Node, index: u32) {
-		let mut child = child;
 		child.should_free = false;
 
 		unsafe {
