@@ -688,7 +688,6 @@ impl Node {
 	}
 
 	pub fn insert_child(&mut self, child: &mut Node, index: u32) {
-		let mut child = child;
 		child.should_free = false;
 
 		unsafe {
@@ -1278,13 +1277,13 @@ impl Node {
 
 	pub fn get_layout_right(&self) -> f32 {
 		unsafe {
-			internal::YGNodeLayoutGetTop(self.inner_node)
+			internal::YGNodeLayoutGetRight(self.inner_node)
 		}
 	}
 
 	pub fn get_layout_top(&self) -> f32 {
 		unsafe {
-			internal::YGNodeLayoutGetRight(self.inner_node)
+			internal::YGNodeLayoutGetTop(self.inner_node)
 		}
 	}
 
@@ -1339,6 +1338,12 @@ impl Node {
 	pub fn is_dirty(&self) -> bool {
 		unsafe {
 			internal::YGNodeIsDirty(self.inner_node)
+		}
+	}
+
+	pub fn copy_style(&self, src_node: &Node) {
+		unsafe {
+			internal::YGNodeCopyStyle(self.inner_node, src_node.inner_node)
 		}
 	}
 
