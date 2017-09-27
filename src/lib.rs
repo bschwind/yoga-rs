@@ -1277,13 +1277,13 @@ impl Node {
 
 	pub fn get_layout_right(&self) -> f32 {
 		unsafe {
-			internal::YGNodeLayoutGetTop(self.inner_node)
+			internal::YGNodeLayoutGetRight(self.inner_node)
 		}
 	}
 
 	pub fn get_layout_top(&self) -> f32 {
 		unsafe {
-			internal::YGNodeLayoutGetRight(self.inner_node)
+			internal::YGNodeLayoutGetTop(self.inner_node)
 		}
 	}
 
