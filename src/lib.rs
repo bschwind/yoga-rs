@@ -1341,6 +1341,12 @@ impl Node {
 		}
 	}
 
+	pub fn copy_style(&self, src_node: &Node) {
+		unsafe {
+			internal::YGNodeCopyStyle(self.inner_node, src_node.inner_node)
+		}
+	}
+
 	pub fn set_display(&mut self, display: Display) {
 		unsafe {
 			internal::YGNodeStyleSetDisplay(self.inner_node, display.into());
