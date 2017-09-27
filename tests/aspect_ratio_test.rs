@@ -1,9 +1,10 @@
+extern crate ordered_float;
 #[macro_use]
 extern crate yoga;
-extern crate ordered_float;
 
 use ordered_float::OrderedFloat;
-use yoga::{Align, Direction, FlexDirection, Justify, MeasureMode, Node, NodeRef, Point, PositionType, Size, Undefined};
+use yoga::{Align, Direction, FlexDirection, Justify, MeasureMode, Node, NodeRef, Point,
+           PositionType, Size, Undefined};
 use yoga::FlexStyle::*;
 
 #[test]
@@ -160,9 +161,7 @@ fn test_aspect_ratio_align_stretch() {
 
 	let mut root_child_0 = Node::new();
 
-	style!(root_child_0,
-		AspectRatio(1.0)
-	);
+	style!(root_child_0, AspectRatio(1.0));
 
 	root.insert_child(&mut root_child_0, 0);
 
@@ -649,28 +648,26 @@ fn test_aspect_ratio_half_main() {
 
 #[test]
 fn test_aspect_ratio_with_measure_func() {
-	extern fn measure(
+	extern "C" fn measure(
 		_: NodeRef,
 		width: f32,
 		width_mode: MeasureMode,
 		height: f32,
-		height_mode: MeasureMode
-	) -> Size
-	{
-
+		height_mode: MeasureMode,
+	) -> Size {
 		let calc_width = match width_mode {
 			MeasureMode::Exactly => width,
-			_ => 50.0
+			_ => 50.0,
 		};
 
 		let calc_height = match height_mode {
 			MeasureMode::Exactly => height,
-			_ => 50.0
+			_ => 50.0,
 		};
 
 		Size {
 			width: calc_width,
-			height: calc_height
+			height: calc_height,
 		}
 	}
 
@@ -685,9 +682,7 @@ fn test_aspect_ratio_with_measure_func() {
 	let mut root_child_0 = Node::new();
 	root_child_0.set_measure_func(Some(measure));
 
-	style!(root_child_0,
-		AspectRatio(1.0)
-	);
+	style!(root_child_0, AspectRatio(1.0));
 
 	root.insert_child(&mut root_child_0, 0);
 

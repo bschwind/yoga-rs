@@ -1,6 +1,6 @@
+extern crate ordered_float;
 #[macro_use]
 extern crate yoga;
-extern crate ordered_float;
 
 use ordered_float::OrderedFloat;
 use yoga::{Align, Direction, FlexDirection, Justify, Node, Point, Undefined, Wrap};
@@ -2007,9 +2007,7 @@ fn test_align_items_center_child_with_margin_bigger_than_parent() {
 
 	let mut root_child_0 = Node::new();
 
-	style!(root_child_0,
-		AlignItems(Align::Center)
-	);
+	style!(root_child_0, AlignItems(Align::Center));
 
 	let mut root_child_0_child_0 = Node::new();
 
@@ -2079,9 +2077,7 @@ fn test_align_items_flex_end_child_with_margin_bigger_than_parent() {
 
 	let mut root_child_0 = Node::new();
 
-	style!(root_child_0,
-		AlignItems(Align::FlexEnd)
-	);
+	style!(root_child_0, AlignItems(Align::FlexEnd));
 
 	let mut root_child_0_child_0 = Node::new();
 
@@ -2151,9 +2147,7 @@ fn test_align_items_center_child_without_margin_bigger_than_parent() {
 
 	let mut root_child_0 = Node::new();
 
-	style!(root_child_0,
-		AlignItems(Align::Center)
-	);
+	style!(root_child_0, AlignItems(Align::Center));
 
 	let mut root_child_0_child_0 = Node::new();
 
@@ -2221,9 +2215,7 @@ fn test_align_items_flex_end_child_without_margin_bigger_than_parent() {
 
 	let mut root_child_0 = Node::new();
 
-	style!(root_child_0,
-		AlignItems(Align::FlexEnd)
-	);
+	style!(root_child_0, AlignItems(Align::FlexEnd));
 
 	let mut root_child_0_child_0 = Node::new();
 
@@ -2291,17 +2283,15 @@ fn test_align_center_should_size_based_on_content() {
 
 	let mut root_child_0 = Node::new();
 
-	style!(root_child_0,
+	style!(
+		root_child_0,
 		JustifyContent(Justify::Center),
 		FlexShrink(1.0)
 	);
 
 	let mut root_child_0_child_0 = Node::new();
 
-	style!(root_child_0_child_0,
-		FlexGrow(1.0),
-		FlexShrink(1.0)
-	);
+	style!(root_child_0_child_0, FlexGrow(1.0), FlexShrink(1.0));
 
 	let mut root_child_0_child_0_child_0 = Node::new();
 
@@ -2381,17 +2371,15 @@ fn test_align_strech_should_size_based_on_parent() {
 
 	let mut root_child_0 = Node::new();
 
-	style!(root_child_0,
+	style!(
+		root_child_0,
 		JustifyContent(Justify::Center),
 		FlexShrink(1.0)
 	);
 
 	let mut root_child_0_child_0 = Node::new();
 
-	style!(root_child_0_child_0,
-		FlexGrow(1.0),
-		FlexShrink(1.0)
-	);
+	style!(root_child_0_child_0, FlexGrow(1.0), FlexShrink(1.0));
 
 	let mut root_child_0_child_0_child_0 = Node::new();
 

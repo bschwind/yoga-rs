@@ -1,6 +1,6 @@
+extern crate ordered_float;
 #[macro_use]
 extern crate yoga;
-extern crate ordered_float;
 
 use ordered_float::OrderedFloat;
 use yoga::{Align, Direction, Display, FlexDirection, Node, Point, Undefined};
@@ -97,17 +97,11 @@ fn test_dirty_mark_all_children_as_dirty_when_display_changes() {
 
 	let mut root_child_0 = Node::new();
 
-	style!(root_child_0,
-		Display(Display::Flex),
-		FlexGrow(1.0)
-	);
+	style!(root_child_0, Display(Display::Flex), FlexGrow(1.0));
 
 	let mut root_child_1 = Node::new();
 
-	style!(root_child_1,
-		Display(Display::None),
-		FlexGrow(1.0)
-	);
+	style!(root_child_1, Display(Display::None), FlexGrow(1.0));
 
 	let mut root_child_1_child_0 = Node::new();
 	let mut root_child_1_child_0_child_0 = Node::new();

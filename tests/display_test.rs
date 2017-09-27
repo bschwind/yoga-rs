@@ -1,6 +1,6 @@
+extern crate ordered_float;
 #[macro_use]
 extern crate yoga;
-extern crate ordered_float;
 
 use ordered_float::OrderedFloat;
 use yoga::{Direction, Display, FlexDirection, Node, Percent, Point, Undefined};
@@ -18,16 +18,11 @@ fn test_display_none() {
 
 	let mut root_child_0 = Node::new();
 
-	style!(root_child_0,
-		FlexGrow(1.0)
-	);
+	style!(root_child_0, FlexGrow(1.0));
 
 	let mut root_child_1 = Node::new();
 
-	style!(root_child_1,
-		FlexGrow(1.0),
-		Display(Display::None)
-	);
+	style!(root_child_1, FlexGrow(1.0), Display(Display::None));
 
 	root.insert_child(&mut root_child_0, 0);
 	root.insert_child(&mut root_child_1, 1);
@@ -86,9 +81,7 @@ fn test_display_none_fixed_size() {
 
 	let mut root_child_0 = Node::new();
 
-	style!(root_child_0,
-		FlexGrow(1.0)
-	);
+	style!(root_child_0, FlexGrow(1.0));
 
 	let mut root_child_1 = Node::new();
 
@@ -167,9 +160,7 @@ fn test_display_none_with_margin() {
 
 	let mut root_child_1 = Node::new();
 
-	style!(root_child_1,
-		FlexGrow(1.0)
-	);
+	style!(root_child_1, FlexGrow(1.0));
 
 	root.insert_child(&mut root_child_0, 0);
 	root.insert_child(&mut root_child_1, 1);
@@ -345,9 +336,7 @@ fn test_display_none_with_position() {
 
 	let mut root_child_0 = Node::new();
 
-	style!(root_child_0,
-		FlexGrow(1.0)
-	);
+	style!(root_child_0, FlexGrow(1.0));
 
 	let mut root_child_1 = Node::new();
 

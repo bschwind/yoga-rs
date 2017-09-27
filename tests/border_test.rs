@@ -1,6 +1,6 @@
+extern crate ordered_float;
 #[macro_use]
 extern crate yoga;
-extern crate ordered_float;
 
 use ordered_float::OrderedFloat;
 use yoga::{Align, Direction, Justify, Node, Point, Undefined};
@@ -10,7 +10,8 @@ use yoga::FlexStyle::*;
 fn test_border_no_size() {
 	let mut root = Node::new();
 
-	style!(root,
+	style!(
+		root,
 		BorderLeft(10.0),
 		BorderTop(10.0),
 		BorderRight(10.0),
@@ -40,7 +41,8 @@ fn test_border_no_size() {
 fn test_border_container_match_child() {
 	let mut root = Node::new();
 
-	style!(root,
+	style!(
+		root,
 		BorderLeft(10.0),
 		BorderTop(10.0),
 		BorderRight(10.0),
