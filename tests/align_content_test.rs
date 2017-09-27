@@ -1,14 +1,13 @@
+extern crate ordered_float;
 #[macro_use]
 extern crate yoga;
-extern crate ordered_float;
 
 use ordered_float::OrderedFloat;
-use yoga::{Align, Direction, FlexDirection, Node, Point, Percent, Undefined, Wrap};
+use yoga::{Align, Direction, FlexDirection, Node, Percent, Point, Undefined, Wrap};
 use yoga::FlexStyle::*;
 
 #[test]
 fn test_align_content_flex_start() {
-
 	let mut root = Node::new();
 
 	style!(root,
@@ -912,7 +911,7 @@ fn test_align_content_spacearound() {
 	assert_eq!(10.0, child_4_layout.height);
 }
 
-#[test] 
+#[test]
 fn test_align_content_stretch_row() {
 	let mut root = Node::new();
 
@@ -2328,9 +2327,7 @@ fn test_align_content_stretch_column() {
 fn test_align_content_stretch_is_not_overriding_align_items() {
 	let mut root = Node::new();
 
-	style!(root,
-		AlignContent(Align::Stretch)
-	);
+	style!(root, AlignContent(Align::Stretch));
 
 	let mut root_child_0 = Node::new();
 

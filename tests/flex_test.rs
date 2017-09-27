@@ -1,6 +1,6 @@
+extern crate ordered_float;
 #[macro_use]
 extern crate yoga;
-extern crate ordered_float;
 
 use ordered_float::OrderedFloat;
 use yoga::{Direction, FlexDirection, Node, Point, Undefined};
@@ -24,9 +24,7 @@ fn test_flex_basis_flex_grow_column() {
 
 	let mut root_child_1 = Node::new();
 
-	style!(root_child_1,
-		FlexGrow(1.0)
-	);
+	style!(root_child_1, FlexGrow(1.0));
 
 	root.insert_child(&mut root_child_0, 0);
 	root.insert_child(&mut root_child_1, 1);
@@ -92,9 +90,7 @@ fn test_flex_basis_flex_grow_row() {
 
 	let mut root_child_1 = Node::new();
 
-	style!(root_child_1,
-		FlexGrow(1.0)
-	);
+	style!(root_child_1, FlexGrow(1.0));
 
 	root.insert_child(&mut root_child_0, 0);
 	root.insert_child(&mut root_child_1, 1);
@@ -468,10 +464,7 @@ fn test_flex_grow_shrink_at_most() {
 
 	let mut root_child_0_child_0 = Node::new();
 
-	style!(root_child_0_child_0,
-		FlexGrow(1.0),
-		FlexShrink(1.0)
-	);
+	style!(root_child_0_child_0, FlexGrow(1.0), FlexShrink(1.0));
 
 	root.insert_child(&mut root_child_0, 0);
 

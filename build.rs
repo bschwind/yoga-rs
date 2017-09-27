@@ -1,9 +1,9 @@
 extern crate bindgen;
 extern crate gcc;
 
+use gcc::Config;
 use std::env;
 use std::path::PathBuf;
-use gcc::Config;
 
 fn main() {
 	let mut c = Config::new();
@@ -23,6 +23,7 @@ fn main() {
 
 	let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
 
-	bindings.write_to_file(out_path.join("bindings.rs"))
+	bindings
+		.write_to_file(out_path.join("bindings.rs"))
 		.expect("Unable to write bindings!");
 }

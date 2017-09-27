@@ -1,7 +1,7 @@
 #[macro_use]
 extern crate yoga;
 
-use yoga::{Node, Point, Percent};
+use yoga::{Node, Percent, Point};
 use yoga::FlexStyle::*;
 use yoga::StyleUnit::{Auto, UndefinedValue};
 

@@ -1,9 +1,10 @@
+extern crate ordered_float;
 #[macro_use]
 extern crate yoga;
-extern crate ordered_float;
 
 use ordered_float::OrderedFloat;
-use yoga::{Align, Direction, FlexDirection, Justify, Overflow, Node, Point, Percent, PositionType, Undefined, Wrap};
+use yoga::{Align, Direction, FlexDirection, Justify, Node, Overflow, Percent, Point, PositionType,
+           Undefined, Wrap};
 use yoga::FlexStyle::*;
 
 #[test]
