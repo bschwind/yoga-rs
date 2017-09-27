@@ -17,11 +17,7 @@ fn test_copy_style_modified() {
 	let node0 = Node::new();
 	assert!(!node0.is_dirty());
 	assert_eq!(FlexDirection::Column, node0.get_flex_direction());
-
-	match node0.get_style_max_height() {
-		StyleUnit::UndefinedValue => assert!(true),
-		_ => assert!(false),
-	}
+	assert_eq!(node0.get_style_max_height(), StyleUnit::UndefinedValue);
 
 	let mut node1 = Node::new();
 	node1.set_flex_direction(FlexDirection::Row);
@@ -30,11 +26,7 @@ fn test_copy_style_modified() {
 	node0.copy_style(&node1);
 	assert!(node0.is_dirty());
 	assert_eq!(FlexDirection::Row, node0.get_flex_direction());
-
-	match node0.get_style_max_height() {
-		StyleUnit::Point(value) => assert_eq!(10.0, value.into_inner()),
-		_ => assert!(false),
-	}
+	assert_eq!(node0.get_style_max_height(), StyleUnit::Point(10.0.into()));
 }
 
 #[test]
