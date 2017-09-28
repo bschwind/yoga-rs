@@ -1,8 +1,8 @@
 #[macro_use]
 extern crate yoga;
 
-use yoga::{Align, Direction, FlexDirection, Node, NodeRef, Point, Undefined};
-use yoga::FlexStyle::*;
+use yoga::{Align, Direction, FlexDirection, Node, NodeRef, Undefined};
+use yoga::prelude::*;
 
 #[test]
 fn test_align_baseline_customer_func() {

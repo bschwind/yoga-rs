@@ -1,9 +1,9 @@
 #[macro_use]
 extern crate yoga;
 
-use yoga::{Node, Percent, Point};
-use yoga::FlexStyle::*;
+use yoga::Node;
 use yoga::StyleUnit::{Auto, UndefinedValue};
+use yoga::prelude::*;
 
 fn main() {
 	let mut node = Node::new();
@@ -25,7 +25,8 @@ fn main() {
 	let child_styles = make_styles!(
 		Width(32 pt),
 		Height(32 pt),
-		Margin(Auto)
+		Margin(Auto),
+		FlexGrow(1.0)
 	);
 
 	child.apply_styles(&child_styles);

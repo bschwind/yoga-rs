@@ -2,9 +2,8 @@ extern crate ordered_float;
 #[macro_use]
 extern crate yoga;
 
-use ordered_float::OrderedFloat;
-use yoga::{Align, Direction, Display, FlexDirection, Node, Point, Undefined};
-use yoga::FlexStyle::*;
+use yoga::{Align, Direction, Display, FlexDirection, Node, Undefined};
+use yoga::prelude::*;
 
 #[test]
 fn test_dirty_propagation() {

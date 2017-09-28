@@ -2,10 +2,8 @@ extern crate ordered_float;
 #[macro_use]
 extern crate yoga;
 
-use ordered_float::OrderedFloat;
-use yoga::{Align, Direction, FlexDirection, Justify, Node, Overflow, Percent, Point, PositionType,
-           Undefined, Wrap};
-use yoga::FlexStyle::*;
+use yoga::{Align, Direction, FlexDirection, Justify, Node, Overflow, PositionType, Undefined, Wrap};
+use yoga::prelude::*;
 
 #[test]
 fn test_absolute_layout_width_height_start_top() {

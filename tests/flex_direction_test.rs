@@ -1,8 +1,8 @@
 #[macro_use]
 extern crate yoga;
 
-use yoga::{Direction, FlexDirection, Node, Point, Undefined};
-use yoga::FlexStyle::*;
+use yoga::{Direction, FlexDirection, Node, Undefined};
+use yoga::prelude::*;
 
 #[test]
 fn test_flex_direction_column_no_height() {
