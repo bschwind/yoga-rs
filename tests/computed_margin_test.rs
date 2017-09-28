@@ -1,8 +1,8 @@
 #[macro_use]
 extern crate yoga;
 
-use yoga::{Direction, Node, Percent, Point};
-use yoga::FlexStyle::*;
+use yoga::{Direction, Node};
+use yoga::prelude::*;
 
 #[test]
 fn test_computed_layout_margin() {

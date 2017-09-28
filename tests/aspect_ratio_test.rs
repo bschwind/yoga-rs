@@ -2,10 +2,9 @@ extern crate ordered_float;
 #[macro_use]
 extern crate yoga;
 
-use ordered_float::OrderedFloat;
-use yoga::{Align, Direction, FlexDirection, Justify, MeasureMode, Node, NodeRef, Point,
-           PositionType, Size, Undefined};
-use yoga::FlexStyle::*;
+use yoga::{Align, Direction, FlexDirection, Justify, MeasureMode, Node, NodeRef, PositionType,
+           Size, Undefined};
+use yoga::prelude::*;
 
 #[test]
 fn test_aspect_ratio_cross_defined() {

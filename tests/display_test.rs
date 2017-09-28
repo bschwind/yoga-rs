@@ -2,9 +2,8 @@ extern crate ordered_float;
 #[macro_use]
 extern crate yoga;
 
-use ordered_float::OrderedFloat;
-use yoga::{Direction, Display, FlexDirection, Node, Percent, Point, Undefined};
-use yoga::FlexStyle::*;
+use yoga::{Direction, Display, FlexDirection, Node, Undefined};
+use yoga::prelude::*;
 
 #[test]
 fn test_display_none() {

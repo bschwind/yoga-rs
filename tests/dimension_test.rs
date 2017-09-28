@@ -1,8 +1,8 @@
 #[macro_use]
 extern crate yoga;
 
-use yoga::{Direction, Node, Point, Undefined};
-use yoga::FlexStyle::*;
+use yoga::{Direction, Node, Undefined};
+use yoga::prelude::*;
 
 #[test]
 fn test_wrap_child() {

@@ -2,9 +2,8 @@ extern crate ordered_float;
 #[macro_use]
 extern crate yoga;
 
-use ordered_float::OrderedFloat;
-use yoga::{Direction, FlexDirection, Node, Point, Undefined};
-use yoga::FlexStyle::*;
+use yoga::{Direction, FlexDirection, Node, Undefined};
+use yoga::prelude::*;
 
 #[test]
 fn test_flex_basis_flex_grow_column() {
