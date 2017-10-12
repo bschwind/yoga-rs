@@ -1,5 +1,7 @@
 [package]
 name = "yoga"
+description = "Rust bindings for Facebook's Yoga, a Flexbox layout engine"
+license = "MIT"
 version = "0.1.0"
 authors = ["Brian Schwind <brianmschwind@gmail.com>"]
 build = "build.rs"
