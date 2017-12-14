@@ -1,5 +1,6 @@
 Yoga-rs
 =======
+[![Build Status](https://travis-ci.org/victorporof/yoga-rs.svg?branch=master)](https://travis-ci.org/victorporof/yoga-rs)
 
 A Rust wrapper for Facebook's Yoga layout library.
 
