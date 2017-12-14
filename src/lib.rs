@@ -772,35 +772,27 @@ impl Node {
 	pub fn set_position(&mut self, edge: Edge, position: StyleUnit) {
 		unsafe {
 			match position {
-				StyleUnit::UndefinedValue => {
-					internal::YGNodeStyleSetPosition(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						Undefined,
-					)
-				}
-				StyleUnit::Point(val) => {
-					internal::YGNodeStyleSetPosition(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						val.into_inner(),
-					)
-				}
-				StyleUnit::Percent(val) => {
-					internal::YGNodeStyleSetPositionPercent(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						val.into_inner(),
-					)
-				}
+				StyleUnit::UndefinedValue => internal::YGNodeStyleSetPosition(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					Undefined,
+				),
+				StyleUnit::Point(val) => internal::YGNodeStyleSetPosition(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					val.into_inner(),
+				),
+				StyleUnit::Percent(val) => internal::YGNodeStyleSetPositionPercent(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					val.into_inner(),
+				),
 				// auto is not a valid value for position
-				StyleUnit::Auto => {
-					internal::YGNodeStyleSetPosition(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						Undefined,
-					)
-				}
+				StyleUnit::Auto => internal::YGNodeStyleSetPosition(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					Undefined,
+				),
 			}
 		}
 	}
@@ -865,33 +857,25 @@ impl Node {
 	pub fn set_margin(&mut self, edge: Edge, margin: StyleUnit) {
 		unsafe {
 			match margin {
-				StyleUnit::UndefinedValue => {
-					internal::YGNodeStyleSetMargin(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						Undefined,
-					)
-				}
-				StyleUnit::Point(val) => {
-					internal::YGNodeStyleSetMargin(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						val.into_inner(),
-					)
-				}
-				StyleUnit::Percent(val) => {
-					internal::YGNodeStyleSetMarginPercent(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						val.into_inner(),
-					)
-				}
-				StyleUnit::Auto => {
-					internal::YGNodeStyleSetMarginAuto(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-					)
-				}
+				StyleUnit::UndefinedValue => internal::YGNodeStyleSetMargin(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					Undefined,
+				),
+				StyleUnit::Point(val) => internal::YGNodeStyleSetMargin(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					val.into_inner(),
+				),
+				StyleUnit::Percent(val) => internal::YGNodeStyleSetMarginPercent(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					val.into_inner(),
+				),
+				StyleUnit::Auto => internal::YGNodeStyleSetMarginAuto(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+				),
 			}
 		}
 	}
@@ -899,35 +883,27 @@ impl Node {
 	pub fn set_padding(&mut self, edge: Edge, padding: StyleUnit) {
 		unsafe {
 			match padding {
-				StyleUnit::UndefinedValue => {
-					internal::YGNodeStyleSetPadding(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						Undefined,
-					)
-				}
-				StyleUnit::Point(val) => {
-					internal::YGNodeStyleSetPadding(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						val.into_inner(),
-					)
-				}
-				StyleUnit::Percent(val) => {
-					internal::YGNodeStyleSetPaddingPercent(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						val.into_inner(),
-					)
-				}
+				StyleUnit::UndefinedValue => internal::YGNodeStyleSetPadding(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					Undefined,
+				),
+				StyleUnit::Point(val) => internal::YGNodeStyleSetPadding(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					val.into_inner(),
+				),
+				StyleUnit::Percent(val) => internal::YGNodeStyleSetPaddingPercent(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					val.into_inner(),
+				),
 				// auto is not a valid value for padding
-				StyleUnit::Auto => {
-					internal::YGNodeStyleSetPadding(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						Undefined,
-					)
-				}
+				StyleUnit::Auto => internal::YGNodeStyleSetPadding(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					Undefined,
+				),
 			}
 		}
 	}
@@ -1485,12 +1461,13 @@ impl Node {
 	}
 }
 
-type InternalMeasureFunc = unsafe extern "C" fn(internal::YGNodeRef,
-                                                f32,
-                                                internal::YGMeasureMode,
-                                                f32,
-                                                internal::YGMeasureMode)
-                                                -> internal::YGSize;
+type InternalMeasureFunc = unsafe extern "C" fn(
+	internal::YGNodeRef,
+	f32,
+	internal::YGMeasureMode,
+	f32,
+	internal::YGMeasureMode,
+) -> internal::YGSize;
 type InternalBaselineFunc = unsafe extern "C" fn(internal::YGNodeRef, f32, f32) -> f32;
 pub type MeasureFunc = Option<extern "C" fn(NodeRef, f32, MeasureMode, f32, MeasureMode) -> Size>;
 pub type BaselineFunc = Option<extern "C" fn(NodeRef, f32, f32) -> f32>;
