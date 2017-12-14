@@ -12,6 +12,8 @@ mod internal {
 
 use ordered_float::OrderedFloat;
 use std::convert::From;
+use std::marker::PhantomData;
+use std::os::raw::c_void;
 
 pub mod prelude {
 	pub use {Percent, Point};
@@ -597,14 +599,16 @@ pub use std::f32::NAN as Undefined;
 
 // Custom Rust API
 
-pub type NodeRef = internal::YGNodeRef;
-
 #[repr(C)]
 #[derive(Debug, PartialEq, Eq, Hash)]
-pub struct Node {
+pub struct ContextNode<T> {
 	inner_node: NodeRef,
 	should_free: bool,
+	phantom: PhantomData<T>,
 }
+
+pub type Node = ContextNode<()>;
+pub type NodeRef = internal::YGNodeRef;
 
 #[derive(Debug, PartialEq)]
 pub struct Layout {
@@ -616,11 +620,12 @@ pub struct Layout {
 	pub height: f32,
 }
 
-impl Node {
-	pub fn new() -> Node {
-		Node {
+impl<T> ContextNode<T> {
+	pub fn new() -> ContextNode<T> {
+		ContextNode {
 			inner_node: unsafe { internal::YGNodeNew() },
 			should_free: true,
+			phantom: PhantomData,
 		}
 	}
 
@@ -1459,6 +1464,19 @@ impl Node {
 			},
 		}
 	}
+
+	pub fn set_context(&mut self, data: *mut T) {
+		let context = data as *mut c_void;
+		unsafe { internal::YGNodeSetContext(self.inner_node, context) }
+	}
+
+	pub fn get_context(node_ref: &NodeRef) -> &T {
+		unsafe { &*(internal::YGNodeGetContext(*node_ref) as *mut T) }
+	}
+
+	pub fn get_own_context(&self) -> &T {
+		ContextNode::get_context(&self.inner_node)
+	}
 }
 
 type InternalMeasureFunc = unsafe extern "C" fn(
@@ -1472,7 +1490,7 @@ type InternalBaselineFunc = unsafe extern "C" fn(internal::YGNodeRef, f32, f32) 
 pub type MeasureFunc = Option<extern "C" fn(NodeRef, f32, MeasureMode, f32, MeasureMode) -> Size>;
 pub type BaselineFunc = Option<extern "C" fn(NodeRef, f32, f32) -> f32>;
 
-impl Drop for Node {
+impl<T> Drop for ContextNode<T> {
 	fn drop(&mut self) {
 		if self.should_free {
 			unsafe {
