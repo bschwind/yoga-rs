@@ -18,6 +18,11 @@ fn main() {
 	let bindings = bindgen::Builder::default()
 		.rust_target(RustTarget::Stable_1_21)
 		.blacklist_type("max_align_t") // This fails `cargo test` so disable for now
+		.blacklist_type("FP_INFINITE")
+		.blacklist_type("FP_NAN")
+		.blacklist_type("FP_NORMAL")
+		.blacklist_type("FP_SUBNORMAL")
+		.blacklist_type("FP_ZERO")
 		.rustfmt_bindings(false)
 		.rustified_enum("YG.*")
 		.header("src/c/wrapper.h")
