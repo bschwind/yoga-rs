@@ -10,613 +10,40 @@ mod internal {
 	include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 }
 
-use ordered_float::OrderedFloat;
-use std::any::Any;
-use std::convert::From;
-use std::ops::Deref;
-use std::os::raw::c_void;
-
-pub mod prelude {
-	pub use {Percent, Point};
-	pub use FlexStyle::*;
-}
-
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum FlexStyle {
-	AlignContent(Align),
-	AlignItems(Align),
-	AlignSelf(Align),
-	AspectRatio(OrderedFloat<f32>),
-	BorderBottom(OrderedFloat<f32>),
-	BorderEnd(OrderedFloat<f32>),
-	BorderLeft(OrderedFloat<f32>),
-	BorderRight(OrderedFloat<f32>),
-	BorderStart(OrderedFloat<f32>),
-	BorderTop(OrderedFloat<f32>),
-	Border(OrderedFloat<f32>),
-	Bottom(StyleUnit),
-	Display(Display),
-	End(StyleUnit),
-	Flex(OrderedFloat<f32>),
-	FlexBasis(StyleUnit),
-	FlexDirection(FlexDirection),
-	FlexGrow(OrderedFloat<f32>),
-	FlexShrink(OrderedFloat<f32>),
-	FlexWrap(Wrap),
-	Height(StyleUnit),
-	JustifyContent(Justify),
-	Left(StyleUnit),
-	Margin(StyleUnit),
-	MarginBottom(StyleUnit),
-	MarginEnd(StyleUnit),
-	MarginHorizontal(StyleUnit),
-	MarginLeft(StyleUnit),
-	MarginRight(StyleUnit),
-	MarginStart(StyleUnit),
-	MarginTop(StyleUnit),
-	MarginVertical(StyleUnit),
-	MaxHeight(StyleUnit),
-	MaxWidth(StyleUnit),
-	MinHeight(StyleUnit),
-	MinWidth(StyleUnit),
-	Overflow(Overflow),
-	Padding(StyleUnit),
-	PaddingBottom(StyleUnit),
-	PaddingEnd(StyleUnit),
-	PaddingHorizontal(StyleUnit),
-	PaddingLeft(StyleUnit),
-	PaddingRight(StyleUnit),
-	PaddingStart(StyleUnit),
-	PaddingTop(StyleUnit),
-	PaddingVertical(StyleUnit),
-	Position(PositionType),
-	Right(StyleUnit),
-	Start(StyleUnit),
-	Top(StyleUnit),
-	Width(StyleUnit),
-}
-
 // Public re-exports of Yoga enums
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum Align {
-	Auto = 0,
-	FlexStart = 1,
-	Center = 2,
-	FlexEnd = 3,
-	Stretch = 4,
-	Baseline = 5,
-	SpaceBetween = 6,
-	SpaceAround = 7,
+mod ffi_types {
+	pub mod align;
+	pub mod dimension;
+	pub mod direction;
+	pub mod display;
+	pub mod edge;
+	pub mod flex_direction;
+	pub mod justify;
+	pub mod log_level;
+	pub mod measure_mode;
+	pub mod node_ref;
+	pub mod node_type;
+	pub mod overflow;
+	pub mod position_type;
+	pub mod print_options;
+	pub mod size;
+	pub mod style_unit;
+	pub mod undefined;
+	pub mod wrap;
 }
 
-impl From<Align> for internal::YGAlign {
-	fn from(a: Align) -> internal::YGAlign {
-		match a {
-			Align::Auto => internal::YGAlign::YGAlignAuto,
-			Align::FlexStart => internal::YGAlign::YGAlignFlexStart,
-			Align::Center => internal::YGAlign::YGAlignCenter,
-			Align::FlexEnd => internal::YGAlign::YGAlignFlexEnd,
-			Align::Stretch => internal::YGAlign::YGAlignStretch,
-			Align::Baseline => internal::YGAlign::YGAlignBaseline,
-			Align::SpaceBetween => internal::YGAlign::YGAlignSpaceBetween,
-			Align::SpaceAround => internal::YGAlign::YGAlignSpaceAround,
-		}
-	}
-}
+pub mod prelude;
+pub mod types;
+pub mod traits;
 
-impl From<internal::YGAlign> for Align {
-	fn from(a: internal::YGAlign) -> Align {
-		match a {
-			internal::YGAlign::YGAlignAuto => Align::Auto,
-			internal::YGAlign::YGAlignFlexStart => Align::FlexStart,
-			internal::YGAlign::YGAlignCenter => Align::Center,
-			internal::YGAlign::YGAlignFlexEnd => Align::FlexEnd,
-			internal::YGAlign::YGAlignStretch => Align::Stretch,
-			internal::YGAlign::YGAlignBaseline => Align::Baseline,
-			internal::YGAlign::YGAlignSpaceBetween => Align::SpaceBetween,
-			internal::YGAlign::YGAlignSpaceAround => Align::SpaceAround,
-		}
-	}
-}
-
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum Dimension {
-	Width = 0,
-	Height = 1,
-}
-
-impl From<Dimension> for internal::YGDimension {
-	fn from(d: Dimension) -> internal::YGDimension {
-		match d {
-			Dimension::Width => internal::YGDimension::YGDimensionWidth,
-			Dimension::Height => internal::YGDimension::YGDimensionHeight,
-		}
-	}
-}
-
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum Direction {
-	Inherit = 0,
-	LTR = 1,
-	RTL = 2,
-}
-
-impl From<Direction> for internal::YGDirection {
-	fn from(d: Direction) -> internal::YGDirection {
-		match d {
-			Direction::Inherit => internal::YGDirection::YGDirectionInherit,
-			Direction::LTR => internal::YGDirection::YGDirectionLTR,
-			Direction::RTL => internal::YGDirection::YGDirectionRTL,
-		}
-	}
-}
-
-impl From<internal::YGDirection> for Direction {
-	fn from(d: internal::YGDirection) -> Direction {
-		match d {
-			internal::YGDirection::YGDirectionInherit => Direction::Inherit,
-			internal::YGDirection::YGDirectionLTR => Direction::LTR,
-			internal::YGDirection::YGDirectionRTL => Direction::RTL,
-		}
-	}
-}
-
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum Display {
-	Flex = 0,
-	None = 1,
-}
-
-impl From<Display> for internal::YGDisplay {
-	fn from(d: Display) -> internal::YGDisplay {
-		match d {
-			Display::Flex => internal::YGDisplay::YGDisplayFlex,
-			Display::None => internal::YGDisplay::YGDisplayNone,
-		}
-	}
-}
-
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum Edge {
-	Left = 0,
-	Top = 1,
-	Right = 2,
-	Bottom = 3,
-	Start = 4,
-	End = 5,
-	Horizontal = 6,
-	Vertical = 7,
-	All = 8,
-}
-
-impl From<Edge> for internal::YGEdge {
-	fn from(e: Edge) -> internal::YGEdge {
-		match e {
-			Edge::Left => internal::YGEdge::YGEdgeLeft,
-			Edge::Top => internal::YGEdge::YGEdgeTop,
-			Edge::Right => internal::YGEdge::YGEdgeRight,
-			Edge::Bottom => internal::YGEdge::YGEdgeBottom,
-			Edge::Start => internal::YGEdge::YGEdgeStart,
-			Edge::End => internal::YGEdge::YGEdgeEnd,
-			Edge::Horizontal => internal::YGEdge::YGEdgeHorizontal,
-			Edge::Vertical => internal::YGEdge::YGEdgeVertical,
-			Edge::All => internal::YGEdge::YGEdgeAll,
-		}
-	}
-}
-
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum FlexDirection {
-	Column = 0,
-	ColumnReverse = 1,
-	Row = 2,
-	RowReverse = 3,
-}
-
-impl From<FlexDirection> for internal::YGFlexDirection {
-	fn from(f: FlexDirection) -> internal::YGFlexDirection {
-		match f {
-			FlexDirection::Column => internal::YGFlexDirection::YGFlexDirectionColumn,
-			FlexDirection::ColumnReverse => internal::YGFlexDirection::YGFlexDirectionColumnReverse,
-			FlexDirection::Row => internal::YGFlexDirection::YGFlexDirectionRow,
-			FlexDirection::RowReverse => internal::YGFlexDirection::YGFlexDirectionRowReverse,
-		}
-	}
-}
-
-impl From<internal::YGFlexDirection> for FlexDirection {
-	fn from(f: internal::YGFlexDirection) -> FlexDirection {
-		match f {
-			internal::YGFlexDirection::YGFlexDirectionColumn => FlexDirection::Column,
-			internal::YGFlexDirection::YGFlexDirectionColumnReverse => FlexDirection::ColumnReverse,
-			internal::YGFlexDirection::YGFlexDirectionRow => FlexDirection::Row,
-			internal::YGFlexDirection::YGFlexDirectionRowReverse => FlexDirection::RowReverse,
-		}
-	}
-}
-
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum Justify {
-	FlexStart = 0,
-	Center = 1,
-	FlexEnd = 2,
-	SpaceBetween = 3,
-	SpaceAround = 4,
-}
-
-impl From<Justify> for internal::YGJustify {
-	fn from(j: Justify) -> internal::YGJustify {
-		match j {
-			Justify::FlexStart => internal::YGJustify::YGJustifyFlexStart,
-			Justify::Center => internal::YGJustify::YGJustifyCenter,
-			Justify::FlexEnd => internal::YGJustify::YGJustifyFlexEnd,
-			Justify::SpaceBetween => internal::YGJustify::YGJustifySpaceBetween,
-			Justify::SpaceAround => internal::YGJustify::YGJustifySpaceAround,
-		}
-	}
-}
-
-impl From<internal::YGJustify> for Justify {
-	fn from(j: internal::YGJustify) -> Justify {
-		match j {
-			internal::YGJustify::YGJustifyFlexStart => Justify::FlexStart,
-			internal::YGJustify::YGJustifyCenter => Justify::Center,
-			internal::YGJustify::YGJustifyFlexEnd => Justify::FlexEnd,
-			internal::YGJustify::YGJustifySpaceBetween => Justify::SpaceBetween,
-			internal::YGJustify::YGJustifySpaceAround => Justify::SpaceAround,
-		}
-	}
-}
-
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum LogLevel {
-	Error = 0,
-	Warn = 1,
-	Info = 2,
-	Debug = 3,
-	Verbose = 4,
-	Fatal = 5,
-}
-
-impl From<LogLevel> for internal::YGLogLevel {
-	fn from(l: LogLevel) -> internal::YGLogLevel {
-		match l {
-			LogLevel::Error => internal::YGLogLevel::YGLogLevelError,
-			LogLevel::Warn => internal::YGLogLevel::YGLogLevelWarn,
-			LogLevel::Info => internal::YGLogLevel::YGLogLevelInfo,
-			LogLevel::Debug => internal::YGLogLevel::YGLogLevelDebug,
-			LogLevel::Verbose => internal::YGLogLevel::YGLogLevelVerbose,
-			LogLevel::Fatal => internal::YGLogLevel::YGLogLevelFatal,
-		}
-	}
-}
-
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum MeasureMode {
-	Undefined = 0,
-	Exactly = 1,
-	AtMost = 2,
-}
-
-impl From<MeasureMode> for internal::YGMeasureMode {
-	fn from(m: MeasureMode) -> internal::YGMeasureMode {
-		match m {
-			MeasureMode::Undefined => internal::YGMeasureMode::YGMeasureModeUndefined,
-			MeasureMode::Exactly => internal::YGMeasureMode::YGMeasureModeExactly,
-			MeasureMode::AtMost => internal::YGMeasureMode::YGMeasureModeAtMost,
-		}
-	}
-}
-
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum NodeType {
-	Default = 0,
-	Text = 1,
-}
-
-impl From<NodeType> for internal::YGNodeType {
-	fn from(n: NodeType) -> internal::YGNodeType {
-		match n {
-			NodeType::Default => internal::YGNodeType::YGNodeTypeDefault,
-			NodeType::Text => internal::YGNodeType::YGNodeTypeText,
-		}
-	}
-}
-
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum Overflow {
-	Visible = 0,
-	Hidden = 1,
-	Scroll = 2,
-}
-
-impl From<Overflow> for internal::YGOverflow {
-	fn from(o: Overflow) -> internal::YGOverflow {
-		match o {
-			Overflow::Visible => internal::YGOverflow::YGOverflowVisible,
-			Overflow::Hidden => internal::YGOverflow::YGOverflowHidden,
-			Overflow::Scroll => internal::YGOverflow::YGOverflowScroll,
-		}
-	}
-}
-
-impl From<internal::YGOverflow> for Overflow {
-	fn from(o: internal::YGOverflow) -> Overflow {
-		match o {
-			internal::YGOverflow::YGOverflowVisible => Overflow::Visible,
-			internal::YGOverflow::YGOverflowHidden => Overflow::Hidden,
-			internal::YGOverflow::YGOverflowScroll => Overflow::Scroll,
-		}
-	}
-}
-
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum PositionType {
-	Relative = 0,
-	Absolute = 1,
-}
-
-impl From<PositionType> for internal::YGPositionType {
-	fn from(p: PositionType) -> internal::YGPositionType {
-		match p {
-			PositionType::Relative => internal::YGPositionType::YGPositionTypeRelative,
-			PositionType::Absolute => internal::YGPositionType::YGPositionTypeAbsolute,
-		}
-	}
-}
-
-impl From<internal::YGPositionType> for PositionType {
-	fn from(p: internal::YGPositionType) -> PositionType {
-		match p {
-			internal::YGPositionType::YGPositionTypeRelative => PositionType::Relative,
-			internal::YGPositionType::YGPositionTypeAbsolute => PositionType::Absolute,
-		}
-	}
-}
-
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum PrintOptions {
-	Layout = 1,
-	Style = 2,
-	Children = 4,
-}
-
-impl From<PrintOptions> for internal::YGPrintOptions {
-	fn from(p: PrintOptions) -> internal::YGPrintOptions {
-		match p {
-			PrintOptions::Layout => internal::YGPrintOptions::YGPrintOptionsLayout,
-			PrintOptions::Style => internal::YGPrintOptions::YGPrintOptionsStyle,
-			PrintOptions::Children => internal::YGPrintOptions::YGPrintOptionsChildren,
-		}
-	}
-}
-
-#[repr(C)]
-#[derive(Debug, Copy)]
-pub struct Size {
-	pub width: f32,
-	pub height: f32,
-}
-
-impl Clone for Size {
-	fn clone(&self) -> Self {
-		*self
-	}
-}
-
-impl From<Size> for internal::YGSize {
-	fn from(s: Size) -> internal::YGSize {
-		internal::YGSize {
-			width: s.width,
-			height: s.height,
-		}
-	}
-}
-
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum StyleUnit {
-	UndefinedValue,
-	Point(OrderedFloat<f32>),
-	Percent(OrderedFloat<f32>),
-	Auto,
-}
-
-impl From<StyleUnit> for internal::YGUnit {
-	fn from(s: StyleUnit) -> internal::YGUnit {
-		match s {
-			StyleUnit::UndefinedValue => internal::YGUnit::YGUnitUndefined,
-			StyleUnit::Point(_) => internal::YGUnit::YGUnitPoint,
-			StyleUnit::Percent(_) => internal::YGUnit::YGUnitPercent,
-			StyleUnit::Auto => internal::YGUnit::YGUnitAuto,
-		}
-	}
-}
-
-impl From<internal::YGValue> for StyleUnit {
-	fn from(v: internal::YGValue) -> StyleUnit {
-		match v.unit {
-			internal::YGUnit::YGUnitUndefined => StyleUnit::UndefinedValue,
-			internal::YGUnit::YGUnitPoint => StyleUnit::Point(OrderedFloat(v.value)),
-			internal::YGUnit::YGUnitPercent => StyleUnit::Percent(OrderedFloat(v.value)),
-			internal::YGUnit::YGUnitAuto => StyleUnit::Auto,
-		}
-	}
-}
-
-#[macro_export]
-macro_rules! unit {
-	( $val:tt pt) => (
-		$val.point()
-	);
-	( $val:tt %) => {
-		$val.percent()
-	};
-	( $val:expr) => {
-		$val
-	};
-}
-
-#[macro_export]
-macro_rules! flex_style {
-	// Manually match on styles which require an OrderedFloat
-	// This way the styles like
-	//     Flex(1.0)
-	// will be converted to:
-	//     Flex(1.0.into())
-	(AspectRatio($val:expr)) => (
-		AspectRatio($val.into())
-	);
-	(BorderBottom($val:expr)) => (
-		BorderBottom($val.into())
-	);
-	(BorderEnd($val:expr)) => (
-		BorderEnd($val.into())
-	);
-	(BorderLeft($val:expr)) => (
-		BorderLeft($val.into())
-	);
-	(BorderRight($val:expr)) => (
-		BorderRight($val.into())
-	);
-	(BorderStart($val:expr)) => (
-		BorderStart($val.into())
-	);
-	(BorderTop($val:expr)) => (
-		BorderTop($val.into())
-	);
-	(Border($val:expr)) => (
-		Border($val.into())
-	);
-	(Flex($val:expr)) => (
-		Flex($val.into())
-	);
-	(FlexGrow($val:expr)) => (
-		FlexGrow($val.into())
-	);
-	(FlexShrink($val:expr)) => (
-		FlexShrink($val.into())
-	);
-	($s:ident($($unit:tt)*)) => (
-		$s(unit!($($unit)*))
-	);
-}
-
-#[macro_export]
-macro_rules! style {
-	( $x:expr, $($s:ident($($unit:tt)*)),* ) => {
-		$x.apply_styles(&vec!(
-			$(
-				flex_style!($s(unit!($($unit)*))),
-			)*
-		))
-	};
-}
-
-#[macro_export]
-macro_rules! make_styles {
-	( $($s:ident($($unit:tt)*)),* ) => {
-		vec!(
-			$(
-				flex_style!($s(unit!($($unit)*))),
-			)*
-		)
-	};
-}
-
-pub trait Percent {
-	fn percent(self) -> StyleUnit;
-}
-
-impl Percent for f32 {
-	fn percent(self) -> StyleUnit {
-		StyleUnit::Percent(OrderedFloat(self))
-	}
-}
-
-impl Percent for i32 {
-	fn percent(self) -> StyleUnit {
-		StyleUnit::Percent(OrderedFloat(self as f32))
-	}
-}
-
-pub trait Point {
-	fn point(self) -> StyleUnit;
-}
-
-impl Point for f32 {
-	fn point(self) -> StyleUnit {
-		StyleUnit::Point(OrderedFloat(self))
-	}
-}
-
-impl Point for i32 {
-	fn point(self) -> StyleUnit {
-		StyleUnit::Point(OrderedFloat(self as f32))
-	}
-}
-
-#[repr(u32)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-pub enum Wrap {
-	NoWrap = 0,
-	Wrap = 1,
-	WrapReverse = 2,
-}
-
-impl From<Wrap> for internal::YGWrap {
-	fn from(w: Wrap) -> internal::YGWrap {
-		match w {
-			Wrap::NoWrap => internal::YGWrap::YGWrapNoWrap,
-			Wrap::Wrap => internal::YGWrap::YGWrapWrap,
-			Wrap::WrapReverse => internal::YGWrap::YGWrapWrapReverse,
-		}
-	}
-}
-
-impl From<internal::YGWrap> for Wrap {
-	fn from(w: internal::YGWrap) -> Wrap {
-		match w {
-			internal::YGWrap::YGWrapNoWrap => Wrap::NoWrap,
-			internal::YGWrap::YGWrapWrap => Wrap::Wrap,
-			internal::YGWrap::YGWrapWrapReverse => Wrap::WrapReverse,
-		}
-	}
-}
-
-pub use std::f32::NAN as Undefined;
-
-// Custom Rust API
+use std::os::raw::c_void;
+pub use types::*;
 
 #[repr(C)]
 #[derive(Debug, PartialEq, Eq, Hash)]
 pub struct Node {
 	inner_node: NodeRef,
 	should_free: bool,
-}
-
-pub type NodeRef = internal::YGNodeRef;
-
-#[derive(Debug, PartialEq)]
-pub struct Layout {
-	pub left: f32,
-	pub right: f32,
-	pub top: f32,
-	pub bottom: f32,
-	pub width: f32,
-	pub height: f32,
 }
 
 impl Node {
@@ -1442,7 +869,14 @@ impl Node {
 	pub fn set_measure_func(&mut self, func: MeasureFunc) {
 		match func {
 			Some(f) => unsafe {
-				let casted_func: InternalMeasureFunc = std::mem::transmute(f as usize);
+				type Callback = unsafe extern "C" fn(
+					internal::YGNodeRef,
+					f32,
+					internal::YGMeasureMode,
+					f32,
+					internal::YGMeasureMode,
+				) -> internal::YGSize;
+				let casted_func: Callback = std::mem::transmute(f as usize);
 				internal::YGNodeSetMeasureFunc(self.inner_node, Some(casted_func));
 			},
 			None => unsafe {
@@ -1454,7 +888,8 @@ impl Node {
 	pub fn set_baseline_func(&mut self, func: BaselineFunc) {
 		match func {
 			Some(f) => unsafe {
-				let casted_func: InternalBaselineFunc = std::mem::transmute(f as usize);
+				type Callback = unsafe extern "C" fn(internal::YGNodeRef, f32, f32) -> f32;
+				let casted_func: Callback = std::mem::transmute(f as usize);
 				internal::YGNodeSetBaselineFunc(self.inner_node, Some(casted_func));
 			},
 			None => unsafe {
@@ -1476,27 +911,6 @@ impl Node {
 		Node::get_context(&self.inner_node)
 	}
 }
-
-#[derive(Debug)]
-pub struct Context(pub Box<Any>);
-
-impl Deref for Context {
-	type Target = Box<Any>;
-	fn deref(&self) -> &Box<Any> {
-		&self.0
-	}
-}
-
-type InternalMeasureFunc = unsafe extern "C" fn(
-	internal::YGNodeRef,
-	f32,
-	internal::YGMeasureMode,
-	f32,
-	internal::YGMeasureMode,
-) -> internal::YGSize;
-type InternalBaselineFunc = unsafe extern "C" fn(internal::YGNodeRef, f32, f32) -> f32;
-pub type MeasureFunc = Option<extern "C" fn(NodeRef, f32, MeasureMode, f32, MeasureMode) -> Size>;
-pub type BaselineFunc = Option<extern "C" fn(NodeRef, f32, f32) -> f32>;
 
 impl Drop for Node {
 	fn drop(&mut self) {
