@@ -7,7 +7,7 @@ use yoga::{Context, Direction, MeasureMode, Node, NodeRef, Size, Undefined};
 #[test]
 fn test_context_1() {
 	let mut root = Node::new();
-	let ref mut context = Context(Box::new("test".to_string()));
+	let ref mut context = Context::new("test".to_string());
 	root.set_context(context);
 
 	let retrieved_context = root.get_own_context();
@@ -41,7 +41,7 @@ fn test_context_2_safe_check() {
 	}
 
 	let mut root = Node::new();
-	let ref mut context = Context(Box::new("test".to_string()));
+	let ref mut context = Context::new("test".to_string());
 	root.set_context(context);
 	root.set_measure_func(Some(measure));
 
@@ -75,7 +75,7 @@ fn test_context_2() {
 	}
 
 	let mut root = Node::new();
-	let ref mut context = Context(Box::new("test".to_string()));
+	let ref mut context = Context::new("test".to_string());
 	root.set_context(context);
 	root.set_measure_func(Some(measure));
 
@@ -126,10 +126,10 @@ fn test_context_3() {
 		letter_height: 10.0,
 	}));
 
-	let mut data = Context(Box::new(CustomData {
+	let mut data = Context::new(CustomData {
 		text: "hello world".to_string(),
 		font: shared_font,
-	}));
+	});
 
 	let mut root = Node::new();
 	root.set_context(&mut data);

@@ -90,7 +90,13 @@ pub struct Layout {
 }
 
 #[derive(Debug)]
-pub struct Context(pub Box<Any>);
+pub struct Context(Box<Any>);
+
+impl Context {
+	pub fn new<T: Any>(value: T) -> Context {
+		Context(Box::new(value))
+	}
+}
 
 impl Deref for Context {
 	type Target = Box<Any>;
