@@ -11,8 +11,9 @@ mod internal {
 }
 
 use ordered_float::OrderedFloat;
+use std::any::Any;
 use std::convert::From;
-use std::marker::PhantomData;
+use std::ops::Deref;
 use std::os::raw::c_void;
 
 pub mod prelude {
@@ -601,13 +602,11 @@ pub use std::f32::NAN as Undefined;
 
 #[repr(C)]
 #[derive(Debug, PartialEq, Eq, Hash)]
-pub struct ContextNode<T> {
+pub struct Node {
 	inner_node: NodeRef,
 	should_free: bool,
-	phantom: PhantomData<T>,
 }
 
-pub type Node = ContextNode<()>;
 pub type NodeRef = internal::YGNodeRef;
 
 #[derive(Debug, PartialEq)]
@@ -620,12 +619,11 @@ pub struct Layout {
 	pub height: f32,
 }
 
-impl<T> ContextNode<T> {
-	pub fn new() -> ContextNode<T> {
-		ContextNode {
+impl Node {
+	pub fn new() -> Node {
+		Node {
 			inner_node: unsafe { internal::YGNodeNew() },
 			should_free: true,
-			phantom: PhantomData,
 		}
 	}
 
@@ -1465,17 +1463,27 @@ impl<T> ContextNode<T> {
 		}
 	}
 
-	pub fn set_context(&mut self, data: *mut T) {
+	pub fn set_context(&mut self, data: *mut Context) {
 		let context = data as *mut c_void;
 		unsafe { internal::YGNodeSetContext(self.inner_node, context) }
 	}
 
-	pub fn get_context(node_ref: &NodeRef) -> &T {
-		unsafe { &*(internal::YGNodeGetContext(*node_ref) as *mut T) }
+	pub fn get_context(node_ref: &NodeRef) -> &Context {
+		unsafe { &*(internal::YGNodeGetContext(*node_ref) as *mut Context) }
 	}
 
-	pub fn get_own_context(&self) -> &T {
-		ContextNode::get_context(&self.inner_node)
+	pub fn get_own_context(&self) -> &Context {
+		Node::get_context(&self.inner_node)
+	}
+}
+
+#[derive(Debug)]
+pub struct Context(pub Box<Any>);
+
+impl Deref for Context {
+	type Target = Box<Any>;
+	fn deref(&self) -> &Box<Any> {
+		&self.0
 	}
 }
 
@@ -1490,7 +1498,7 @@ type InternalBaselineFunc = unsafe extern "C" fn(internal::YGNodeRef, f32, f32) 
 pub type MeasureFunc = Option<extern "C" fn(NodeRef, f32, MeasureMode, f32, MeasureMode) -> Size>;
 pub type BaselineFunc = Option<extern "C" fn(NodeRef, f32, f32) -> f32>;
 
-impl<T> Drop for ContextNode<T> {
+impl Drop for Node {
 	fn drop(&mut self) {
 		if self.should_free {
 			unsafe {
