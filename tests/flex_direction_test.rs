@@ -40,25 +40,25 @@ fn test_flex_direction_column_no_height() {
 	let child_1_layout = root_child_1.get_layout();
 	let child_2_layout = root_child_2.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(30.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(30.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(10.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(10.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(10.0, child_1_layout.top);
-	assert_eq!(100.0, child_1_layout.width);
-	assert_eq!(10.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(10.0, child_1_layout.top());
+	assert_eq!(100.0, child_1_layout.width());
+	assert_eq!(10.0, child_1_layout.height());
 
-	assert_eq!(0.0, child_2_layout.left);
-	assert_eq!(20.0, child_2_layout.top);
-	assert_eq!(100.0, child_2_layout.width);
-	assert_eq!(10.0, child_2_layout.height);
+	assert_eq!(0.0, child_2_layout.left());
+	assert_eq!(20.0, child_2_layout.top());
+	assert_eq!(100.0, child_2_layout.width());
+	assert_eq!(10.0, child_2_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
@@ -67,25 +67,25 @@ fn test_flex_direction_column_no_height() {
 	let child_1_layout = root_child_1.get_layout();
 	let child_2_layout = root_child_2.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(30.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(30.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(10.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(10.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(10.0, child_1_layout.top);
-	assert_eq!(100.0, child_1_layout.width);
-	assert_eq!(10.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(10.0, child_1_layout.top());
+	assert_eq!(100.0, child_1_layout.width());
+	assert_eq!(10.0, child_1_layout.height());
 
-	assert_eq!(0.0, child_2_layout.left);
-	assert_eq!(20.0, child_2_layout.top);
-	assert_eq!(100.0, child_2_layout.width);
-	assert_eq!(10.0, child_2_layout.height);
+	assert_eq!(0.0, child_2_layout.left());
+	assert_eq!(20.0, child_2_layout.top());
+	assert_eq!(100.0, child_2_layout.width());
+	assert_eq!(10.0, child_2_layout.height());
 }
 
 #[test]
@@ -125,25 +125,25 @@ fn test_flex_direction_row_no_width() {
 	let child_1_layout = root_child_1.get_layout();
 	let child_2_layout = root_child_2.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(30.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(30.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(10.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(10.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 
-	assert_eq!(10.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(10.0, child_1_layout.width);
-	assert_eq!(100.0, child_1_layout.height);
+	assert_eq!(10.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(10.0, child_1_layout.width());
+	assert_eq!(100.0, child_1_layout.height());
 
-	assert_eq!(20.0, child_2_layout.left);
-	assert_eq!(0.0, child_2_layout.top);
-	assert_eq!(10.0, child_2_layout.width);
-	assert_eq!(100.0, child_2_layout.height);
+	assert_eq!(20.0, child_2_layout.left());
+	assert_eq!(0.0, child_2_layout.top());
+	assert_eq!(10.0, child_2_layout.width());
+	assert_eq!(100.0, child_2_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
@@ -152,25 +152,25 @@ fn test_flex_direction_row_no_width() {
 	let child_1_layout = root_child_1.get_layout();
 	let child_2_layout = root_child_2.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(30.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(30.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(20.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(10.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(20.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(10.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 
-	assert_eq!(10.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(10.0, child_1_layout.width);
-	assert_eq!(100.0, child_1_layout.height);
+	assert_eq!(10.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(10.0, child_1_layout.width());
+	assert_eq!(100.0, child_1_layout.height());
 
-	assert_eq!(0.0, child_2_layout.left);
-	assert_eq!(0.0, child_2_layout.top);
-	assert_eq!(10.0, child_2_layout.width);
-	assert_eq!(100.0, child_2_layout.height);
+	assert_eq!(0.0, child_2_layout.left());
+	assert_eq!(0.0, child_2_layout.top());
+	assert_eq!(10.0, child_2_layout.width());
+	assert_eq!(100.0, child_2_layout.height());
 }
 
 #[test]
@@ -210,25 +210,25 @@ fn test_flex_direction_column() {
 	let child_1_layout = root_child_1.get_layout();
 	let child_2_layout = root_child_2.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(10.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(10.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(10.0, child_1_layout.top);
-	assert_eq!(100.0, child_1_layout.width);
-	assert_eq!(10.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(10.0, child_1_layout.top());
+	assert_eq!(100.0, child_1_layout.width());
+	assert_eq!(10.0, child_1_layout.height());
 
-	assert_eq!(0.0, child_2_layout.left);
-	assert_eq!(20.0, child_2_layout.top);
-	assert_eq!(100.0, child_2_layout.width);
-	assert_eq!(10.0, child_2_layout.height);
+	assert_eq!(0.0, child_2_layout.left());
+	assert_eq!(20.0, child_2_layout.top());
+	assert_eq!(100.0, child_2_layout.width());
+	assert_eq!(10.0, child_2_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
@@ -237,25 +237,25 @@ fn test_flex_direction_column() {
 	let child_1_layout = root_child_1.get_layout();
 	let child_2_layout = root_child_2.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(10.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(10.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(10.0, child_1_layout.top);
-	assert_eq!(100.0, child_1_layout.width);
-	assert_eq!(10.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(10.0, child_1_layout.top());
+	assert_eq!(100.0, child_1_layout.width());
+	assert_eq!(10.0, child_1_layout.height());
 
-	assert_eq!(0.0, child_2_layout.left);
-	assert_eq!(20.0, child_2_layout.top);
-	assert_eq!(100.0, child_2_layout.width);
-	assert_eq!(10.0, child_2_layout.height);
+	assert_eq!(0.0, child_2_layout.left());
+	assert_eq!(20.0, child_2_layout.top());
+	assert_eq!(100.0, child_2_layout.width());
+	assert_eq!(10.0, child_2_layout.height());
 }
 
 #[test]
@@ -296,25 +296,25 @@ fn test_flex_direction_row() {
 	let child_1_layout = root_child_1.get_layout();
 	let child_2_layout = root_child_2.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(10.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(10.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 
-	assert_eq!(10.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(10.0, child_1_layout.width);
-	assert_eq!(100.0, child_1_layout.height);
+	assert_eq!(10.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(10.0, child_1_layout.width());
+	assert_eq!(100.0, child_1_layout.height());
 
-	assert_eq!(20.0, child_2_layout.left);
-	assert_eq!(0.0, child_2_layout.top);
-	assert_eq!(10.0, child_2_layout.width);
-	assert_eq!(100.0, child_2_layout.height);
+	assert_eq!(20.0, child_2_layout.left());
+	assert_eq!(0.0, child_2_layout.top());
+	assert_eq!(10.0, child_2_layout.width());
+	assert_eq!(100.0, child_2_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
@@ -323,25 +323,25 @@ fn test_flex_direction_row() {
 	let child_1_layout = root_child_1.get_layout();
 	let child_2_layout = root_child_2.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(90.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(10.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(90.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(10.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 
-	assert_eq!(80.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(10.0, child_1_layout.width);
-	assert_eq!(100.0, child_1_layout.height);
+	assert_eq!(80.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(10.0, child_1_layout.width());
+	assert_eq!(100.0, child_1_layout.height());
 
-	assert_eq!(70.0, child_2_layout.left);
-	assert_eq!(0.0, child_2_layout.top);
-	assert_eq!(10.0, child_2_layout.width);
-	assert_eq!(100.0, child_2_layout.height);
+	assert_eq!(70.0, child_2_layout.left());
+	assert_eq!(0.0, child_2_layout.top());
+	assert_eq!(10.0, child_2_layout.width());
+	assert_eq!(100.0, child_2_layout.height());
 }
 
 #[test]
@@ -382,25 +382,25 @@ fn test_flex_direction_column_reverse() {
 	let child_1_layout = root_child_1.get_layout();
 	let child_2_layout = root_child_2.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(90.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(10.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(90.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(10.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(80.0, child_1_layout.top);
-	assert_eq!(100.0, child_1_layout.width);
-	assert_eq!(10.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(80.0, child_1_layout.top());
+	assert_eq!(100.0, child_1_layout.width());
+	assert_eq!(10.0, child_1_layout.height());
 
-	assert_eq!(0.0, child_2_layout.left);
-	assert_eq!(70.0, child_2_layout.top);
-	assert_eq!(100.0, child_2_layout.width);
-	assert_eq!(10.0, child_2_layout.height);
+	assert_eq!(0.0, child_2_layout.left());
+	assert_eq!(70.0, child_2_layout.top());
+	assert_eq!(100.0, child_2_layout.width());
+	assert_eq!(10.0, child_2_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
@@ -409,25 +409,25 @@ fn test_flex_direction_column_reverse() {
 	let child_1_layout = root_child_1.get_layout();
 	let child_2_layout = root_child_2.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(90.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(10.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(90.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(10.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(80.0, child_1_layout.top);
-	assert_eq!(100.0, child_1_layout.width);
-	assert_eq!(10.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(80.0, child_1_layout.top());
+	assert_eq!(100.0, child_1_layout.width());
+	assert_eq!(10.0, child_1_layout.height());
 
-	assert_eq!(0.0, child_2_layout.left);
-	assert_eq!(70.0, child_2_layout.top);
-	assert_eq!(100.0, child_2_layout.width);
-	assert_eq!(10.0, child_2_layout.height);
+	assert_eq!(0.0, child_2_layout.left());
+	assert_eq!(70.0, child_2_layout.top());
+	assert_eq!(100.0, child_2_layout.width());
+	assert_eq!(10.0, child_2_layout.height());
 }
 
 #[test]
@@ -468,25 +468,25 @@ fn test_flex_direction_row_reverse() {
 	let child_1_layout = root_child_1.get_layout();
 	let child_2_layout = root_child_2.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(90.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(10.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(90.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(10.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 
-	assert_eq!(80.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(10.0, child_1_layout.width);
-	assert_eq!(100.0, child_1_layout.height);
+	assert_eq!(80.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(10.0, child_1_layout.width());
+	assert_eq!(100.0, child_1_layout.height());
 
-	assert_eq!(70.0, child_2_layout.left);
-	assert_eq!(0.0, child_2_layout.top);
-	assert_eq!(10.0, child_2_layout.width);
-	assert_eq!(100.0, child_2_layout.height);
+	assert_eq!(70.0, child_2_layout.left());
+	assert_eq!(0.0, child_2_layout.top());
+	assert_eq!(10.0, child_2_layout.width());
+	assert_eq!(100.0, child_2_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
@@ -495,23 +495,23 @@ fn test_flex_direction_row_reverse() {
 	let child_1_layout = root_child_1.get_layout();
 	let child_2_layout = root_child_2.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(10.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(10.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 
-	assert_eq!(10.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(10.0, child_1_layout.width);
-	assert_eq!(100.0, child_1_layout.height);
+	assert_eq!(10.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(10.0, child_1_layout.width());
+	assert_eq!(100.0, child_1_layout.height());
 
-	assert_eq!(20.0, child_2_layout.left);
-	assert_eq!(0.0, child_2_layout.top);
-	assert_eq!(10.0, child_2_layout.width);
-	assert_eq!(100.0, child_2_layout.height);
+	assert_eq!(20.0, child_2_layout.left());
+	assert_eq!(0.0, child_2_layout.top());
+	assert_eq!(10.0, child_2_layout.width());
+	assert_eq!(100.0, child_2_layout.height());
 }

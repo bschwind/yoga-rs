@@ -31,20 +31,20 @@ fn test_display_none() {
 	let child_0_layout = root_child_0.get_layout();
 	let child_1_layout = root_child_1.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(0.0, child_1_layout.width);
-	assert_eq!(0.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(0.0, child_1_layout.width());
+	assert_eq!(0.0, child_1_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
@@ -52,20 +52,20 @@ fn test_display_none() {
 	let child_0_layout = root_child_0.get_layout();
 	let child_1_layout = root_child_1.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(0.0, child_1_layout.width);
-	assert_eq!(0.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(0.0, child_1_layout.width());
+	assert_eq!(0.0, child_1_layout.height());
 }
 
 #[test]
@@ -98,20 +98,20 @@ fn test_display_none_fixed_size() {
 	let child_0_layout = root_child_0.get_layout();
 	let child_1_layout = root_child_1.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(0.0, child_1_layout.width);
-	assert_eq!(0.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(0.0, child_1_layout.width());
+	assert_eq!(0.0, child_1_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
@@ -119,20 +119,20 @@ fn test_display_none_fixed_size() {
 	let child_0_layout = root_child_0.get_layout();
 	let child_1_layout = root_child_1.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(0.0, child_1_layout.width);
-	assert_eq!(0.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(0.0, child_1_layout.width());
+	assert_eq!(0.0, child_1_layout.height());
 }
 
 #[test]
@@ -169,20 +169,20 @@ fn test_display_none_with_margin() {
 	let child_0_layout = root_child_0.get_layout();
 	let child_1_layout = root_child_1.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(0.0, child_0_layout.width);
-	assert_eq!(0.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(0.0, child_0_layout.width());
+	assert_eq!(0.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(100.0, child_1_layout.width);
-	assert_eq!(100.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(100.0, child_1_layout.width());
+	assert_eq!(100.0, child_1_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
@@ -190,20 +190,20 @@ fn test_display_none_with_margin() {
 	let child_0_layout = root_child_0.get_layout();
 	let child_1_layout = root_child_1.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(0.0, child_0_layout.width);
-	assert_eq!(0.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(0.0, child_0_layout.width());
+	assert_eq!(0.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(100.0, child_1_layout.width);
-	assert_eq!(100.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(100.0, child_1_layout.width());
+	assert_eq!(100.0, child_1_layout.height());
 }
 
 #[test]
@@ -264,30 +264,30 @@ fn test_display_none_with_child() {
 	let child_1_child_0_layout = root_child_1_child_0.get_layout();
 	let child_2_layout = root_child_2.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(50.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(50.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(0.0, child_1_layout.width);
-	assert_eq!(0.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(0.0, child_1_layout.width());
+	assert_eq!(0.0, child_1_layout.height());
 
-	assert_eq!(0.0, child_1_child_0_layout.left);
-	assert_eq!(0.0, child_1_child_0_layout.top);
-	assert_eq!(0.0, child_1_child_0_layout.width);
-	assert_eq!(0.0, child_1_child_0_layout.height);
+	assert_eq!(0.0, child_1_child_0_layout.left());
+	assert_eq!(0.0, child_1_child_0_layout.top());
+	assert_eq!(0.0, child_1_child_0_layout.width());
+	assert_eq!(0.0, child_1_child_0_layout.height());
 
-	assert_eq!(50.0, child_2_layout.left);
-	assert_eq!(0.0, child_2_layout.top);
-	assert_eq!(50.0, child_2_layout.width);
-	assert_eq!(100.0, child_2_layout.height);
+	assert_eq!(50.0, child_2_layout.left());
+	assert_eq!(0.0, child_2_layout.top());
+	assert_eq!(50.0, child_2_layout.width());
+	assert_eq!(100.0, child_2_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
@@ -297,30 +297,30 @@ fn test_display_none_with_child() {
 	let child_1_child_0_layout = root_child_1_child_0.get_layout();
 	let child_2_layout = root_child_2.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(50.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(50.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(50.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(50.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(0.0, child_1_layout.width);
-	assert_eq!(0.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(0.0, child_1_layout.width());
+	assert_eq!(0.0, child_1_layout.height());
 
-	assert_eq!(0.0, child_1_child_0_layout.left);
-	assert_eq!(0.0, child_1_child_0_layout.top);
-	assert_eq!(0.0, child_1_child_0_layout.width);
-	assert_eq!(0.0, child_1_child_0_layout.height);
+	assert_eq!(0.0, child_1_child_0_layout.left());
+	assert_eq!(0.0, child_1_child_0_layout.top());
+	assert_eq!(0.0, child_1_child_0_layout.width());
+	assert_eq!(0.0, child_1_child_0_layout.height());
 
-	assert_eq!(0.0, child_2_layout.left);
-	assert_eq!(0.0, child_2_layout.top);
-	assert_eq!(50.0, child_2_layout.width);
-	assert_eq!(100.0, child_2_layout.height);
+	assert_eq!(0.0, child_2_layout.left());
+	assert_eq!(0.0, child_2_layout.top());
+	assert_eq!(50.0, child_2_layout.width());
+	assert_eq!(100.0, child_2_layout.height());
 }
 
 #[test]
@@ -353,20 +353,20 @@ fn test_display_none_with_position() {
 	let child_0_layout = root_child_0.get_layout();
 	let child_1_layout = root_child_1.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(0.0, child_1_layout.width);
-	assert_eq!(0.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(0.0, child_1_layout.width());
+	assert_eq!(0.0, child_1_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
@@ -374,18 +374,18 @@ fn test_display_none_with_position() {
 	let child_0_layout = root_child_0.get_layout();
 	let child_1_layout = root_child_1.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(0.0, child_1_layout.width);
-	assert_eq!(0.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(0.0, child_1_layout.width());
+	assert_eq!(0.0, child_1_layout.height());
 }

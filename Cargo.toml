@@ -3,7 +3,7 @@ name = "yoga"
 description = "Rust bindings for Facebook's Yoga, a Flexbox layout engine"
 license = "MIT"
 repository = "https://github.com/bschwind/yoga-rs"
-version = "0.1.1"
+version = "0.2.0"
 authors = ["Brian Schwind <brianmschwind@gmail.com>"]
 build = "build.rs"
 

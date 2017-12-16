@@ -474,14 +474,14 @@ impl Node {
 
 	pub fn get_layout(&self) -> Layout {
 		unsafe {
-			Layout {
-				left: internal::YGNodeLayoutGetLeft(self.inner_node),
-				right: internal::YGNodeLayoutGetRight(self.inner_node),
-				top: internal::YGNodeLayoutGetTop(self.inner_node),
-				bottom: internal::YGNodeLayoutGetBottom(self.inner_node),
-				width: internal::YGNodeLayoutGetWidth(self.inner_node),
-				height: internal::YGNodeLayoutGetHeight(self.inner_node),
-			}
+			Layout::new(
+				internal::YGNodeLayoutGetLeft(self.inner_node),
+				internal::YGNodeLayoutGetRight(self.inner_node),
+				internal::YGNodeLayoutGetTop(self.inner_node),
+				internal::YGNodeLayoutGetBottom(self.inner_node),
+				internal::YGNodeLayoutGetWidth(self.inner_node),
+				internal::YGNodeLayoutGetHeight(self.inner_node),
+			)
 		}
 	}
 

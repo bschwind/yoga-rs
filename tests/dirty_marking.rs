@@ -119,8 +119,8 @@ fn test_dirty_mark_all_children_as_dirty_when_display_changes() {
 	root.calculate_layout(Undefined, Undefined, Direction::LTR);
 
 	let root_child_1_child_0_child_0_layout = root_child_1_child_0_child_0.get_layout();
-	assert_eq!(0.0, root_child_1_child_0_child_0_layout.width);
-	assert_eq!(0.0, root_child_1_child_0_child_0_layout.height);
+	assert_eq!(0.0, root_child_1_child_0_child_0_layout.width());
+	assert_eq!(0.0, root_child_1_child_0_child_0_layout.height());
 
 	root_child_0.set_display(Display::None);
 	root_child_1.set_display(Display::Flex);
@@ -128,8 +128,8 @@ fn test_dirty_mark_all_children_as_dirty_when_display_changes() {
 	root.calculate_layout(Undefined, Undefined, Direction::LTR);
 
 	let root_child_1_child_0_child_0_layout = root_child_1_child_0_child_0.get_layout();
-	assert_eq!(8.0, root_child_1_child_0_child_0_layout.width);
-	assert_eq!(16.0, root_child_1_child_0_child_0_layout.height);
+	assert_eq!(8.0, root_child_1_child_0_child_0_layout.width());
+	assert_eq!(16.0, root_child_1_child_0_child_0_layout.height());
 
 	root_child_0.set_display(Display::Flex);
 	root_child_1.set_display(Display::None);
@@ -137,8 +137,8 @@ fn test_dirty_mark_all_children_as_dirty_when_display_changes() {
 	root.calculate_layout(Undefined, Undefined, Direction::LTR);
 
 	let root_child_1_child_0_child_0_layout = root_child_1_child_0_child_0.get_layout();
-	assert_eq!(0.0, root_child_1_child_0_child_0_layout.width);
-	assert_eq!(0.0, root_child_1_child_0_child_0_layout.height);
+	assert_eq!(0.0, root_child_1_child_0_child_0_layout.width());
+	assert_eq!(0.0, root_child_1_child_0_child_0_layout.height());
 
 	root_child_0.set_display(Display::None);
 	root_child_1.set_display(Display::Flex);
@@ -146,8 +146,8 @@ fn test_dirty_mark_all_children_as_dirty_when_display_changes() {
 	root.calculate_layout(Undefined, Undefined, Direction::LTR);
 
 	let root_child_1_child_0_child_0_layout = root_child_1_child_0_child_0.get_layout();
-	assert_eq!(8.0, root_child_1_child_0_child_0_layout.width);
-	assert_eq!(16.0, root_child_1_child_0_child_0_layout.height);
+	assert_eq!(8.0, root_child_1_child_0_child_0_layout.width());
+	assert_eq!(16.0, root_child_1_child_0_child_0_layout.height());
 }
 
 #[test]

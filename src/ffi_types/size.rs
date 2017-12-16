@@ -1,7 +1,7 @@
 use internal;
 
 #[repr(C)]
-#[derive(Debug, Copy)]
+#[derive(Debug, Copy, PartialEq)]
 pub struct Size {
 	pub width: f32,
 	pub height: f32,
