@@ -79,14 +79,51 @@ pub enum FlexStyle {
 	Width(StyleUnit),
 }
 
-#[derive(Debug, Copy, Clone, PartialEq)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 pub struct Layout {
-	pub left: f32,
-	pub right: f32,
-	pub top: f32,
-	pub bottom: f32,
-	pub width: f32,
-	pub height: f32,
+	left: OrderedFloat<f32>,
+	right: OrderedFloat<f32>,
+	top: OrderedFloat<f32>,
+	bottom: OrderedFloat<f32>,
+	width: OrderedFloat<f32>,
+	height: OrderedFloat<f32>,
+}
+
+impl Layout {
+	pub fn new(left: f32, right: f32, top: f32, bottom: f32, width: f32, height: f32) -> Layout {
+		Layout {
+			left: left.into(),
+			right: right.into(),
+			top: top.into(),
+			bottom: bottom.into(),
+			width: width.into(),
+			height: height.into(),
+		}
+	}
+
+	pub fn left(&self) -> f32 {
+		self.left.into_inner()
+	}
+
+	pub fn right(&self) -> f32 {
+		self.right.into_inner()
+	}
+
+	pub fn top(&self) -> f32 {
+		self.top.into_inner()
+	}
+
+	pub fn bottom(&self) -> f32 {
+		self.bottom.into_inner()
+	}
+
+	pub fn width(&self) -> f32 {
+		self.width.into_inner()
+	}
+
+	pub fn height(&self) -> f32 {
+		self.height.into_inner()
+	}
 }
 
 #[derive(Debug)]

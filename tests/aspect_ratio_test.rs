@@ -30,15 +30,15 @@ fn test_aspect_ratio_cross_defined() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(50.0, child_0_layout.width);
-	assert_eq!(50.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(50.0, child_0_layout.width());
+	assert_eq!(50.0, child_0_layout.height());
 }
 
 #[test]
@@ -65,15 +65,15 @@ fn test_aspect_ratio_main_defined() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(50.0, child_0_layout.width);
-	assert_eq!(50.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(50.0, child_0_layout.width());
+	assert_eq!(50.0, child_0_layout.height());
 }
 
 #[test]
@@ -102,15 +102,15 @@ fn test_aspect_ratio_both_dimensions_defined_row() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 }
 
 #[test]
@@ -138,15 +138,15 @@ fn test_aspect_ratio_both_dimensions_defined_column() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(50.0, child_0_layout.width);
-	assert_eq!(50.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(50.0, child_0_layout.width());
+	assert_eq!(50.0, child_0_layout.height());
 }
 
 #[test]
@@ -169,15 +169,15 @@ fn test_aspect_ratio_align_stretch() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 }
 
 #[test]
@@ -205,15 +205,15 @@ fn test_aspect_ratio_flex_grow() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 }
 
 #[test]
@@ -241,15 +241,15 @@ fn test_aspect_ratio_flex_shrink() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 }
 
 #[test]
@@ -276,15 +276,15 @@ fn test_aspect_ratio_basis() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(50.0, child_0_layout.width);
-	assert_eq!(50.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(50.0, child_0_layout.width());
+	assert_eq!(50.0, child_0_layout.height());
 }
 
 #[test]
@@ -313,15 +313,15 @@ fn test_aspect_ratio_absolute_layout_width_defined() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(50.0, child_0_layout.width);
-	assert_eq!(50.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(50.0, child_0_layout.width());
+	assert_eq!(50.0, child_0_layout.height());
 }
 
 #[test]
@@ -350,15 +350,15 @@ fn test_aspect_ratio_absolute_layout_height_defined() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(50.0, child_0_layout.width);
-	assert_eq!(50.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(50.0, child_0_layout.width());
+	assert_eq!(50.0, child_0_layout.height());
 }
 
 #[test]
@@ -386,15 +386,15 @@ fn test_aspect_ratio_with_max_cross_defined() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(40.0, child_0_layout.width);
-	assert_eq!(50.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(40.0, child_0_layout.width());
+	assert_eq!(50.0, child_0_layout.height());
 }
 
 #[test]
@@ -422,15 +422,15 @@ fn test_aspect_ratio_with_max_main_defined() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(40.0, child_0_layout.width);
-	assert_eq!(40.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(40.0, child_0_layout.width());
+	assert_eq!(40.0, child_0_layout.height());
 }
 
 #[test]
@@ -458,15 +458,15 @@ fn test_aspect_ratio_with_min_cross_defined() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(40.0, child_0_layout.width);
-	assert_eq!(30.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(40.0, child_0_layout.width());
+	assert_eq!(30.0, child_0_layout.height());
 }
 
 #[test]
@@ -494,15 +494,15 @@ fn test_aspect_ratio_with_min_main_defined() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(40.0, child_0_layout.width);
-	assert_eq!(40.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(40.0, child_0_layout.width());
+	assert_eq!(40.0, child_0_layout.height());
 }
 
 #[test]
@@ -529,15 +529,15 @@ fn test_aspect_ratio_double_cross() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(50.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(50.0, child_0_layout.height());
 }
 
 #[test]
@@ -564,15 +564,15 @@ fn test_aspect_ratio_half_cross() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(50.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(50.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 }
 
 #[test]
@@ -599,15 +599,15 @@ fn test_aspect_ratio_double_main() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(50.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(50.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 }
 
 #[test]
@@ -634,15 +634,15 @@ fn test_aspect_ratio_half_main() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(50.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(50.0, child_0_layout.height());
 }
 
 #[test]
@@ -690,15 +690,15 @@ fn test_aspect_ratio_with_measure_func() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(50.0, child_0_layout.width);
-	assert_eq!(50.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(50.0, child_0_layout.width());
+	assert_eq!(50.0, child_0_layout.height());
 }
 
 #[test]
@@ -728,15 +728,15 @@ fn test_aspect_ratio_width_height_flex_grow_row() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(200.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(200.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 }
 
 #[test]
@@ -765,15 +765,15 @@ fn test_aspect_ratio_width_height_flex_grow_column() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(200.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(200.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 }
 
 #[test]
@@ -812,20 +812,20 @@ fn test_aspect_ratio_height_as_flex_basis() {
 	let child_0_layout = root_child_0.get_layout();
 	let child_1_layout = root_child_1.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(200.0, root_layout.width);
-	assert_eq!(200.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(200.0, root_layout.width());
+	assert_eq!(200.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(75.0, child_0_layout.width);
-	assert_eq!(75.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(75.0, child_0_layout.width());
+	assert_eq!(75.0, child_0_layout.height());
 
-	assert_eq!(75.0, child_1_layout.left);
-	assert_eq!(0.0, child_1_layout.top);
-	assert_eq!(125.0, child_1_layout.width);
-	assert_eq!(125.0, child_1_layout.height);
+	assert_eq!(75.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.top());
+	assert_eq!(125.0, child_1_layout.width());
+	assert_eq!(125.0, child_1_layout.height());
 }
 
 #[test]
@@ -863,20 +863,20 @@ fn test_aspect_ratio_width_as_flex_basis() {
 	let child_0_layout = root_child_0.get_layout();
 	let child_1_layout = root_child_1.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(200.0, root_layout.width);
-	assert_eq!(200.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(200.0, root_layout.width());
+	assert_eq!(200.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(75.0, child_0_layout.width);
-	assert_eq!(75.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(75.0, child_0_layout.width());
+	assert_eq!(75.0, child_0_layout.height());
 
-	assert_eq!(0.0, child_1_layout.left);
-	assert_eq!(75.0, child_1_layout.top);
-	assert_eq!(125.0, child_1_layout.width);
-	assert_eq!(125.0, child_1_layout.height);
+	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(75.0, child_1_layout.top());
+	assert_eq!(125.0, child_1_layout.width());
+	assert_eq!(125.0, child_1_layout.height());
 }
 
 #[test]
@@ -905,15 +905,15 @@ fn test_aspect_ratio_overrides_flex_grow_row() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(50.0, child_0_layout.width);
-	assert_eq!(100.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(50.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 }
 
 #[test]
@@ -941,15 +941,15 @@ fn test_aspect_ratio_overrides_flex_grow_column() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(100.0, child_0_layout.width);
-	assert_eq!(50.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(50.0, child_0_layout.height());
 }
 
 #[test]
@@ -978,15 +978,15 @@ fn test_aspect_ratio_left_right_absolute() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(10.0, child_0_layout.left);
-	assert_eq!(10.0, child_0_layout.top);
-	assert_eq!(80.0, child_0_layout.width);
-	assert_eq!(80.0, child_0_layout.height);
+	assert_eq!(10.0, child_0_layout.left());
+	assert_eq!(10.0, child_0_layout.top());
+	assert_eq!(80.0, child_0_layout.width());
+	assert_eq!(80.0, child_0_layout.height());
 }
 
 #[test]
@@ -1015,15 +1015,15 @@ fn test_aspect_ratio_top_bottom_absolute() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(10.0, child_0_layout.left);
-	assert_eq!(10.0, child_0_layout.top);
-	assert_eq!(80.0, child_0_layout.width);
-	assert_eq!(80.0, child_0_layout.height);
+	assert_eq!(10.0, child_0_layout.left());
+	assert_eq!(10.0, child_0_layout.top());
+	assert_eq!(80.0, child_0_layout.width());
+	assert_eq!(80.0, child_0_layout.height());
 }
 
 #[test]
@@ -1050,15 +1050,15 @@ fn test_aspect_ratio_width_overrides_align_stretch_row() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(50.0, child_0_layout.width);
-	assert_eq!(50.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(50.0, child_0_layout.width());
+	assert_eq!(50.0, child_0_layout.height());
 }
 
 #[test]
@@ -1084,15 +1084,15 @@ fn test_aspect_ratio_height_overrides_align_stretch_column() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(50.0, child_0_layout.width);
-	assert_eq!(50.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(50.0, child_0_layout.width());
+	assert_eq!(50.0, child_0_layout.height());
 }
 
 #[test]
@@ -1118,15 +1118,15 @@ fn test_aspect_ratio_allow_child_overflow_parent_size() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(50.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(50.0, root_layout.height());
 
-	assert_eq!(0.0, child_0_layout.left);
-	assert_eq!(0.0, child_0_layout.top);
-	assert_eq!(200.0, child_0_layout.width);
-	assert_eq!(50.0, child_0_layout.height);
+	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.top());
+	assert_eq!(200.0, child_0_layout.width());
+	assert_eq!(50.0, child_0_layout.height());
 }
 
 #[test]
@@ -1156,15 +1156,15 @@ fn test_aspect_ratio_defined_main_with_margin() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(25.0, child_0_layout.left);
-	assert_eq!(25.0, child_0_layout.top);
-	assert_eq!(50.0, child_0_layout.width);
-	assert_eq!(50.0, child_0_layout.height);
+	assert_eq!(25.0, child_0_layout.left());
+	assert_eq!(25.0, child_0_layout.top());
+	assert_eq!(50.0, child_0_layout.width());
+	assert_eq!(50.0, child_0_layout.height());
 }
 
 #[test]
@@ -1194,13 +1194,13 @@ fn test_aspect_ratio_defined_cross_with_margin() {
 	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(25.0, child_0_layout.left);
-	assert_eq!(25.0, child_0_layout.top);
-	assert_eq!(50.0, child_0_layout.width);
-	assert_eq!(50.0, child_0_layout.height);
+	assert_eq!(25.0, child_0_layout.left());
+	assert_eq!(25.0, child_0_layout.top());
+	assert_eq!(50.0, child_0_layout.width());
+	assert_eq!(50.0, child_0_layout.height());
 }

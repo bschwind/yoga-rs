@@ -30,32 +30,32 @@ fn test_start_overrides() {
 	let root_layout = root.get_layout();
 	let child_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(10.0, child_layout.left);
-	assert_eq!(20.0, child_layout.right);
-	assert_eq!(0.0, child_layout.top);
-	assert_eq!(70.0, child_layout.width);
-	assert_eq!(100.0, child_layout.height);
+	assert_eq!(10.0, child_layout.left());
+	assert_eq!(20.0, child_layout.right());
+	assert_eq!(0.0, child_layout.top());
+	assert_eq!(70.0, child_layout.width());
+	assert_eq!(100.0, child_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
 	let root_layout = root.get_layout();
 	let child_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(20.0, child_layout.left);
-	assert_eq!(10.0, child_layout.right);
-	assert_eq!(0.0, child_layout.top);
-	assert_eq!(70.0, child_layout.width);
-	assert_eq!(100.0, child_layout.height);
+	assert_eq!(20.0, child_layout.left());
+	assert_eq!(10.0, child_layout.right());
+	assert_eq!(0.0, child_layout.top());
+	assert_eq!(70.0, child_layout.width());
+	assert_eq!(100.0, child_layout.height());
 }
 
 #[test]
@@ -83,32 +83,32 @@ fn test_end_overrides() {
 	let root_layout = root.get_layout();
 	let child_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(20.0, child_layout.left);
-	assert_eq!(10.0, child_layout.right);
-	assert_eq!(0.0, child_layout.top);
-	assert_eq!(70.0, child_layout.width);
-	assert_eq!(100.0, child_layout.height);
+	assert_eq!(20.0, child_layout.left());
+	assert_eq!(10.0, child_layout.right());
+	assert_eq!(0.0, child_layout.top());
+	assert_eq!(70.0, child_layout.width());
+	assert_eq!(100.0, child_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
 	let root_layout = root.get_layout();
 	let child_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(10.0, child_layout.left);
-	assert_eq!(20.0, child_layout.right);
-	assert_eq!(0.0, child_layout.top);
-	assert_eq!(70.0, child_layout.width);
-	assert_eq!(100.0, child_layout.height);
+	assert_eq!(10.0, child_layout.left());
+	assert_eq!(20.0, child_layout.right());
+	assert_eq!(0.0, child_layout.top());
+	assert_eq!(70.0, child_layout.width());
+	assert_eq!(100.0, child_layout.height());
 }
 
 #[test]
@@ -135,32 +135,32 @@ fn test_horizontal_overridden() {
 	let root_layout = root.get_layout();
 	let child_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(20.0, child_layout.left);
-	assert_eq!(10.0, child_layout.right);
-	assert_eq!(0.0, child_layout.top);
-	assert_eq!(70.0, child_layout.width);
-	assert_eq!(100.0, child_layout.height);
+	assert_eq!(20.0, child_layout.left());
+	assert_eq!(10.0, child_layout.right());
+	assert_eq!(0.0, child_layout.top());
+	assert_eq!(70.0, child_layout.width());
+	assert_eq!(100.0, child_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
 	let root_layout = root.get_layout();
 	let child_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(20.0, child_layout.left);
-	assert_eq!(10.0, child_layout.right);
-	assert_eq!(0.0, child_layout.top);
-	assert_eq!(70.0, child_layout.width);
-	assert_eq!(100.0, child_layout.height);
+	assert_eq!(20.0, child_layout.left());
+	assert_eq!(10.0, child_layout.right());
+	assert_eq!(0.0, child_layout.top());
+	assert_eq!(70.0, child_layout.width());
+	assert_eq!(100.0, child_layout.height());
 }
 
 #[test]
@@ -187,34 +187,34 @@ fn test_vertical_overridden() {
 	let root_layout = root.get_layout();
 	let child_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_layout.left);
-	assert_eq!(0.0, child_layout.right);
-	assert_eq!(20.0, child_layout.top);
-	assert_eq!(10.0, child_layout.bottom);
-	assert_eq!(100.0, child_layout.width);
-	assert_eq!(70.0, child_layout.height);
+	assert_eq!(0.0, child_layout.left());
+	assert_eq!(0.0, child_layout.right());
+	assert_eq!(20.0, child_layout.top());
+	assert_eq!(10.0, child_layout.bottom());
+	assert_eq!(100.0, child_layout.width());
+	assert_eq!(70.0, child_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
 	let root_layout = root.get_layout();
 	let child_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(0.0, child_layout.left);
-	assert_eq!(0.0, child_layout.right);
-	assert_eq!(20.0, child_layout.top);
-	assert_eq!(10.0, child_layout.bottom);
-	assert_eq!(100.0, child_layout.width);
-	assert_eq!(70.0, child_layout.height);
+	assert_eq!(0.0, child_layout.left());
+	assert_eq!(0.0, child_layout.right());
+	assert_eq!(20.0, child_layout.top());
+	assert_eq!(10.0, child_layout.bottom());
+	assert_eq!(100.0, child_layout.width());
+	assert_eq!(70.0, child_layout.height());
 }
 
 #[test]
@@ -241,34 +241,34 @@ fn test_horizontal_overrides_all() {
 	let root_layout = root.get_layout();
 	let child_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(10.0, child_layout.left);
-	assert_eq!(10.0, child_layout.right);
-	assert_eq!(20.0, child_layout.top);
-	assert_eq!(20.0, child_layout.bottom);
-	assert_eq!(80.0, child_layout.width);
-	assert_eq!(60.0, child_layout.height);
+	assert_eq!(10.0, child_layout.left());
+	assert_eq!(10.0, child_layout.right());
+	assert_eq!(20.0, child_layout.top());
+	assert_eq!(20.0, child_layout.bottom());
+	assert_eq!(80.0, child_layout.width());
+	assert_eq!(60.0, child_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
 	let root_layout = root.get_layout();
 	let child_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(10.0, child_layout.left);
-	assert_eq!(10.0, child_layout.right);
-	assert_eq!(20.0, child_layout.top);
-	assert_eq!(20.0, child_layout.bottom);
-	assert_eq!(80.0, child_layout.width);
-	assert_eq!(60.0, child_layout.height);
+	assert_eq!(10.0, child_layout.left());
+	assert_eq!(10.0, child_layout.right());
+	assert_eq!(20.0, child_layout.top());
+	assert_eq!(20.0, child_layout.bottom());
+	assert_eq!(80.0, child_layout.width());
+	assert_eq!(60.0, child_layout.height());
 }
 
 #[test]
@@ -295,34 +295,34 @@ fn test_vertical_overrides_all() {
 	let root_layout = root.get_layout();
 	let child_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(20.0, child_layout.left);
-	assert_eq!(20.0, child_layout.right);
-	assert_eq!(10.0, child_layout.top);
-	assert_eq!(10.0, child_layout.bottom);
-	assert_eq!(60.0, child_layout.width);
-	assert_eq!(80.0, child_layout.height);
+	assert_eq!(20.0, child_layout.left());
+	assert_eq!(20.0, child_layout.right());
+	assert_eq!(10.0, child_layout.top());
+	assert_eq!(10.0, child_layout.bottom());
+	assert_eq!(60.0, child_layout.width());
+	assert_eq!(80.0, child_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
 	let root_layout = root.get_layout();
 	let child_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(20.0, child_layout.left);
-	assert_eq!(20.0, child_layout.right);
-	assert_eq!(10.0, child_layout.top);
-	assert_eq!(10.0, child_layout.bottom);
-	assert_eq!(60.0, child_layout.width);
-	assert_eq!(80.0, child_layout.height);
+	assert_eq!(20.0, child_layout.left());
+	assert_eq!(20.0, child_layout.right());
+	assert_eq!(10.0, child_layout.top());
+	assert_eq!(10.0, child_layout.bottom());
+	assert_eq!(60.0, child_layout.width());
+	assert_eq!(80.0, child_layout.height());
 }
 
 #[test]
@@ -352,32 +352,32 @@ fn test_all_overridden() {
 	let root_layout = root.get_layout();
 	let child_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(10.0, child_layout.left);
-	assert_eq!(10.0, child_layout.right);
-	assert_eq!(10.0, child_layout.top);
-	assert_eq!(10.0, child_layout.bottom);
-	assert_eq!(80.0, child_layout.width);
-	assert_eq!(80.0, child_layout.height);
+	assert_eq!(10.0, child_layout.left());
+	assert_eq!(10.0, child_layout.right());
+	assert_eq!(10.0, child_layout.top());
+	assert_eq!(10.0, child_layout.bottom());
+	assert_eq!(80.0, child_layout.width());
+	assert_eq!(80.0, child_layout.height());
 
 	root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
 	let root_layout = root.get_layout();
 	let child_layout = root_child_0.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(100.0, root_layout.width);
-	assert_eq!(100.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(100.0, root_layout.width());
+	assert_eq!(100.0, root_layout.height());
 
-	assert_eq!(10.0, child_layout.left);
-	assert_eq!(10.0, child_layout.right);
-	assert_eq!(10.0, child_layout.top);
-	assert_eq!(10.0, child_layout.bottom);
-	assert_eq!(80.0, child_layout.width);
-	assert_eq!(80.0, child_layout.height);
+	assert_eq!(10.0, child_layout.left());
+	assert_eq!(10.0, child_layout.right());
+	assert_eq!(10.0, child_layout.top());
+	assert_eq!(10.0, child_layout.bottom());
+	assert_eq!(80.0, child_layout.width());
+	assert_eq!(80.0, child_layout.height());
 }

@@ -49,10 +49,10 @@ fn test_context_2_safe_check() {
 
 	let root_layout = root.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(1.0, root_layout.width);
-	assert_eq!(1.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(1.0, root_layout.width());
+	assert_eq!(1.0, root_layout.height());
 }
 
 #[test]
@@ -83,10 +83,10 @@ fn test_context_2() {
 
 	let root_layout = root.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(4.0, root_layout.width);
-	assert_eq!(1.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(4.0, root_layout.width());
+	assert_eq!(1.0, root_layout.height());
 }
 
 #[test]
@@ -139,8 +139,8 @@ fn test_context_3() {
 
 	let root_layout = root.get_layout();
 
-	assert_eq!(0.0, root_layout.left);
-	assert_eq!(0.0, root_layout.top);
-	assert_eq!(22.0, root_layout.width);
-	assert_eq!(10.0, root_layout.height);
+	assert_eq!(0.0, root_layout.left());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(22.0, root_layout.width());
+	assert_eq!(10.0, root_layout.height());
 }
