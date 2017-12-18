@@ -11,7 +11,10 @@ mod internal {
 }
 
 use ordered_float::OrderedFloat;
+use std::any::Any;
 use std::convert::From;
+use std::ops::Deref;
+use std::os::raw::c_void;
 
 pub mod prelude {
 	pub use {Percent, Point};
@@ -597,14 +600,14 @@ pub use std::f32::NAN as Undefined;
 
 // Custom Rust API
 
-pub type NodeRef = internal::YGNodeRef;
-
 #[repr(C)]
 #[derive(Debug, PartialEq, Eq, Hash)]
 pub struct Node {
 	inner_node: NodeRef,
 	should_free: bool,
 }
+
+pub type NodeRef = internal::YGNodeRef;
 
 #[derive(Debug, PartialEq)]
 pub struct Layout {
@@ -772,35 +775,27 @@ impl Node {
 	pub fn set_position(&mut self, edge: Edge, position: StyleUnit) {
 		unsafe {
 			match position {
-				StyleUnit::UndefinedValue => {
-					internal::YGNodeStyleSetPosition(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						Undefined,
-					)
-				}
-				StyleUnit::Point(val) => {
-					internal::YGNodeStyleSetPosition(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						val.into_inner(),
-					)
-				}
-				StyleUnit::Percent(val) => {
-					internal::YGNodeStyleSetPositionPercent(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						val.into_inner(),
-					)
-				}
+				StyleUnit::UndefinedValue => internal::YGNodeStyleSetPosition(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					Undefined,
+				),
+				StyleUnit::Point(val) => internal::YGNodeStyleSetPosition(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					val.into_inner(),
+				),
+				StyleUnit::Percent(val) => internal::YGNodeStyleSetPositionPercent(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					val.into_inner(),
+				),
 				// auto is not a valid value for position
-				StyleUnit::Auto => {
-					internal::YGNodeStyleSetPosition(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						Undefined,
-					)
-				}
+				StyleUnit::Auto => internal::YGNodeStyleSetPosition(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					Undefined,
+				),
 			}
 		}
 	}
@@ -865,33 +860,25 @@ impl Node {
 	pub fn set_margin(&mut self, edge: Edge, margin: StyleUnit) {
 		unsafe {
 			match margin {
-				StyleUnit::UndefinedValue => {
-					internal::YGNodeStyleSetMargin(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						Undefined,
-					)
-				}
-				StyleUnit::Point(val) => {
-					internal::YGNodeStyleSetMargin(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						val.into_inner(),
-					)
-				}
-				StyleUnit::Percent(val) => {
-					internal::YGNodeStyleSetMarginPercent(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						val.into_inner(),
-					)
-				}
-				StyleUnit::Auto => {
-					internal::YGNodeStyleSetMarginAuto(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-					)
-				}
+				StyleUnit::UndefinedValue => internal::YGNodeStyleSetMargin(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					Undefined,
+				),
+				StyleUnit::Point(val) => internal::YGNodeStyleSetMargin(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					val.into_inner(),
+				),
+				StyleUnit::Percent(val) => internal::YGNodeStyleSetMarginPercent(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					val.into_inner(),
+				),
+				StyleUnit::Auto => internal::YGNodeStyleSetMarginAuto(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+				),
 			}
 		}
 	}
@@ -899,35 +886,27 @@ impl Node {
 	pub fn set_padding(&mut self, edge: Edge, padding: StyleUnit) {
 		unsafe {
 			match padding {
-				StyleUnit::UndefinedValue => {
-					internal::YGNodeStyleSetPadding(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						Undefined,
-					)
-				}
-				StyleUnit::Point(val) => {
-					internal::YGNodeStyleSetPadding(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						val.into_inner(),
-					)
-				}
-				StyleUnit::Percent(val) => {
-					internal::YGNodeStyleSetPaddingPercent(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						val.into_inner(),
-					)
-				}
+				StyleUnit::UndefinedValue => internal::YGNodeStyleSetPadding(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					Undefined,
+				),
+				StyleUnit::Point(val) => internal::YGNodeStyleSetPadding(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					val.into_inner(),
+				),
+				StyleUnit::Percent(val) => internal::YGNodeStyleSetPaddingPercent(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					val.into_inner(),
+				),
 				// auto is not a valid value for padding
-				StyleUnit::Auto => {
-					internal::YGNodeStyleSetPadding(
-						self.inner_node,
-						internal::YGEdge::from(edge),
-						Undefined,
-					)
-				}
+				StyleUnit::Auto => internal::YGNodeStyleSetPadding(
+					self.inner_node,
+					internal::YGEdge::from(edge),
+					Undefined,
+				),
 			}
 		}
 	}
@@ -1483,14 +1462,38 @@ impl Node {
 			},
 		}
 	}
+
+	pub fn set_context(&mut self, data: *mut Context) {
+		let context = data as *mut c_void;
+		unsafe { internal::YGNodeSetContext(self.inner_node, context) }
+	}
+
+	pub fn get_context(node_ref: &NodeRef) -> &Context {
+		unsafe { &*(internal::YGNodeGetContext(*node_ref) as *mut Context) }
+	}
+
+	pub fn get_own_context(&self) -> &Context {
+		Node::get_context(&self.inner_node)
+	}
 }
 
-type InternalMeasureFunc = unsafe extern "C" fn(internal::YGNodeRef,
-                                                f32,
-                                                internal::YGMeasureMode,
-                                                f32,
-                                                internal::YGMeasureMode)
-                                                -> internal::YGSize;
+#[derive(Debug)]
+pub struct Context(pub Box<Any>);
+
+impl Deref for Context {
+	type Target = Box<Any>;
+	fn deref(&self) -> &Box<Any> {
+		&self.0
+	}
+}
+
+type InternalMeasureFunc = unsafe extern "C" fn(
+	internal::YGNodeRef,
+	f32,
+	internal::YGMeasureMode,
+	f32,
+	internal::YGMeasureMode,
+) -> internal::YGSize;
 type InternalBaselineFunc = unsafe extern "C" fn(internal::YGNodeRef, f32, f32) -> f32;
 pub type MeasureFunc = Option<extern "C" fn(NodeRef, f32, MeasureMode, f32, MeasureMode) -> Size>;
 pub type BaselineFunc = Option<extern "C" fn(NodeRef, f32, f32) -> f32>;
