@@ -16,10 +16,10 @@ pub use ffi_types::size::*;
 pub use ffi_types::style_unit::*;
 pub use ffi_types::undefined::*;
 pub use ffi_types::wrap::*;
-
 use ordered_float::OrderedFloat;
 use std::any::Any;
 use std::ops::Deref;
+use std::os::raw::c_void;
 
 pub type BaselineFunc = Option<extern "C" fn(NodeRef, f32, f32) -> f32>;
 pub type MeasureFunc = Option<extern "C" fn(NodeRef, f32, MeasureMode, f32, MeasureMode) -> Size>;
@@ -130,8 +130,32 @@ impl Layout {
 pub struct Context(Box<Any>);
 
 impl Context {
-	pub fn new<T: Any>(value: T) -> Context {
+	pub fn new<T: Any>(value: T) -> Self {
 		Context(Box::new(value))
+	}
+
+	pub(crate) fn into_raw(self) -> *mut c_void {
+		// https://users.rust-lang.org/t/ffi-boxes-and-returning-references-to-the-boxed-data
+		Box::into_raw(Box::new(self.0)) as *mut c_void
+	}
+
+	pub(crate) fn get_inner_ref<'a>(raw: *mut c_void) -> Option<&'a Box<Any>> {
+		let ptr = raw as *const Box<Any>;
+		unsafe { ptr.as_ref() }
+	}
+
+	pub(crate) fn get_inner_mut<'a>(raw: *mut c_void) -> Option<&'a mut Box<Any>> {
+		let ptr = raw as *mut Box<Any>;
+		unsafe { ptr.as_mut() }
+	}
+
+	pub(crate) fn drop_raw(raw: *mut c_void) {
+		let ptr = raw as *mut Box<Any>;
+		if !ptr.is_null() {
+			unsafe {
+				Box::from_raw(ptr);
+			}
+		}
 	}
 }
 

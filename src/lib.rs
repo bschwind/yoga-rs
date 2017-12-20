@@ -36,11 +36,11 @@ pub mod prelude;
 pub mod types;
 pub mod traits;
 
-use std::os::raw::c_void;
+use std::any::Any;
 pub use types::*;
 
 #[repr(C)]
-#[derive(Debug, PartialEq, Eq, Hash)]
+#[derive(Debug)]
 pub struct Node {
 	inner_node: NodeRef,
 	should_free: bool,
@@ -898,22 +898,41 @@ impl Node {
 		}
 	}
 
-	pub fn set_context(&mut self, data: *mut Context) {
-		let context = data as *mut c_void;
-		unsafe { internal::YGNodeSetContext(self.inner_node, context) }
+	pub fn set_context(&mut self, value: Option<Context>) {
+		self.drop_context();
+
+		let raw = value.map_or_else(|| std::ptr::null_mut(), |context| context.into_raw());
+		unsafe { internal::YGNodeSetContext(self.inner_node, raw) }
 	}
 
-	pub fn get_context(node_ref: &NodeRef) -> &Context {
-		unsafe { &*(internal::YGNodeGetContext(*node_ref) as *mut Context) }
+	pub fn get_context(node_ref: &NodeRef) -> Option<&Box<Any>> {
+		let raw = unsafe { internal::YGNodeGetContext(*node_ref) };
+		Context::get_inner_ref(raw)
 	}
 
-	pub fn get_own_context(&self) -> &Context {
+	pub fn get_context_mut(node_ref: &NodeRef) -> Option<&mut Box<Any>> {
+		let raw = unsafe { internal::YGNodeGetContext(*node_ref) };
+		Context::get_inner_mut(raw)
+	}
+
+	pub fn get_own_context(&self) -> Option<&Box<Any>> {
 		Node::get_context(&self.inner_node)
+	}
+
+	pub fn get_own_context_mut(&self) -> Option<&mut Box<Any>> {
+		Node::get_context_mut(&self.inner_node)
+	}
+
+	pub fn drop_context(&mut self) {
+		let prev_raw = unsafe { internal::YGNodeGetContext(self.inner_node) };
+		Context::drop_raw(prev_raw);
 	}
 }
 
 impl Drop for Node {
 	fn drop(&mut self) {
+		self.set_context(None);
+
 		if self.should_free {
 			unsafe {
 				internal::YGNodeFreeRecursive(self.inner_node);
