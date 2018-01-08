@@ -1,16 +1,10 @@
 use internal;
 
 #[repr(C)]
-#[derive(Debug, Copy, PartialEq)]
+#[derive(Debug, PartialEq, PartialOrd, Copy, Clone)]
 pub struct Size {
 	pub width: f32,
 	pub height: f32,
-}
-
-impl Clone for Size {
-	fn clone(&self) -> Self {
-		*self
-	}
 }
 
 impl From<Size> for internal::YGSize {

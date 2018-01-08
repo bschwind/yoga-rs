@@ -1,7 +1,7 @@
 use internal;
 use ordered_float::OrderedFloat;
 
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, Clone)]
 pub enum StyleUnit {
 	UndefinedValue,
 	Point(OrderedFloat<f32>),

@@ -24,7 +24,7 @@ use std::os::raw::c_void;
 pub type BaselineFunc = Option<extern "C" fn(NodeRef, f32, f32) -> f32>;
 pub type MeasureFunc = Option<extern "C" fn(NodeRef, f32, MeasureMode, f32, MeasureMode) -> Size>;
 
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, Clone)]
 pub enum FlexStyle {
 	AlignContent(Align),
 	AlignItems(Align),
@@ -79,7 +79,7 @@ pub enum FlexStyle {
 	Width(StyleUnit),
 }
 
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, Clone)]
 pub struct Layout {
 	left: OrderedFloat<f32>,
 	right: OrderedFloat<f32>,
