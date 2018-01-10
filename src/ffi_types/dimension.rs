@@ -1,7 +1,7 @@
 use internal;
 
 #[repr(u32)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, Clone)]
 pub enum Dimension {
 	Width = 0,
 	Height = 1,

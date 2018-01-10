@@ -40,7 +40,7 @@ use std::any::Any;
 pub use types::*;
 
 #[repr(C)]
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Node {
 	inner_node: NodeRef,
 	should_free: bool,
