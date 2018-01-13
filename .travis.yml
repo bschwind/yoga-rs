@@ -11,7 +11,9 @@ matrix:
 notifications:
   email: false
 before_script:
+  - cargo +nightly install rustfmt-nightly --force
   - export PATH=$PATH:~/.cargo/bin
 script:
   - cargo build --verbose
   - cargo test --verbose
+  - cargo +nightly fmt -- --write-mode=diff
