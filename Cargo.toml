@@ -12,7 +12,7 @@ default = []
 serde_support = ["serde", "serde_derive", "ordered-float/serde"]
 
 [build-dependencies]
-bindgen = "0.32.0"
+bindgen = "0.23.0"
 gcc = "0.3.54"
 
 [dependencies]

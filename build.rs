@@ -1,7 +1,6 @@
 extern crate bindgen;
 extern crate gcc;
 
-use bindgen::RustTarget;
 use gcc::Build;
 use std::env;
 use std::path::PathBuf;
@@ -16,15 +15,13 @@ fn main() {
 	c.compile("libyoga.a");
 
 	let bindings = bindgen::Builder::default()
-		.rust_target(RustTarget::Stable_1_21)
-		.blacklist_type("max_align_t") // This fails `cargo test` so disable for now
-		.blacklist_type("FP_INFINITE")
-		.blacklist_type("FP_NAN")
-		.blacklist_type("FP_NORMAL")
-		.blacklist_type("FP_SUBNORMAL")
-		.blacklist_type("FP_ZERO")
-		.rustfmt_bindings(false)
-		.rustified_enum("YG.*")
+		.no_unstable_rust()
+		.hide_type("max_align_t") // This fails `cargo test` so disable for now
+		.hide_type("FP_INFINITE")
+		.hide_type("FP_NAN")
+		.hide_type("FP_NORMAL")
+		.hide_type("FP_SUBNORMAL")
+		.hide_type("FP_ZERO")
 		.header("src/c/wrapper.h")
 		.generate()
 		.expect("Unable to generate bindings");
