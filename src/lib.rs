@@ -3,6 +3,11 @@
 #![allow(non_snake_case)]
 
 extern crate ordered_float;
+#[cfg(feature = "serde_support")]
+extern crate serde;
+#[macro_use]
+#[cfg(feature = "serde_support")]
+extern crate serde_derive;
 
 // API created by bindgen
 mod internal {
