@@ -1,12 +1,12 @@
 #[macro_use]
 extern crate yoga;
 
-use yoga::{Align, Direction, FlexDirection, Node, NodeRef, Undefined};
+use yoga::{Align, Direction, FlexDirection, Node, YGInternalNodeRef, Undefined};
 use yoga::prelude::*;
 
 #[test]
 fn test_align_baseline_customer_func() {
-	extern "C" fn baseline_func(_: NodeRef, _: f32, _: f32) -> f32 {
+	extern "C" fn baseline_func(_: YGInternalNodeRef, _: f32, _: f32) -> f32 {
 		10.0
 	}
 

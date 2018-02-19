@@ -1,4 +1,5 @@
 use internal;
+pub use internal::YGMeasureMode as YGInternalMeasureMode;
 
 #[repr(u32)]
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, Clone)]
@@ -15,6 +16,16 @@ impl From<MeasureMode> for internal::YGMeasureMode {
 			MeasureMode::Undefined => internal::YGMeasureMode::YGMeasureModeUndefined,
 			MeasureMode::Exactly => internal::YGMeasureMode::YGMeasureModeExactly,
 			MeasureMode::AtMost => internal::YGMeasureMode::YGMeasureModeAtMost,
+		}
+	}
+}
+
+impl From<internal::YGMeasureMode> for MeasureMode {
+	fn from(m: internal::YGMeasureMode) -> MeasureMode {
+		match m {
+			internal::YGMeasureMode::YGMeasureModeUndefined => MeasureMode::Undefined,
+			internal::YGMeasureMode::YGMeasureModeExactly => MeasureMode::Exactly,
+			internal::YGMeasureMode::YGMeasureModeAtMost => MeasureMode::AtMost,
 		}
 	}
 }

@@ -21,9 +21,6 @@ use std::any::Any;
 use std::ops::Deref;
 use std::os::raw::c_void;
 
-pub type BaselineFunc = Option<extern "C" fn(NodeRef, f32, f32) -> f32>;
-pub type MeasureFunc = Option<extern "C" fn(NodeRef, f32, MeasureMode, f32, MeasureMode) -> Size>;
-
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, Clone)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
 pub enum FlexStyle {
