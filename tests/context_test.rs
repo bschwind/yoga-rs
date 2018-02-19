@@ -2,7 +2,8 @@ extern crate yoga;
 
 use std::cell::RefCell;
 use std::rc::Rc;
-use yoga::{Context, Direction, MeasureMode, Node, NodeRef, Size, Undefined};
+use yoga::{Context, Direction, Node, YGInternalNodeRef, Size, Undefined, YGInternalMeasureMode,
+           YGInternalSize};
 
 #[test]
 fn test_context_0() {
@@ -28,12 +29,12 @@ fn test_context_2_safe_check() {
 	struct Bogus {}
 
 	extern "C" fn measure(
-		node_ref: NodeRef,
+		node_ref: YGInternalNodeRef,
 		_: f32,
-		_: MeasureMode,
+		_: YGInternalMeasureMode,
 		_: f32,
-		_: MeasureMode,
-	) -> Size {
+		_: YGInternalMeasureMode,
+	) -> YGInternalSize {
 		let context = Node::get_context(&node_ref)
 			.unwrap()
 			.downcast_ref::<Bogus>();
@@ -43,7 +44,7 @@ fn test_context_2_safe_check() {
 		Size {
 			width: 1.0,
 			height: 1.0,
-		}
+		}.into()
 	}
 
 	let mut root = Node::new();
@@ -64,18 +65,18 @@ fn test_context_2_safe_check() {
 #[test]
 fn test_context_2() {
 	extern "C" fn measure(
-		node_ref: NodeRef,
+		node_ref: YGInternalNodeRef,
 		_: f32,
-		_: MeasureMode,
+		_: YGInternalMeasureMode,
 		_: f32,
-		_: MeasureMode,
-	) -> Size {
+		_: YGInternalMeasureMode,
+	) -> YGInternalSize {
 		let context = Node::get_context(&node_ref)
 			.unwrap()
 			.downcast_ref::<String>()
 			.unwrap();
 
-		Size {
+		YGInternalSize {
 			width: context.len() as f32,
 			height: if context == "test" { 1.0 } else { 0.0 },
 		}
@@ -109,12 +110,12 @@ fn test_context_3() {
 	}
 
 	extern "C" fn measure(
-		node_ref: NodeRef,
+		node_ref: YGInternalNodeRef,
 		_: f32,
-		_: MeasureMode,
+		_: YGInternalMeasureMode,
 		_: f32,
-		_: MeasureMode,
-	) -> Size {
+		_: YGInternalMeasureMode,
+	) -> YGInternalSize {
 		let context = Node::get_context(&node_ref)
 			.unwrap()
 			.downcast_ref::<LocalCustomData>()
@@ -126,7 +127,7 @@ fn test_context_3() {
 		Size {
 			width: text.len() as f32 * font.letter_width,
 			height: font.letter_height,
-		}
+		}.into()
 	}
 
 	let shared_font = Rc::new(RefCell::new(LocalSimpleFont {
@@ -190,12 +191,12 @@ fn test_context_4() {
 }
 
 extern "C" fn external_measure(
-	node_ref: NodeRef,
+	node_ref: YGInternalNodeRef,
 	_: f32,
-	_: MeasureMode,
+	_: YGInternalMeasureMode,
 	_: f32,
-	_: MeasureMode,
-) -> Size {
+	_: YGInternalMeasureMode,
+) -> YGInternalSize {
 	let context = Node::get_context(&node_ref)
 		.unwrap()
 		.downcast_ref::<ExternalCustomData>()
@@ -204,7 +205,7 @@ extern "C" fn external_measure(
 	let text = &context.text;
 	let font = context.font.borrow();
 
-	Size {
+	YGInternalSize {
 		width: text.len() as f32 * font.letter_width,
 		height: font.letter_height,
 	}

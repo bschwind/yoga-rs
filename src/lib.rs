@@ -13,6 +13,7 @@ extern crate serde_derive;
 mod internal {
 	#![allow(dead_code)]
 	include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
+	pub use self::root::*;
 }
 
 // Public re-exports of Yoga enums
@@ -37,6 +38,7 @@ mod ffi_types {
 	pub mod wrap;
 }
 
+pub mod macros;
 pub mod prelude;
 pub mod types;
 pub mod traits;
@@ -47,7 +49,7 @@ pub use types::*;
 #[repr(C)]
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Node {
-	inner_node: NodeRef,
+	inner_node: YGInternalNodeRef,
 	should_free: bool,
 }
 
@@ -494,7 +496,7 @@ impl Node {
 		unsafe { internal::YGNodeGetChildCount(self.inner_node) }
 	}
 
-	pub fn get_child(&self, index: u32) -> NodeRef {
+	pub fn get_child(&self, index: u32) -> YGInternalNodeRef {
 		unsafe { internal::YGNodeGetChild(self.inner_node, index) }
 	}
 
@@ -871,35 +873,15 @@ impl Node {
 		}
 	}
 
-	pub fn set_measure_func(&mut self, func: MeasureFunc) {
-		match func {
-			Some(f) => unsafe {
-				type Callback = unsafe extern "C" fn(
-					internal::YGNodeRef,
-					f32,
-					internal::YGMeasureMode,
-					f32,
-					internal::YGMeasureMode,
-				) -> internal::YGSize;
-				let casted_func: Callback = std::mem::transmute(f as usize);
-				internal::YGNodeSetMeasureFunc(self.inner_node, Some(casted_func));
-			},
-			None => unsafe {
-				internal::YGNodeSetMeasureFunc(self.inner_node, None);
-			},
+	pub fn set_measure_func(&mut self, func: internal::YGMeasureFunc) {
+		unsafe {
+			internal::YGNodeSetMeasureFunc(self.inner_node, func);
 		}
 	}
 
-	pub fn set_baseline_func(&mut self, func: BaselineFunc) {
-		match func {
-			Some(f) => unsafe {
-				type Callback = unsafe extern "C" fn(internal::YGNodeRef, f32, f32) -> f32;
-				let casted_func: Callback = std::mem::transmute(f as usize);
-				internal::YGNodeSetBaselineFunc(self.inner_node, Some(casted_func));
-			},
-			None => unsafe {
-				internal::YGNodeSetBaselineFunc(self.inner_node, None);
-			},
+	pub fn set_baseline_func(&mut self, func: internal::YGBaselineFunc) {
+		unsafe {
+			internal::YGNodeSetBaselineFunc(self.inner_node, func);
 		}
 	}
 
@@ -910,12 +892,12 @@ impl Node {
 		unsafe { internal::YGNodeSetContext(self.inner_node, raw) }
 	}
 
-	pub fn get_context(node_ref: &NodeRef) -> Option<&Box<Any>> {
+	pub fn get_context(node_ref: &YGInternalNodeRef) -> Option<&Box<Any>> {
 		let raw = unsafe { internal::YGNodeGetContext(*node_ref) };
 		Context::get_inner_ref(raw)
 	}
 
-	pub fn get_context_mut(node_ref: &NodeRef) -> Option<&mut Box<Any>> {
+	pub fn get_context_mut(node_ref: &YGInternalNodeRef) -> Option<&mut Box<Any>> {
 		let raw = unsafe { internal::YGNodeGetContext(*node_ref) };
 		Context::get_inner_mut(raw)
 	}

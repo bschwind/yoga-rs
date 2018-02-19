@@ -1,4 +1,5 @@
 use internal;
+pub use internal::YGSize as YGInternalSize;
 
 #[repr(C)]
 #[derive(Debug, PartialEq, PartialOrd, Copy, Clone)]
@@ -11,6 +12,15 @@ pub struct Size {
 impl From<Size> for internal::YGSize {
 	fn from(s: Size) -> internal::YGSize {
 		internal::YGSize {
+			width: s.width,
+			height: s.height,
+		}
+	}
+}
+
+impl From<internal::YGSize> for Size {
+	fn from(s: internal::YGSize) -> Size {
+		Size {
 			width: s.width,
 			height: s.height,
 		}

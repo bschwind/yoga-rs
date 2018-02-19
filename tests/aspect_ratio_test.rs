@@ -2,8 +2,8 @@ extern crate ordered_float;
 #[macro_use]
 extern crate yoga;
 
-use yoga::{Align, Direction, FlexDirection, Justify, MeasureMode, Node, NodeRef, PositionType,
-           Size, Undefined};
+use yoga::{Align, Direction, FlexDirection, Justify, MeasureMode, Node, YGInternalNodeRef, PositionType,
+           Size, Undefined, YGInternalMeasureMode, YGInternalSize};
 use yoga::prelude::*;
 
 #[test]
@@ -648,18 +648,18 @@ fn test_aspect_ratio_half_main() {
 #[test]
 fn test_aspect_ratio_with_measure_func() {
 	extern "C" fn measure(
-		_: NodeRef,
+		_: YGInternalNodeRef,
 		width: f32,
-		width_mode: MeasureMode,
+		width_mode: YGInternalMeasureMode,
 		height: f32,
-		height_mode: MeasureMode,
-	) -> Size {
-		let calc_width = match width_mode {
+		height_mode: YGInternalMeasureMode,
+	) -> YGInternalSize {
+		let calc_width = match width_mode.into() {
 			MeasureMode::Exactly => width,
 			_ => 50.0,
 		};
 
-		let calc_height = match height_mode {
+		let calc_height = match height_mode.into() {
 			MeasureMode::Exactly => height,
 			_ => 50.0,
 		};
@@ -667,7 +667,7 @@ fn test_aspect_ratio_with_measure_func() {
 		Size {
 			width: calc_width,
 			height: calc_height,
-		}
+		}.into()
 	}
 
 	let mut root = Node::new();
@@ -912,8 +912,8 @@ fn test_aspect_ratio_overrides_flex_grow_row() {
 
 	assert_eq!(0.0, child_0_layout.left());
 	assert_eq!(0.0, child_0_layout.top());
-	assert_eq!(50.0, child_0_layout.width());
-	assert_eq!(100.0, child_0_layout.height());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(200.0, child_0_layout.height());
 }
 
 #[test]
@@ -948,8 +948,8 @@ fn test_aspect_ratio_overrides_flex_grow_column() {
 
 	assert_eq!(0.0, child_0_layout.left());
 	assert_eq!(0.0, child_0_layout.top());
-	assert_eq!(100.0, child_0_layout.width());
-	assert_eq!(50.0, child_0_layout.height());
+	assert_eq!(200.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 }
 
 #[test]
