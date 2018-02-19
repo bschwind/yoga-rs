@@ -37,6 +37,7 @@ mod ffi_types {
 	pub mod wrap;
 }
 
+pub mod macros;
 pub mod prelude;
 pub mod types;
 pub mod traits;
