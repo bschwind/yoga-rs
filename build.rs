@@ -9,10 +9,12 @@ fn main() {
 	Build::new()
 		.cpp(true)
 		// https://github.com/facebook/yoga/blob/7f44ec512e7d150b7312336ed7908ac86441b4cc/BUCK#L13
-		.flag("-std=c++1y")
+		.flag("-std=c++11")
 		// https://github.com/facebook/yoga/blob/7f44ec512e7d150b7312336ed7908ac86441b4cc/yoga_defs.bzl#L28
 		.flag("-fno-omit-frame-pointer")
 		.flag("-fexceptions")
+		.flag("-Wall")
+		.flag("-Werror")
 		.flag("-O3")
 		// https://github.com/facebook/yoga/blob/7f44ec512e7d150b7312336ed7908ac86441b4cc/yoga_defs.bzl#L36
 		.flag("-fPIC")
