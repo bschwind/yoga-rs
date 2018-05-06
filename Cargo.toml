@@ -12,8 +12,8 @@ default = []
 serde_support = ["serde", "serde_derive", "ordered-float/serde"]
 
 [build-dependencies]
-bindgen = "0.23.0"
-gcc = "0.3.54"
+bindgen = "0.36.0"
+cc = "1.0.15"
 
 [dependencies]
 ordered-float = "0.5.0"
