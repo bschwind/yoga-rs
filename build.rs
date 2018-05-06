@@ -9,6 +9,7 @@ use std::path::PathBuf;
 fn main() {
 	Build::new()
 		.cpp(true)
+		.warnings(false)
 		// https://github.com/facebook/yoga/blob/7f44ec512e7d150b7312336ed7908ac86441b4cc/BUCK#L13
 		.flag("-std=c++11")
 		// https://github.com/facebook/yoga/blob/7f44ec512e7d150b7312336ed7908ac86441b4cc/yoga_defs.bzl#L28
