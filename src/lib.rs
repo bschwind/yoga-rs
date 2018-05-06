@@ -141,6 +141,7 @@ impl Node {
 	}
 
 	pub fn remove_child(&mut self, child: &mut Node) {
+		child.should_free = true;
 		unsafe {
 			internal::YGNodeRemoveChild(self.inner_node, child.inner_node);
 		}
@@ -936,9 +937,8 @@ impl Node {
 
 impl Drop for Node {
 	fn drop(&mut self) {
-		self.set_context(None);
-
 		if self.should_free {
+			self.set_context(None);
 			unsafe {
 				internal::YGNodeFreeRecursive(self.inner_node);
 			}
