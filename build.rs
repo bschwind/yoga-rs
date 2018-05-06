@@ -1,8 +1,8 @@
 extern crate bindgen;
-extern crate gcc;
+extern crate cc;
 
 use bindgen::RustTarget;
-use gcc::Build;
+use cc::Build;
 use std::env;
 use std::path::PathBuf;
 
