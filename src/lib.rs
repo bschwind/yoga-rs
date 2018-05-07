@@ -48,14 +48,12 @@ pub use types::*;
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Node {
 	inner_node: NodeRef,
-	should_free: bool,
 }
 
 impl Node {
 	pub fn new() -> Node {
 		Node {
 			inner_node: unsafe { internal::YGNodeNew() },
-			should_free: true,
 		}
 	}
 
@@ -66,8 +64,8 @@ impl Node {
 	}
 
 	pub fn apply_styles<'a, I>(&mut self, styles: I)
-	where
-		I: IntoIterator<Item = &'a FlexStyle>,
+		where
+			I: IntoIterator<Item = &'a FlexStyle>,
 	{
 		for style in styles {
 			self.apply_style(style);
@@ -133,15 +131,12 @@ impl Node {
 	}
 
 	pub fn insert_child(&mut self, child: &mut Node, index: u32) {
-		child.should_free = false;
-
 		unsafe {
 			internal::YGNodeInsertChild(self.inner_node, child.inner_node, index);
 		}
 	}
 
 	pub fn remove_child(&mut self, child: &mut Node) {
-		child.should_free = true;
 		unsafe {
 			internal::YGNodeRemoveChild(self.inner_node, child.inner_node);
 		}
@@ -937,11 +932,11 @@ impl Node {
 
 impl Drop for Node {
 	fn drop(&mut self) {
-		if self.should_free {
-			self.set_context(None);
-			unsafe {
-				internal::YGNodeFreeRecursive(self.inner_node);
-			}
+		self.set_context(None);
+
+		unsafe {
+			// YGNodeFree already orphans all its children
+			internal::YGNodeFree(self.inner_node);
 		}
 	}
 }
