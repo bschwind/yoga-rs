@@ -1,14 +1,15 @@
 extern crate bindgen;
-extern crate gcc;
+extern crate cc;
 
 use bindgen::RustTarget;
-use gcc::Build;
+use cc::Build;
 use std::env;
 use std::path::PathBuf;
 
 fn main() {
 	let mut c = Build::new();
 
+	c.warnings(false);
 	c.flag("-std=c99");
 	c.file("src/c/YGEnums.c");
 	c.file("src/c/YGNodeList.c");
