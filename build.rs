@@ -31,6 +31,7 @@ fn main() {
 	builder.compile("libyoga.a");
 
 	let bindings = bindgen::Builder::default()
+		.clang_arg("-std=c++11")
 		.no_convert_floats()
 		.enable_cxx_namespaces()
 		.whitelist_type("YG.*")
