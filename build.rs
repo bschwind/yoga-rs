@@ -1,7 +1,6 @@
 extern crate bindgen;
 extern crate cc;
 
-use bindgen::RustTarget;
 use cc::Build;
 use std::env;
 use std::path::PathBuf;
@@ -9,7 +8,6 @@ use std::path::PathBuf;
 fn main() {
 	Build::new()
 		.cpp(true)
-		.warnings(false)
 		// https://github.com/facebook/yoga/blob/7f44ec512e7d150b7312336ed7908ac86441b4cc/BUCK#L13
 		.flag("-std=c++11")
 		// https://github.com/facebook/yoga/blob/7f44ec512e7d150b7312336ed7908ac86441b4cc/yoga_defs.bzl#L28
@@ -28,11 +26,11 @@ fn main() {
 		.compile("libyoga.a");
 
 	let bindings = bindgen::Builder::default()
-		.no_unstable_rust()
 		.no_convert_floats()
 		.enable_cxx_namespaces()
-		.whitelisted_type("YG.*")
-		.whitelisted_function("YG.*")
+		.whitelist_type("YG.*")
+		.whitelist_function("YG.*")
+		.rustified_enum("YG.*")
 		.layout_tests(false)
 		.header("src/c/wrapper.hpp")
 		.generate()
