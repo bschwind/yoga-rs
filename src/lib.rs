@@ -935,7 +935,10 @@ impl Drop for Node {
 		self.set_context(None);
 
 		unsafe {
-			// YGNodeFree already orphans all its children
+			let parent = internal::YGNodeGetParent(self.inner_node);
+			if parent != 0 as NodeRef {
+				internal::YGNodeRemoveChild(internal::YGNodeGetParent(self.inner_node), self.inner_node);
+			}
 			internal::YGNodeFree(self.inner_node);
 		}
 	}
