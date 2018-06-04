@@ -170,13 +170,13 @@ impl Deref for Context {
 
 #[macro_export]
 macro_rules! unit {
-	( $val:tt pt) => (
+	($val:tt pt) => {
 		$val.point()
-	);
-	( $val:tt %) => {
+	};
+	($val:tt %) => {
 		$val.percent()
 	};
-	( $val:expr) => {
+	($val:expr) => {
 		$val
 	};
 }
