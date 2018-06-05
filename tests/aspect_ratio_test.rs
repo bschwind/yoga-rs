@@ -2,9 +2,11 @@ extern crate ordered_float;
 #[macro_use]
 extern crate yoga;
 
-use yoga::{Align, Direction, FlexDirection, Justify, MeasureMode, Node, NodeRef, PositionType,
-           Size, Undefined};
 use yoga::prelude::*;
+use yoga::{
+	Align, Direction, FlexDirection, Justify, MeasureMode, Node, NodeRef, PositionType, Size,
+	Undefined,
+};
 
 #[test]
 fn test_aspect_ratio_cross_defined() {
@@ -902,18 +904,12 @@ fn test_aspect_ratio_overrides_flex_grow_row() {
 
 	root.calculate_layout(Undefined, Undefined, Direction::LTR);
 
-	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
-
-	assert_eq!(0.0, root_layout.left());
-	assert_eq!(0.0, root_layout.top());
-	assert_eq!(100.0, root_layout.width());
-	assert_eq!(100.0, root_layout.height());
 
 	assert_eq!(0.0, child_0_layout.left());
 	assert_eq!(0.0, child_0_layout.top());
-//	assert_eq!(50.0, child_0_layout.width());
-//	assert_eq!(100.0, child_0_layout.height());
+	assert_eq!(100.0, child_0_layout.width());
+	assert_eq!(200.0, child_0_layout.height());
 }
 
 #[test]
@@ -938,18 +934,12 @@ fn test_aspect_ratio_overrides_flex_grow_column() {
 
 	root.calculate_layout(Undefined, Undefined, Direction::LTR);
 
-	let root_layout = root.get_layout();
 	let child_0_layout = root_child_0.get_layout();
-
-	assert_eq!(0.0, root_layout.left());
-	assert_eq!(0.0, root_layout.top());
-	assert_eq!(100.0, root_layout.width());
-	assert_eq!(100.0, root_layout.height());
 
 	assert_eq!(0.0, child_0_layout.left());
 	assert_eq!(0.0, child_0_layout.top());
-//	assert_eq!(100.0, child_0_layout.width());
-//	assert_eq!(50.0, child_0_layout.height());
+	assert_eq!(200.0, child_0_layout.width());
+	assert_eq!(100.0, child_0_layout.height());
 }
 
 #[test]
@@ -1121,7 +1111,7 @@ fn test_aspect_ratio_allow_child_overflow_parent_size() {
 	assert_eq!(0.0, root_layout.left());
 	assert_eq!(0.0, root_layout.top());
 	assert_eq!(100.0, root_layout.width());
-//	assert_eq!(50.0, root_layout.height());
+	assert_eq!(50.0, root_layout.height());
 
 	assert_eq!(0.0, child_0_layout.left());
 	assert_eq!(0.0, child_0_layout.top());
