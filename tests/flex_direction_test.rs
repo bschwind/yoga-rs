@@ -43,7 +43,7 @@ fn test_flex_direction_column_no_height() {
 	assert_eq!(0.0, root_layout.left());
 	assert_eq!(0.0, root_layout.top());
 	assert_eq!(100.0, root_layout.width());
-//	assert_eq!(30.0, root_layout.height());
+	assert_eq!(30.0, root_layout.height());
 
 	assert_eq!(0.0, child_0_layout.left());
 	assert_eq!(0.0, child_0_layout.top());
@@ -70,7 +70,7 @@ fn test_flex_direction_column_no_height() {
 	assert_eq!(0.0, root_layout.left());
 	assert_eq!(0.0, root_layout.top());
 	assert_eq!(100.0, root_layout.width());
-//	assert_eq!(30.0, root_layout.height());
+	assert_eq!(30.0, root_layout.height());
 
 	assert_eq!(0.0, child_0_layout.left());
 	assert_eq!(0.0, child_0_layout.top());
@@ -127,7 +127,7 @@ fn test_flex_direction_row_no_width() {
 
 	assert_eq!(0.0, root_layout.left());
 	assert_eq!(0.0, root_layout.top());
-//	assert_eq!(30.0, root_layout.width());
+	assert_eq!(30.0, root_layout.width());
 	assert_eq!(100.0, root_layout.height());
 
 	assert_eq!(0.0, child_0_layout.left());
@@ -154,20 +154,20 @@ fn test_flex_direction_row_no_width() {
 
 	assert_eq!(0.0, root_layout.left());
 	assert_eq!(0.0, root_layout.top());
-//	assert_eq!(30.0, root_layout.width());
+	assert_eq!(30.0, root_layout.width());
 	assert_eq!(100.0, root_layout.height());
 
-//	assert_eq!(20.0, child_0_layout.left());
+	assert_eq!(20.0, child_0_layout.left());
 	assert_eq!(0.0, child_0_layout.top());
 	assert_eq!(10.0, child_0_layout.width());
 	assert_eq!(100.0, child_0_layout.height());
 
-//	assert_eq!(10.0, child_1_layout.left());
+	assert_eq!(10.0, child_1_layout.left());
 	assert_eq!(0.0, child_1_layout.top());
 	assert_eq!(10.0, child_1_layout.width());
 	assert_eq!(100.0, child_1_layout.height());
 
-//	assert_eq!(0.0, child_2_layout.left());
+	assert_eq!(0.0, child_2_layout.left());
 	assert_eq!(0.0, child_2_layout.top());
 	assert_eq!(10.0, child_2_layout.width());
 	assert_eq!(100.0, child_2_layout.height());

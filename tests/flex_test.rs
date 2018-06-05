@@ -313,7 +313,7 @@ fn test_flex_shrink_to_zero() {
 
 	assert_eq!(0.0, root_layout.left());
 	assert_eq!(0.0, root_layout.top());
-//	assert_eq!(50.0, root_layout.width());
+	assert_eq!(50.0, root_layout.width());
 	assert_eq!(75.0, root_layout.height());
 
 	assert_eq!(0.0, child_0_layout.left());
@@ -339,21 +339,21 @@ fn test_flex_shrink_to_zero() {
 	let child_2_layout = root_child_2.get_layout();
 
 	assert_eq!(0.0, root_layout.left());
-//	assert_eq!(0.0, root_layout.top());
-//	assert_eq!(50.0, root_layout.width());
+	assert_eq!(0.0, root_layout.top());
+	assert_eq!(50.0, root_layout.width());
 	assert_eq!(75.0, root_layout.height());
 
-//	assert_eq!(0.0, child_0_layout.left());
+	assert_eq!(0.0, child_0_layout.left());
 	assert_eq!(0.0, child_0_layout.top());
 	assert_eq!(50.0, child_0_layout.width());
 	assert_eq!(50.0, child_0_layout.height());
 
-//	assert_eq!(0.0, child_1_layout.left());
+	assert_eq!(0.0, child_1_layout.left());
 	assert_eq!(50.0, child_1_layout.top());
 	assert_eq!(50.0, child_1_layout.width());
 	assert_eq!(0.0, child_1_layout.height());
 
-//	assert_eq!(0.0, child_2_layout.left());
+	assert_eq!(0.0, child_2_layout.left());
 	assert_eq!(50.0, child_2_layout.top());
 	assert_eq!(50.0, child_2_layout.width());
 	assert_eq!(50.0, child_2_layout.height());

@@ -748,7 +748,7 @@ fn test_rounding_inner_node_controversy_horizontal() {
 	assert_eq!(0, root.get_layout_left() as i32);
 	assert_eq!(0, root.get_layout_top() as i32);
 	assert_eq!(320, root.get_layout_width() as i32);
-//	assert_eq!(10, root.get_layout_height() as i32);
+	assert_eq!(10, root.get_layout_height() as i32);
 
 	assert_eq!(0, root_child0.get_layout_left() as i32);
 	assert_eq!(0, root_child0.get_layout_top() as i32);
@@ -775,7 +775,7 @@ fn test_rounding_inner_node_controversy_horizontal() {
 	assert_eq!(0, root.get_layout_left() as i32);
 	assert_eq!(0, root.get_layout_top() as i32);
 	assert_eq!(320, root.get_layout_width() as i32);
-//	assert_eq!(10, root.get_layout_height() as i32);
+	assert_eq!(10, root.get_layout_height() as i32);
 
 	assert_eq!(213, root_child0.get_layout_left() as i32);
 	assert_eq!(0, root_child0.get_layout_top() as i32);
@@ -826,7 +826,7 @@ fn test_rounding_inner_node_controversy_vertical() {
 
 	assert_eq!(0, root.get_layout_left() as i32);
 	assert_eq!(0, root.get_layout_top() as i32);
-//	assert_eq!(10, root.get_layout_width() as i32);
+	assert_eq!(10, root.get_layout_width() as i32);
 	assert_eq!(320, root.get_layout_height() as i32);
 
 	assert_eq!(0, root_child0.get_layout_left() as i32);
@@ -853,15 +853,15 @@ fn test_rounding_inner_node_controversy_vertical() {
 
 	assert_eq!(0, root.get_layout_left() as i32);
 	assert_eq!(0, root.get_layout_top() as i32);
-//	assert_eq!(10, root.get_layout_width() as i32);
+	assert_eq!(10, root.get_layout_width() as i32);
 	assert_eq!(320, root.get_layout_height() as i32);
 
-//	assert_eq!(0, root_child0.get_layout_left() as i32);
+	assert_eq!(0, root_child0.get_layout_left() as i32);
 	assert_eq!(0, root_child0.get_layout_top() as i32);
 	assert_eq!(10, root_child0.get_layout_width() as i32);
 	assert_eq!(107, root_child0.get_layout_height() as i32);
 
-//	assert_eq!(0, root_child1.get_layout_left() as i32);
+	assert_eq!(0, root_child1.get_layout_left() as i32);
 	assert_eq!(107, root_child1.get_layout_top() as i32);
 	assert_eq!(10, root_child1.get_layout_width() as i32);
 	assert_eq!(106, root_child1.get_layout_height() as i32);
@@ -871,7 +871,7 @@ fn test_rounding_inner_node_controversy_vertical() {
 	assert_eq!(10, root_child1_child0.get_layout_width() as i32);
 	assert_eq!(106, root_child1_child0.get_layout_height() as i32);
 
-//	assert_eq!(0, root_child2.get_layout_left() as i32);
+	assert_eq!(0, root_child2.get_layout_left() as i32);
 	assert_eq!(213, root_child2.get_layout_top() as i32);
 	assert_eq!(10, root_child2.get_layout_width() as i32);
 	assert_eq!(107, root_child2.get_layout_height() as i32);
