@@ -38,8 +38,8 @@ mod ffi_types {
 }
 
 pub mod prelude;
-pub mod types;
 pub mod traits;
+pub mod types;
 
 use std::any::Any;
 pub use types::*;
@@ -64,8 +64,8 @@ impl Node {
 	}
 
 	pub fn apply_styles<'a, I>(&mut self, styles: I)
-		where
-			I: IntoIterator<Item = &'a FlexStyle>,
+	where
+		I: IntoIterator<Item = &'a FlexStyle>,
 	{
 		for style in styles {
 			self.apply_style(style);
