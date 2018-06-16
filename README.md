@@ -62,4 +62,4 @@ fn main() {
 Yoga Version
 ------------
 
-[a20bde8444474e7a34352a78073de23c26e08fc5](https://github.com/facebook/yoga/tree/a20bde8444474e7a34352a78073de23c26e08fc5/yoga)
+[c5f826de8306e5fbe5963f944c75add827e096c3](https://github.com/facebook/yoga/tree/c5f826de8306e5fbe5963f944c75add827e096c3/yoga)
