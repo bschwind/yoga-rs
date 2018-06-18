@@ -23,8 +23,8 @@ Example Code
 #[macro_use]
 extern crate yoga;
 
-use yoga::{Node, Point, Percent};
-use yoga::FlexStyle::*;
+use yoga::prelude::*;
+use yoga::Node;
 use yoga::StyleUnit::{Auto, UndefinedValue};
 
 fn main() {
@@ -47,6 +47,7 @@ fn main() {
 	let child_styles = make_styles!(
 		Width(32 pt),
 		Height(32 pt),
+		FlexGrow(1.0),
 		Margin(Auto)
 	);
 
