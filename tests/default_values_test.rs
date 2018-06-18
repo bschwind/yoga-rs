@@ -1,6 +1,6 @@
 extern crate yoga;
 
-use yoga::{Align, Direction, FlexDirection, Justify, Node, Overflow, PositionType, StyleUnit, Wrap};
+use yoga::{Align, Direction, FlexDirection, Justify, Node, Overflow, PositionType, StyleUnit, Undefined, Wrap};
 
 #[test]
 fn test_assert_default_values() {
@@ -43,12 +43,12 @@ fn test_assert_default_values() {
 	assert_eq!(StyleUnit::UndefinedValue, root.get_style_padding_start());
 	assert_eq!(StyleUnit::UndefinedValue, root.get_style_padding_end());
 
-	assert!(root.get_style_border_left().is_nan());
-	assert!(root.get_style_border_top().is_nan());
-	assert!(root.get_style_border_right().is_nan());
-	assert!(root.get_style_border_bottom().is_nan());
-	assert!(root.get_style_border_start().is_nan());
-	assert!(root.get_style_border_end().is_nan());
+	assert_eq!(Undefined, root.get_style_border_left());
+	assert_eq!(Undefined, root.get_style_border_top());
+	assert_eq!(Undefined, root.get_style_border_right());
+	assert_eq!(Undefined, root.get_style_border_bottom());
+	assert_eq!(Undefined, root.get_style_border_start());
+	assert_eq!(Undefined, root.get_style_border_end());
 
 	assert_eq!(StyleUnit::Auto, root.get_style_width());
 	assert_eq!(StyleUnit::Auto, root.get_style_height());
@@ -77,8 +77,8 @@ fn test_assert_default_values() {
 	assert_eq!(0.0, root.get_layout_border_top());
 	assert_eq!(0.0, root.get_layout_border_bottom());
 
-	assert!(root.get_layout_width().is_nan());
-	assert!(root.get_layout_height().is_nan());
+	assert_eq!(Undefined, root.get_layout_width());
+	assert_eq!(Undefined, root.get_layout_height());
 	assert_eq!(Direction::Inherit, root.get_layout_direction());
 }
 

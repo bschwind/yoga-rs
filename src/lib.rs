@@ -13,6 +13,7 @@ extern crate serde_derive;
 mod internal {
 	#![allow(dead_code)]
 	include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
+	pub use self::root::*;
 }
 
 // Public re-exports of Yoga enums
