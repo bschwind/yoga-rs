@@ -9,13 +9,13 @@ build = "build.rs"
 
 [features]
 default = []
-serde_support = ["serde", "serde_derive", "ordered-float/serde"]
+serde_support = ["serde", "serde_derive", "new-ordered-float/serde"]
 
 [build-dependencies]
 bindgen = "0.37.0"
 cc = "1.0.17"
 
 [dependencies]
-ordered-float = "0.5.0"
+new-ordered-float = "1"
 serde = { version = "1.0.27", optional = true }
 serde_derive = { version = "1.0.27", optional = true }
