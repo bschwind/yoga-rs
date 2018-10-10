@@ -62,11 +62,13 @@ fn main() {
 
 Testing
 -------
-The unit tests are automatically generated based on upstream fixtures and should not be edited manually. 
+The unit tests are automatically generated based on upstream fixtures and should not be edited manually.
+
     $ cargo test
 
 
 To generate the test cases, install `ChromeDriver` and the following Ruby Gems: `watir`, `watir-webdriver`. Run:
+
     $ ruby gentest/gentest.rb
 
 

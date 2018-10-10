@@ -11,11 +11,11 @@ fn main() {
 	Command::new("git")
 		.args(&["submodule", "init"])
 		.status()
-		.unwrap();
+		.expect("Unable to initialize git submodules");
 	Command::new("git")
 		.args(&["submodule", "update"])
 		.status()
-		.unwrap();
+		.expect("Unable to update the submodule repositories");
 
 	Build::new()
 		.cpp(true)
