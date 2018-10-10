@@ -1,246 +1,316 @@
 
 function toRustValue(value) {
-    var valueString = value.toString();
-    var n = value.toString().replace('px','').replace('%','');
-    
-    if(valueString.includes('px')) {
-	return 'StyleUnit::Point((' + n + ' as f32).into())';
-    }
+	var valueString = value.toString();
+	var n = value.toString().replace('px', '').replace('%', '');
 
-    if(valueString.includes('%')) {
-	return 'StyleUnit::Percent((' + n + ' as f32).into())';
-    }
+	if (valueString.includes('px')) {
+		return 'StyleUnit::Point((' + n + ' as f32).into())';
+	}
 
-    var number = Number(n);
-    if(isNaN(number)) {
-	return valueString;
-    }
-    return number + ' as f32';
+	if (valueString.includes('%')) {
+		return 'StyleUnit::Percent((' + n + ' as f32).into())';
+	}
+
+	var number = Number(n);
+	if (isNaN(number)) {
+		return valueString;
+	}
+	return number + ' as f32';
 }
 
 
 var RustEmitter = function() {
-    Emitter.call(this, 'rs', '    ');
+	Emitter.call(this, 'rs', '    ');
 }
 
 RustEmitter.prototype = Object.create(Emitter.prototype, {
-    
-    constructor:{value:RustEmitter},
 
-    emitPrologue:{value:function() {
-	this.push([
-	    'extern crate ordered_float;',
-	    'extern crate yoga;',
-	    '',
-	    'use yoga::{*};',
-	    '',
-	]);
-    }},
+	constructor: { value: RustEmitter },
 
-    emitEpilogue:{value:function(lines) {
+	emitPrologue: {
+		value: function() {
+			this.push([
+				'extern crate ordered_float;',
+				'extern crate yoga;',
+				'',
+				'use yoga::{*};',
+				'',
+			]);
+		}
+	},
 
-    }},
+	emitEpilogue: {
+		value: function(lines) {
 
-
-
-    emitTestPrologue:{value:function(name, experiments) {
-	this.push([
-	    '#[test]',
-	    'fn test_' + name + '() {',
-	]);
-	this.pushIndent();
-	this.push([
-	    'let mut config = Config::new();',
-	    '',
-	]);
-    }},
-
-    emitTestTreePrologue:{value:function(nodeName) {
-	this.push([
-	    'let mut ' + nodeName + ' = Node::new_with_config(&mut config);'
-	]);
-    }},
+		}
+	},
 
 
-    emitTestEpilogue:{value:function(experiments) {
-	this.popIndent();
-	this.push([
-	    '}',
-	    ''
-	]);
-    }},
+
+	emitTestPrologue: {
+		value: function(name, experiments) {
+			this.push([
+				'#[test]',
+				'fn test_' + name + '() {',
+			]);
+			this.pushIndent();
+			this.push([
+				'let mut config = Config::new();',
+				'',
+			]);
+		}
+	},
+
+	emitTestTreePrologue: {
+		value: function(nodeName) {
+			this.push([
+				'let mut ' + nodeName + ' = Node::new_with_config(&mut config);'
+			]);
+		}
+	},
 
 
-    AssertEQ:{value:function(v0, v1) {
-	this.push([
-	    'assert_eq!(' + v0 + ' as f32, ' + v1 + ');',
-	    ''
-	]);
-    }},
+	emitTestEpilogue: {
+		value: function(experiments) {
+			this.popIndent();
+			this.push([
+				'}',
+				''
+			]);
+		}
+	},
 
-    YGAlignAuto:{value:'Align::Auto'},
-    YGAlignCenter:{value:'Align::Center'},
-    YGAlignFlexEnd:{value:'Align::FlexEnd'},
-    YGAlignFlexStart:{value:'Align::FlexStart'},
-    YGAlignStretch:{value:'Align::Stretch'},
-    YGAlignSpaceBetween:{value:'Align::SpaceBetween'},
-    YGAlignSpaceAround:{value:'Align::SpaceAround'},
-    YGAlignBaseline:{value:'Align::Baseline'},
 
-    YGDirectionInherit:{value:'Direction::Inherit'},
-    YGDirectionLTR:{value:'Direction::LTR'},
-    YGDirectionRTL:{value:'Direction::RTL'},
+	AssertEQ: {
+		value: function(v0, v1) {
+			this.push([
+				'assert_eq!(' + v0 + ' as f32, ' + v1 + ');',
+				''
+			]);
+		}
+	},
 
-    YGEdgeBottom:{value:'Edge::Bottom'},
-    YGEdgeEnd:{value:'Edge::End'},
-    YGEdgeLeft:{value:'Edge::Left'},
-    YGEdgeRight:{value:'Edge::Right'},
-    YGEdgeStart:{value:'Edge::Start'},
-    YGEdgeTop:{value:'Edge::Top'},
+	YGAlignAuto: { value: 'Align::Auto' },
+	YGAlignCenter: { value: 'Align::Center' },
+	YGAlignFlexEnd: { value: 'Align::FlexEnd' },
+	YGAlignFlexStart: { value: 'Align::FlexStart' },
+	YGAlignStretch: { value: 'Align::Stretch' },
+	YGAlignSpaceBetween: { value: 'Align::SpaceBetween' },
+	YGAlignSpaceAround: { value: 'Align::SpaceAround' },
+	YGAlignBaseline: { value: 'Align::Baseline' },
 
-    YGFlexDirectionColumn:{value:'FlexDirection::Column'},
-    YGFlexDirectionColumnReverse:{value:'FlexDirection::ColumnReverse'},
-    YGFlexDirectionRow:{value:'FlexDirection::Row'},
-    YGFlexDirectionRowReverse:{value:'FlexDirection::RowReverse'},
+	YGDirectionInherit: { value: 'Direction::Inherit' },
+	YGDirectionLTR: { value: 'Direction::LTR' },
+	YGDirectionRTL: { value: 'Direction::RTL' },
 
-    YGJustifyCenter:{value:'Justify::Center'},
-    YGJustifyFlexEnd:{value:'Justify::FlexEnd'},
-    YGJustifyFlexStart:{value:'Justify::FlexStart'},
-    YGJustifySpaceAround:{value:'Justify::SpaceAround'},
-    YGJustifySpaceBetween:{value:'Justify::SpaceBetween'},
-    YGJustifySpaceEvenly:{value:'Justify::SpaceEvenly'},
+	YGEdgeBottom: { value: 'Edge::Bottom' },
+	YGEdgeEnd: { value: 'Edge::End' },
+	YGEdgeLeft: { value: 'Edge::Left' },
+	YGEdgeRight: { value: 'Edge::Right' },
+	YGEdgeStart: { value: 'Edge::Start' },
+	YGEdgeTop: { value: 'Edge::Top' },
 
-    YGOverflowHidden:{value:'Overflow::Hidden'},
-    YGOverflowVisible:{value:'Overflow::Visible'},
+	YGFlexDirectionColumn: { value: 'FlexDirection::Column' },
+	YGFlexDirectionColumnReverse: { value: 'FlexDirection::ColumnReverse' },
+	YGFlexDirectionRow: { value: 'FlexDirection::Row' },
+	YGFlexDirectionRowReverse: { value: 'FlexDirection::RowReverse' },
 
-    YGPositionTypeAbsolute:{value:'PositionType::Absolute'},
-    YGPositionTypeRelative:{value:'PositionType::Relative'},
+	YGJustifyCenter: { value: 'Justify::Center' },
+	YGJustifyFlexEnd: { value: 'Justify::FlexEnd' },
+	YGJustifyFlexStart: { value: 'Justify::FlexStart' },
+	YGJustifySpaceAround: { value: 'Justify::SpaceAround' },
+	YGJustifySpaceBetween: { value: 'Justify::SpaceBetween' },
+	YGJustifySpaceEvenly: { value: 'Justify::SpaceEvenly' },
 
-    YGUndefined:{value:'StyleUnit::UndefinedValue'},
+	YGOverflowHidden: { value: 'Overflow::Hidden' },
+	YGOverflowVisible: { value: 'Overflow::Visible' },
 
-    YGAuto:{value:'StyleUnit::Auto'},
+	YGPositionTypeAbsolute: { value: 'PositionType::Absolute' },
+	YGPositionTypeRelative: { value: 'PositionType::Relative' },
 
-    YGDisplayFlex:{value:'Display::Flex'},
-    YGDisplayNone:{value:'Display::None'},
+	YGUndefined: { value: 'StyleUnit::UndefinedValue' },
 
-    YGWrapNoWrap:{value:'Wrap::NoWrap'},
-    YGWrapWrap:{value:'Wrap::Wrap'},
-    YGWrapWrapReverse:{value: 'Wrap::WrapReverse'},
+	YGAuto: { value: 'StyleUnit::Auto' },
 
-    YGNodeCalculateLayout:{value:function(node, dir, experiments) {
-	this.push(node + '.calculate_layout(Undefined, Undefined, ' + dir + ');');
-    }},
+	YGDisplayFlex: { value: 'Display::Flex' },
+	YGDisplayNone: { value: 'Display::None' },
 
-    YGNodeInsertChild:{value:function(parentName, nodeName, index) {
-	this.push(parentName + '.insert_child(&mut ' + nodeName + ', ' + index + ');');
-    }},
+	YGWrapNoWrap: { value: 'Wrap::NoWrap' },
+	YGWrapWrap: { value: 'Wrap::Wrap' },
+	YGWrapWrapReverse: { value: 'Wrap::WrapReverse' },
 
-    YGNodeLayoutGetLeft:{value:function(nodeName) {
-	return nodeName + '.get_layout_left()';
-    }},
+	YGNodeCalculateLayout: {
+		value: function(node, dir, experiments) {
+			this.push(node + '.calculate_layout(Undefined, Undefined, ' + dir + ');');
+		}
+	},
 
-    YGNodeLayoutGetTop:{value:function(nodeName) {
-	return nodeName + '.get_layout_top()';
-    }},
+	YGNodeInsertChild: {
+		value: function(parentName, nodeName, index) {
+			this.push(parentName + '.insert_child(&mut ' + nodeName + ', ' + index + ');');
+		}
+	},
 
-    YGNodeLayoutGetWidth:{value:function(nodeName) {
-	return nodeName + '.get_layout_width()';
-    }},
+	YGNodeLayoutGetLeft: {
+		value: function(nodeName) {
+			return nodeName + '.get_layout_left()';
+		}
+	},
 
-    YGNodeLayoutGetHeight:{value:function(nodeName) {
-	return nodeName + '.get_layout_height()';
-    }},
+	YGNodeLayoutGetTop: {
+		value: function(nodeName) {
+			return nodeName + '.get_layout_top()';
+		}
+	},
 
-    YGNodeStyleSetAlignContent:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_align_content(' + value + ');');
-    }},
+	YGNodeLayoutGetWidth: {
+		value: function(nodeName) {
+			return nodeName + '.get_layout_width()';
+		}
+	},
 
-    YGNodeStyleSetAlignItems:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_align_items(' + value + ');');
-    }},
+	YGNodeLayoutGetHeight: {
+		value: function(nodeName) {
+			return nodeName + '.get_layout_height()';
+		}
+	},
 
-    YGNodeStyleSetAlignSelf:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_align_self(' + value + ');');
-    }},
+	YGNodeStyleSetAlignContent: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_align_content(' + value + ');');
+		}
+	},
 
-    YGNodeStyleSetBorder:{value:function(nodeName, edge, value) {
-	var strippedValue = value.toString().replace('px', '');
-	this.push(nodeName + '.set_border(' + edge + ', ' + (strippedValue) + ' as f32);');
-    }},
+	YGNodeStyleSetAlignItems: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_align_items(' + value + ');');
+		}
+	},
 
-    YGNodeStyleSetDirection:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_direction(' + value + ');');
-    }},
+	YGNodeStyleSetAlignSelf: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_align_self(' + value + ');');
+		}
+	},
 
-    YGNodeStyleSetDisplay:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_display(' + value + ');');
-    }},
+	YGNodeStyleSetBorder: {
+		value: function(nodeName, edge, value) {
+			var strippedValue = value.toString().replace('px', '');
+			this.push(nodeName + '.set_border(' + edge + ', ' + (strippedValue) + ' as f32);');
+		}
+	},
 
-    YGNodeStyleSetFlexBasis:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_flex_basis(' + toRustValue(value) + ');');
-    }},
+	YGNodeStyleSetDirection: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_direction(' + value + ');');
+		}
+	},
 
-    YGNodeStyleSetFlexDirection:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_flex_direction(' + value + ');');
-    }},
+	YGNodeStyleSetDisplay: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_display(' + value + ');');
+		}
+	},
 
-    YGNodeStyleSetFlexGrow:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_flex_grow(' + toRustValue(value) + ');');
-    }},
+	YGNodeStyleSetFlexBasis: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_flex_basis(' + toRustValue(value) + ');');
+		}
+	},
 
-    YGNodeStyleSetFlexShrink:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_flex_shrink(' + toRustValue(value) + ' as f32);');
-    }},
+	YGNodeStyleSetFlexDirection: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_flex_direction(' + value + ');');
+		}
+	},
 
-    YGNodeStyleSetFlexWrap:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_flex_wrap(' + value + ');');
-    }},
+	YGNodeStyleSetFlexGrow: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_flex_grow(' + toRustValue(value) + ');');
+		}
+	},
 
-    YGNodeStyleSetHeight:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_height(' + toRustValue(value) + ');');
-    }},
+	YGNodeStyleSetFlexShrink: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_flex_shrink(' + toRustValue(value) + ' as f32);');
+		}
+	},
 
-    YGNodeStyleSetJustifyContent:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_justify_content(' + value + ');');
-    }},
+	YGNodeStyleSetFlexWrap: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_flex_wrap(' + value + ');');
+		}
+	},
 
-    YGNodeStyleSetMargin:{value:function(nodeName, edge, value) {
-	this.push(nodeName + '.set_margin(' + edge + ', ' + toRustValue(value) + ');');
-    }},
+	YGNodeStyleSetHeight: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_height(' + toRustValue(value) + ');');
+		}
+	},
 
-    YGNodeStyleSetMaxHeight:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_max_height(' + toRustValue(value) + ');');
-    }},
+	YGNodeStyleSetJustifyContent: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_justify_content(' + value + ');');
+		}
+	},
 
-    YGNodeStyleSetMaxWidth:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_max_width(' + toRustValue(value) + ');');
-    }},
+	YGNodeStyleSetMargin: {
+		value: function(nodeName, edge, value) {
+			this.push(nodeName + '.set_margin(' + edge + ', ' + toRustValue(value) + ');');
+		}
+	},
 
-    YGNodeStyleSetMinHeight:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_min_height(' + toRustValue(value) + ');');
-    }},
+	YGNodeStyleSetMaxHeight: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_max_height(' + toRustValue(value) + ');');
+		}
+	},
 
-    YGNodeStyleSetMinWidth:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_min_width(' + toRustValue(value) + ');');
-    }},
+	YGNodeStyleSetMaxWidth: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_max_width(' + toRustValue(value) + ');');
+		}
+	},
 
-    YGNodeStyleSetOverflow:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_overflow(' + toRustValue(value) + ');');
-    }},
+	YGNodeStyleSetMinHeight: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_min_height(' + toRustValue(value) + ');');
+		}
+	},
 
-    YGNodeStyleSetPadding:{value:function(nodeName, edge, value) {
-	this.push(nodeName + '.set_padding(' + edge + ', ' + toRustValue(value) + ');');
-    }},
+	YGNodeStyleSetMinWidth: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_min_width(' + toRustValue(value) + ');');
+		}
+	},
 
-    YGNodeStyleSetPosition:{value:function(nodeName, edge, value) {
-	this.push(nodeName + '.set_position(' + edge + ', ' + toRustValue(value) + ');');
-    }},
+	YGNodeStyleSetOverflow: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_overflow(' + toRustValue(value) + ');');
+		}
+	},
 
-    YGNodeStyleSetPositionType:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_position_type(' + toRustValue(value) + ');');
-    }},
+	YGNodeStyleSetPadding: {
+		value: function(nodeName, edge, value) {
+			this.push(nodeName + '.set_padding(' + edge + ', ' + toRustValue(value) + ');');
+		}
+	},
 
-    YGNodeStyleSetWidth:{value:function(nodeName, value) {
-	this.push(nodeName + '.set_width(' + toRustValue(value) + ');');
-    }},
+	YGNodeStyleSetPosition: {
+		value: function(nodeName, edge, value) {
+			this.push(nodeName + '.set_position(' + edge + ', ' + toRustValue(value) + ');');
+		}
+	},
+
+	YGNodeStyleSetPositionType: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_position_type(' + toRustValue(value) + ');');
+		}
+	},
+
+	YGNodeStyleSetWidth: {
+		value: function(nodeName, value) {
+			this.push(nodeName + '.set_width(' + toRustValue(value) + ');');
+		}
+	},
 });
