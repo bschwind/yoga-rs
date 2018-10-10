@@ -31,7 +31,7 @@ RustEmitter.prototype = Object.create(Emitter.prototype, {
         'extern crate ordered_float;',
         'extern crate yoga;',
         '',
-        'use yoga::{*};',
+        'use yoga::*;',
         ''
       ])
     }
