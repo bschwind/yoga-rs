@@ -73,7 +73,7 @@ impl Node {
 		}
 	}
 
-	pub fn new_with_config(config: Config) -> Node {
+	pub fn new_with_config(config: &mut Config) -> Node {
 		Node {
 			inner_node: unsafe { internal::YGNodeNewWithConfig(config.inner_config) },
 		}
