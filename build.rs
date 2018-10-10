@@ -5,8 +5,18 @@ use bindgen::RustTarget;
 use cc::Build;
 use std::env;
 use std::path::PathBuf;
+use std::process::Command;
 
 fn main() {
+	Command::new("git")
+		.args(&["submodule", "init"])
+		.status()
+		.unwrap();
+	Command::new("git")
+		.args(&["submodule", "update"])
+		.status()
+		.unwrap();
+
 	Build::new()
 		.cpp(true)
 		// https://github.com/facebook/yoga/blob/c5f826de8306e5fbe5963f944c75add827e096c3/BUCK#L13
