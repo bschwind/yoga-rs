@@ -20,15 +20,15 @@ fn main() {
 		// https://github.com/facebook/yoga/blob/c5f826de8306e5fbe5963f944c75add827e096c3/yoga_defs.bzl#L58-L60
 		.flag("-fPIC")
 		// C++ Files
-		.file("src/c/Utils.cpp")
-		.file("src/c/YGConfig.cpp")
-		.file("src/c/YGEnums.cpp")
-		.file("src/c/YGFloatOptional.cpp")
-		.file("src/c/YGLayout.cpp")
-		.file("src/c/YGNode.cpp")
-		.file("src/c/YGNodePrint.cpp")
-		.file("src/c/YGStyle.cpp")
-		.file("src/c/Yoga.cpp")
+		.file("src/yoga/yoga/Utils.cpp")
+		.file("src/yoga/yoga/YGConfig.cpp")
+		.file("src/yoga/yoga/YGEnums.cpp")
+		.file("src/yoga/yoga/YGFloatOptional.cpp")
+		.file("src/yoga/yoga/YGLayout.cpp")
+		.file("src/yoga/yoga/YGNode.cpp")
+		.file("src/yoga/yoga/YGNodePrint.cpp")
+		.file("src/yoga/yoga/YGStyle.cpp")
+		.file("src/yoga/yoga/Yoga.cpp")
 		.compile("libyoga.a");
 
 	let bindings = bindgen::Builder::default()
@@ -41,7 +41,7 @@ fn main() {
 		.layout_tests(false)
 		.rustfmt_bindings(false)
 		.rustified_enum("YG.*")
-		.header("src/c/Yoga.h")
+		.header("src/yoga/yoga/Yoga.h")
 		.generate()
 		.expect("Unable to generate bindings");
 
