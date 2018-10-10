@@ -41,7 +41,7 @@ fn main() {
 		.layout_tests(false)
 		.rustfmt_bindings(false)
 		.rustified_enum("YG.*")
-		.header("src/c/wrapper.h")
+		.header("src/c/Yoga.h")
 		.generate()
 		.expect("Unable to generate bindings");
 
