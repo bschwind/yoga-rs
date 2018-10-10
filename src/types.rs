@@ -1,4 +1,5 @@
 pub use ffi_types::align::*;
+pub use ffi_types::config_ref::*;
 pub use ffi_types::dimension::*;
 pub use ffi_types::direction::*;
 pub use ffi_types::display::*;
@@ -170,13 +171,13 @@ impl Deref for Context {
 
 #[macro_export]
 macro_rules! unit {
-	( $val:tt pt) => (
+	($val:tt pt) => {
 		$val.point()
-	);
-	( $val:tt %) => {
+	};
+	($val:tt %) => {
 		$val.percent()
 	};
-	( $val:expr) => {
+	($val:expr) => {
 		$val
 	};
 }
