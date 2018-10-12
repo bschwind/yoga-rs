@@ -64,12 +64,29 @@ Testing
 -------
 The unit tests are automatically generated based on upstream fixtures and should not be edited manually.
 
-    $ cargo test
+```
+$ cargo test
+```
 
+To generate the test cases:
+Download the [ChromeDriver](http://chromedriver.chromium.org) binary and put it somewhere in your `$PATH`. Linux/MacOS example:
 
-To generate the test cases, install `ChromeDriver` and the following Ruby Gems: `watir`, `watir-webdriver`. Run:
+```
+$ cp chromedriver /usr/local/bin
+```
 
-    $ ruby gentest/gentest.rb
+Install the required Ruby gem.
+
+```
+$ gem install watir
+```
+
+Generate the tests.
+
+```
+$ ruby gentest/gentest.rb
+```
+
 
 
 
