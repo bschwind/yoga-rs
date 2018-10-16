@@ -19,6 +19,7 @@ mod internal {
 // Public re-exports of Yoga enums
 mod ffi_types {
 	pub mod align;
+	pub mod config_ref;
 	pub mod dimension;
 	pub mod direction;
 	pub mod display;
@@ -39,11 +40,17 @@ mod ffi_types {
 }
 
 pub mod prelude;
-pub mod types;
 pub mod traits;
+pub mod types;
 
 use std::any::Any;
 pub use types::*;
+
+#[repr(C)]
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+pub struct Config {
+	inner_config: ConfigRef,
+}
 
 #[repr(C)]
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -51,10 +58,24 @@ pub struct Node {
 	inner_node: NodeRef,
 }
 
+impl Config {
+	pub fn new() -> Config {
+		Config {
+			inner_config: unsafe { internal::YGConfigNew() },
+		}
+	}
+}
+
 impl Node {
 	pub fn new() -> Node {
 		Node {
 			inner_node: unsafe { internal::YGNodeNew() },
+		}
+	}
+
+	pub fn new_with_config(config: &mut Config) -> Node {
+		Node {
+			inner_node: unsafe { internal::YGNodeNewWithConfig(config.inner_config) },
 		}
 	}
 
@@ -65,8 +86,8 @@ impl Node {
 	}
 
 	pub fn apply_styles<'a, I>(&mut self, styles: I)
-		where
-			I: IntoIterator<Item = &'a FlexStyle>,
+	where
+		I: IntoIterator<Item = &'a FlexStyle>,
 	{
 		for style in styles {
 			self.apply_style(style);
@@ -937,11 +958,14 @@ impl Drop for Node {
 
 		unsafe {
 			// In the current revision (a20bde8444474e7a34352a78073de23c26e08fc5),
-			// YGNodeFree does not mark the parent as dirty, but YGNodeRemoveChild does. 
-			// TODO remove the following lines when upgrading to a more recent revision of yoga. 
+			// YGNodeFree does not mark the parent as dirty, but YGNodeRemoveChild does.
+			// TODO remove the following lines when upgrading to a more recent revision of yoga.
 			let parent = internal::YGNodeGetParent(self.inner_node);
 			if parent != 0 as NodeRef {
-				internal::YGNodeRemoveChild(internal::YGNodeGetParent(self.inner_node), self.inner_node);
+				internal::YGNodeRemoveChild(
+					internal::YGNodeGetParent(self.inner_node),
+					self.inner_node,
+				);
 			}
 
 			internal::YGNodeFree(self.inner_node);

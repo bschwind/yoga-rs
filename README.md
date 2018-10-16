@@ -60,7 +60,29 @@ fn main() {
 }
 ```
 
-Yoga Version
-------------
+Testing
+-------
+The unit tests are automatically generated based on upstream fixtures and should not be edited manually.
 
-[c5f826de8306e5fbe5963f944c75add827e096c3](https://github.com/facebook/yoga/tree/c5f826de8306e5fbe5963f944c75add827e096c3/yoga)
+```
+$ cargo test
+```
+
+To generate the test cases:
+Download the [ChromeDriver](http://chromedriver.chromium.org) binary and put it somewhere in your `$PATH`. Linux/MacOS example:
+
+```
+$ cp chromedriver /usr/local/bin
+```
+
+Install the required Ruby gem.
+
+```
+$ sudo gem install watir
+```
+
+Generate the tests.
+
+```
+$ ruby gentest/gentest.rb
+```
