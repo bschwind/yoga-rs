@@ -78,7 +78,7 @@ $ cp chromedriver /usr/local/bin
 Install the required Ruby gem.
 
 ```
-$ gem install watir
+$ sudo gem install watir
 ```
 
 Generate the tests.
