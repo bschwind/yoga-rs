@@ -85,6 +85,12 @@ impl Node {
 		}
 	}
 
+	pub fn mark_dirty(&mut self) {
+		unsafe {
+			internal::YGNodeMarkDirty(self.inner_node);
+		}
+	}
+
 	pub fn apply_styles<'a, I>(&mut self, styles: I)
 	where
 		I: IntoIterator<Item = &'a FlexStyle>,
