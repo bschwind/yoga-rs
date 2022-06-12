@@ -4,7 +4,7 @@ Yoga-rs
 
 A Rust wrapper for Facebook's Yoga layout library.
 
-You may also want to check out [stretch](https://github.com/vislyhq/stretch) as it is a pure Rust implementation.
+You may also want to check out [taffy](https://github.com/dioxuslabs/taffy) (a revived fork of the abandoned [stretch](https://github.com/vislyhq/stretch)) as it is a pure Rust implementation.
 
 Dependencies
 ------------
