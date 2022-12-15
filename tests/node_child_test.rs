@@ -22,6 +22,6 @@ fn test_reset_layout_when_child_removed() {
 
     assert_eq!(0, root_child0.get_layout_left() as i32);
     assert_eq!(0, root_child0.get_layout_top() as i32);
-    assert_eq!(Undefined, root_child0.get_layout_width());
-    assert_eq!(Undefined, root_child0.get_layout_height());
+    assert!(root_child0.get_layout_width().is_nan());
+    assert!(root_child0.get_layout_height().is_nan());
 }
