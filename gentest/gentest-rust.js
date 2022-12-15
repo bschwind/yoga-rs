@@ -3,18 +3,28 @@ function toRustValue (value) {
   var n = value.toString().replace('px', '').replace('%', '')
 
   if (valueString.includes('px')) {
-    return 'StyleUnit::Point((' + n + ' as f32).into())'
+    return 'StyleUnit::Point(' + n + '_f32.into())'
   }
 
   if (valueString.includes('%')) {
-    return 'StyleUnit::Percent((' + n + ' as f32).into())'
+    return 'StyleUnit::Percent(' + n + '_f32.into())'
   }
 
   var number = Number(n)
   if (isNaN(number)) {
     return valueString
   }
-  return number + ' as f32'
+  return number + '_f32'
+}
+
+function toRustNumber (value) {
+  var valueString = value.toString()
+  var n = value.toString().replace('px', '').replace('%', '')
+  var number = Number(n)
+  if (isNaN(number)) {
+    return valueString
+  }
+  return number + '_f32'
 }
 
 var RustEmitter = function () {
@@ -78,7 +88,7 @@ RustEmitter.prototype = Object.create(Emitter.prototype, {
   AssertEQ: {
     value: function (v0, v1) {
       this.push([
-        'assert_eq!(' + v0 + ' as f32, ' + v1 + ');'
+        'assert_eq!(' + v0 + '_f32, ' + v1 + ');'
       ])
     }
   },
@@ -102,6 +112,10 @@ RustEmitter.prototype = Object.create(Emitter.prototype, {
   YGEdgeRight: { value: 'Edge::Right' },
   YGEdgeStart: { value: 'Edge::Start' },
   YGEdgeTop: { value: 'Edge::Top' },
+
+  YGGutterAll:{value:'Gutter::All'},
+  YGGutterColumn:{value:'Gutter::Column'},
+  YGGutterRow:{value:'Gutter::Row'},
 
   YGFlexDirectionColumn: { value: 'FlexDirection::Column' },
   YGFlexDirectionColumnReverse: { value: 'FlexDirection::ColumnReverse' },
@@ -189,7 +203,7 @@ RustEmitter.prototype = Object.create(Emitter.prototype, {
   YGNodeStyleSetBorder: {
     value: function (nodeName, edge, value) {
       var strippedValue = value.toString().replace('px', '')
-      this.push(nodeName + '.set_border(' + edge + ', ' + (strippedValue) + ' as f32);')
+      this.push(nodeName + '.set_border(' + edge + ', ' + (strippedValue) + '_f32);')
     }
   },
 
@@ -225,7 +239,7 @@ RustEmitter.prototype = Object.create(Emitter.prototype, {
 
   YGNodeStyleSetFlexShrink: {
     value: function (nodeName, value) {
-      this.push(nodeName + '.set_flex_shrink(' + toRustValue(value) + ' as f32);')
+      this.push(nodeName + '.set_flex_shrink(' + toRustValue(value) + ');')
     }
   },
 
@@ -305,5 +319,9 @@ RustEmitter.prototype = Object.create(Emitter.prototype, {
     value: function (nodeName, value) {
       this.push(nodeName + '.set_width(' + toRustValue(value) + ');')
     }
-  }
+  },
+
+  YGNodeStyleSetGap:{value:function(nodeName, gap, value) {
+    this.push(nodeName + '.set_gap('+ toRustValue(gap) + ', ' + toRustNumber(value) + ');');
+  }},
 })
