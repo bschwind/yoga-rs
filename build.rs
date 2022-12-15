@@ -6,6 +6,8 @@ use cc::Build;
 use std::{env, path::PathBuf, process::Command};
 
 fn main() {
+    println!("cargo:rerun-if-changed=src/yoga/yoga");
+
     Command::new("git")
         .args(["submodule", "init"])
         .status()
