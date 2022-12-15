@@ -1,3 +1,2 @@
-pub use traits::Percent;
-pub use traits::Point;
+pub use traits::{Percent, Point};
 pub use FlexStyle::*;

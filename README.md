@@ -19,6 +19,10 @@ Run Example
 -----------
 	$ cargo run --release --example layout
 
+Format Code
+-----------
+	$ cargo +nightly fmt
+
 Example Code
 ------------
 ```rust
