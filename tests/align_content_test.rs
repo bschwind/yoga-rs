@@ -258,7 +258,7 @@ fn test_align_content_flex_start_with_flex() {
 
     let mut root_child3 = Node::new_with_config(&mut config);
     root_child3.set_flex_grow(1_f32);
-    root_child3.set_flex_shrink(1_f32 as f32);
+    root_child3.set_flex_shrink(1_f32);
     root_child3.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
     root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
@@ -892,7 +892,7 @@ fn test_align_content_stretch_row_with_children() {
 
     let mut root_child0_child0 = Node::new_with_config(&mut config);
     root_child0_child0.set_flex_grow(1_f32);
-    root_child0_child0.set_flex_shrink(1_f32 as f32);
+    root_child0_child0.set_flex_shrink(1_f32);
     root_child0_child0.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
     root_child0_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0.set_min_height(StyleUnit::Auto);
@@ -1015,7 +1015,7 @@ fn test_align_content_stretch_row_with_flex() {
 
     let mut root_child1 = Node::new_with_config(&mut config);
     root_child1.set_flex_grow(1_f32);
-    root_child1.set_flex_shrink(1_f32 as f32);
+    root_child1.set_flex_shrink(1_f32);
     root_child1.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
     root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
@@ -1030,7 +1030,7 @@ fn test_align_content_stretch_row_with_flex() {
 
     let mut root_child3 = Node::new_with_config(&mut config);
     root_child3.set_flex_grow(1_f32);
-    root_child3.set_flex_shrink(1_f32 as f32);
+    root_child3.set_flex_shrink(1_f32);
     root_child3.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
     root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
@@ -1126,7 +1126,7 @@ fn test_align_content_stretch_row_with_flex_no_shrink() {
 
     let mut root_child1 = Node::new_with_config(&mut config);
     root_child1.set_flex_grow(1_f32);
-    root_child1.set_flex_shrink(1_f32 as f32);
+    root_child1.set_flex_shrink(1_f32);
     root_child1.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
     root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
@@ -1835,7 +1835,7 @@ fn test_align_content_stretch_column() {
 
     let mut root_child0_child0 = Node::new_with_config(&mut config);
     root_child0_child0.set_flex_grow(1_f32);
-    root_child0_child0.set_flex_shrink(1_f32 as f32);
+    root_child0_child0.set_flex_shrink(1_f32);
     root_child0_child0.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
     root_child0_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0.set_min_height(StyleUnit::Auto);
@@ -1843,7 +1843,7 @@ fn test_align_content_stretch_column() {
 
     let mut root_child1 = Node::new_with_config(&mut config);
     root_child1.set_flex_grow(1_f32);
-    root_child1.set_flex_shrink(1_f32 as f32);
+    root_child1.set_flex_shrink(1_f32);
     root_child1.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
     root_child1.set_min_width(StyleUnit::Auto);
     root_child1.set_height(StyleUnit::Point(50_f32.into()));

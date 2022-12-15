@@ -130,7 +130,7 @@ fn test_flex_basis_flex_shrink_column() {
     root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_flex_shrink(1_f32 as f32);
+    root_child0.set_flex_shrink(1_f32);
     root_child0.set_flex_basis(StyleUnit::Point(100_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
@@ -186,7 +186,7 @@ fn test_flex_basis_flex_shrink_row() {
     root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_flex_shrink(1_f32 as f32);
+    root_child0.set_flex_shrink(1_f32);
     root_child0.set_flex_basis(StyleUnit::Point(100_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
@@ -247,7 +247,7 @@ fn test_flex_shrink_to_zero() {
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_flex_shrink(1_f32 as f32);
+    root_child1.set_flex_shrink(1_f32);
     root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
     root_child1.set_height(StyleUnit::Point(50_f32.into()));
@@ -394,7 +394,7 @@ fn test_flex_grow_shrink_at_most() {
 
     let mut root_child0_child0 = Node::new_with_config(&mut config);
     root_child0_child0.set_flex_grow(1_f32);
-    root_child0_child0.set_flex_shrink(1_f32 as f32);
+    root_child0_child0.set_flex_shrink(1_f32);
     root_child0_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0.set_min_height(StyleUnit::Auto);
     root_child0.insert_child(&mut root_child0_child0, 0);

@@ -194,7 +194,7 @@ fn test_rounding_flex_basis_flex_shrink_row() {
     root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_flex_shrink(1_f32 as f32);
+    root_child0.set_flex_shrink(1_f32);
     root_child0.set_flex_basis(StyleUnit::Point(100_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);

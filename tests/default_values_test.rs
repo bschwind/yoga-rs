@@ -88,11 +88,9 @@ fn test_assert_default_values() {
 #[test]
 fn test_assert_webdefault_values() {
     // TODO - unimplemented for now
-    assert!(true);
 }
 
 #[test]
 fn test_assert_webdefault_values_reset() {
     // TODO - unimplemented for now
-    assert!(true);
 }

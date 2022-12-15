@@ -189,7 +189,7 @@ fn test_display_none_with_child() {
 
     let mut root_child0 = Node::new_with_config(&mut config);
     root_child0.set_flex_grow(1_f32);
-    root_child0.set_flex_shrink(1_f32 as f32);
+    root_child0.set_flex_shrink(1_f32);
     root_child0.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
@@ -197,21 +197,21 @@ fn test_display_none_with_child() {
 
     let mut root_child1 = Node::new_with_config(&mut config);
     root_child1.set_flex_grow(1_f32);
-    root_child1.set_flex_shrink(1_f32 as f32);
+    root_child1.set_flex_shrink(1_f32);
     root_child1.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
     root_child1.set_display(Display::None);
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child1_child0 = Node::new_with_config(&mut config);
     root_child1_child0.set_flex_grow(1_f32);
-    root_child1_child0.set_flex_shrink(1_f32 as f32);
+    root_child1_child0.set_flex_shrink(1_f32);
     root_child1_child0.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
     root_child1_child0.set_width(StyleUnit::Point(20_f32.into()));
     root_child1.insert_child(&mut root_child1_child0, 0);
 
     let mut root_child2 = Node::new_with_config(&mut config);
     root_child2.set_flex_grow(1_f32);
-    root_child2.set_flex_shrink(1_f32 as f32);
+    root_child2.set_flex_shrink(1_f32);
     root_child2.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
     root_child2.set_min_width(StyleUnit::Auto);
     root_child2.set_min_height(StyleUnit::Auto);

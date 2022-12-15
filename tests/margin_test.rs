@@ -1618,7 +1618,7 @@ fn test_margin_auto_top_stretching_child() {
 
     let mut root_child0 = Node::new_with_config(&mut config);
     root_child0.set_flex_grow(1_f32);
-    root_child0.set_flex_shrink(1_f32 as f32);
+    root_child0.set_flex_shrink(1_f32);
     root_child0.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
     root_child0.set_margin(Edge::Top, StyleUnit::Auto);
     root_child0.set_min_width(StyleUnit::Auto);
@@ -1677,7 +1677,7 @@ fn test_margin_auto_left_stretching_child() {
 
     let mut root_child0 = Node::new_with_config(&mut config);
     root_child0.set_flex_grow(1_f32);
-    root_child0.set_flex_shrink(1_f32 as f32);
+    root_child0.set_flex_shrink(1_f32);
     root_child0.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
     root_child0.set_margin(Edge::Left, StyleUnit::Auto);
     root_child0.set_min_width(StyleUnit::Auto);

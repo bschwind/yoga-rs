@@ -63,7 +63,7 @@ fn test_android_news_feed() {
 
     let mut root_child0_child0_child0_child0_child1 = Node::new_with_config(&mut config);
     root_child0_child0_child0_child0_child1.set_align_content(Align::Stretch);
-    root_child0_child0_child0_child0_child1.set_flex_shrink(1_f32 as f32);
+    root_child0_child0_child0_child0_child1.set_flex_shrink(1_f32);
     root_child0_child0_child0_child0_child1
         .set_margin(Edge::Right, StyleUnit::Point(36_f32.into()));
     root_child0_child0_child0_child0_child1
@@ -80,7 +80,7 @@ fn test_android_news_feed() {
     let mut root_child0_child0_child0_child0_child1_child0 = Node::new_with_config(&mut config);
     root_child0_child0_child0_child0_child1_child0.set_flex_direction(FlexDirection::Row);
     root_child0_child0_child0_child0_child1_child0.set_align_content(Align::Stretch);
-    root_child0_child0_child0_child0_child1_child0.set_flex_shrink(1_f32 as f32);
+    root_child0_child0_child0_child0_child1_child0.set_flex_shrink(1_f32);
     root_child0_child0_child0_child0_child1_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0_child0_child0_child1_child0.set_min_height(StyleUnit::Auto);
     root_child0_child0_child0_child0_child1
@@ -88,7 +88,7 @@ fn test_android_news_feed() {
 
     let mut root_child0_child0_child0_child0_child1_child1 = Node::new_with_config(&mut config);
     root_child0_child0_child0_child0_child1_child1.set_align_content(Align::Stretch);
-    root_child0_child0_child0_child0_child1_child1.set_flex_shrink(1_f32 as f32);
+    root_child0_child0_child0_child0_child1_child1.set_flex_shrink(1_f32);
     root_child0_child0_child0_child0_child1_child1.set_min_width(StyleUnit::Auto);
     root_child0_child0_child0_child0_child1_child1.set_min_height(StyleUnit::Auto);
     root_child0_child0_child0_child0_child1
@@ -128,7 +128,7 @@ fn test_android_news_feed() {
 
     let mut root_child0_child0_child1_child0_child1 = Node::new_with_config(&mut config);
     root_child0_child0_child1_child0_child1.set_align_content(Align::Stretch);
-    root_child0_child0_child1_child0_child1.set_flex_shrink(1_f32 as f32);
+    root_child0_child0_child1_child0_child1.set_flex_shrink(1_f32);
     root_child0_child0_child1_child0_child1
         .set_margin(Edge::Right, StyleUnit::Point(36_f32.into()));
     root_child0_child0_child1_child0_child1
@@ -145,7 +145,7 @@ fn test_android_news_feed() {
     let mut root_child0_child0_child1_child0_child1_child0 = Node::new_with_config(&mut config);
     root_child0_child0_child1_child0_child1_child0.set_flex_direction(FlexDirection::Row);
     root_child0_child0_child1_child0_child1_child0.set_align_content(Align::Stretch);
-    root_child0_child0_child1_child0_child1_child0.set_flex_shrink(1_f32 as f32);
+    root_child0_child0_child1_child0_child1_child0.set_flex_shrink(1_f32);
     root_child0_child0_child1_child0_child1_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0_child1_child0_child1_child0.set_min_height(StyleUnit::Auto);
     root_child0_child0_child1_child0_child1
@@ -153,7 +153,7 @@ fn test_android_news_feed() {
 
     let mut root_child0_child0_child1_child0_child1_child1 = Node::new_with_config(&mut config);
     root_child0_child0_child1_child0_child1_child1.set_align_content(Align::Stretch);
-    root_child0_child0_child1_child0_child1_child1.set_flex_shrink(1_f32 as f32);
+    root_child0_child0_child1_child0_child1_child1.set_flex_shrink(1_f32);
     root_child0_child0_child1_child0_child1_child1.set_min_width(StyleUnit::Auto);
     root_child0_child0_child1_child0_child1_child1.set_min_height(StyleUnit::Auto);
     root_child0_child0_child1_child0_child1

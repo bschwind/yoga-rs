@@ -1905,14 +1905,14 @@ fn test_align_center_should_size_based_on_content() {
 
     let mut root_child0 = Node::new_with_config(&mut config);
     root_child0.set_justify_content(Justify::Center);
-    root_child0.set_flex_shrink(1_f32 as f32);
+    root_child0.set_flex_shrink(1_f32);
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child0_child0 = Node::new_with_config(&mut config);
     root_child0_child0.set_flex_grow(1_f32);
-    root_child0_child0.set_flex_shrink(1_f32 as f32);
+    root_child0_child0.set_flex_shrink(1_f32);
     root_child0_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0.set_min_height(StyleUnit::Auto);
     root_child0.insert_child(&mut root_child0_child0, 0);
@@ -1979,14 +1979,14 @@ fn test_align_strech_should_size_based_on_parent() {
 
     let mut root_child0 = Node::new_with_config(&mut config);
     root_child0.set_justify_content(Justify::Center);
-    root_child0.set_flex_shrink(1_f32 as f32);
+    root_child0.set_flex_shrink(1_f32);
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child0_child0 = Node::new_with_config(&mut config);
     root_child0_child0.set_flex_grow(1_f32);
-    root_child0_child0.set_flex_shrink(1_f32 as f32);
+    root_child0_child0.set_flex_shrink(1_f32);
     root_child0_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0.set_min_height(StyleUnit::Auto);
     root_child0.insert_child(&mut root_child0_child0, 0);
@@ -2058,14 +2058,14 @@ fn test_align_flex_start_with_shrinking_children() {
 
     let mut root_child0_child0 = Node::new_with_config(&mut config);
     root_child0_child0.set_flex_grow(1_f32);
-    root_child0_child0.set_flex_shrink(1_f32 as f32);
+    root_child0_child0.set_flex_shrink(1_f32);
     root_child0_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0.set_min_height(StyleUnit::Auto);
     root_child0.insert_child(&mut root_child0_child0, 0);
 
     let mut root_child0_child0_child0 = Node::new_with_config(&mut config);
     root_child0_child0_child0.set_flex_grow(1_f32);
-    root_child0_child0_child0.set_flex_shrink(1_f32 as f32);
+    root_child0_child0_child0.set_flex_shrink(1_f32);
     root_child0_child0_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0_child0.set_min_height(StyleUnit::Auto);
     root_child0_child0.insert_child(&mut root_child0_child0_child0, 0);
@@ -2129,14 +2129,14 @@ fn test_align_flex_start_with_stretching_children() {
 
     let mut root_child0_child0 = Node::new_with_config(&mut config);
     root_child0_child0.set_flex_grow(1_f32);
-    root_child0_child0.set_flex_shrink(1_f32 as f32);
+    root_child0_child0.set_flex_shrink(1_f32);
     root_child0_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0.set_min_height(StyleUnit::Auto);
     root_child0.insert_child(&mut root_child0_child0, 0);
 
     let mut root_child0_child0_child0 = Node::new_with_config(&mut config);
     root_child0_child0_child0.set_flex_grow(1_f32);
-    root_child0_child0_child0.set_flex_shrink(1_f32 as f32);
+    root_child0_child0_child0.set_flex_shrink(1_f32);
     root_child0_child0_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0_child0.set_min_height(StyleUnit::Auto);
     root_child0_child0.insert_child(&mut root_child0_child0_child0, 0);
@@ -2201,14 +2201,14 @@ fn test_align_flex_start_with_shrinking_children_with_stretch() {
 
     let mut root_child0_child0 = Node::new_with_config(&mut config);
     root_child0_child0.set_flex_grow(1_f32);
-    root_child0_child0.set_flex_shrink(1_f32 as f32);
+    root_child0_child0.set_flex_shrink(1_f32);
     root_child0_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0.set_min_height(StyleUnit::Auto);
     root_child0.insert_child(&mut root_child0_child0, 0);
 
     let mut root_child0_child0_child0 = Node::new_with_config(&mut config);
     root_child0_child0_child0.set_flex_grow(1_f32);
-    root_child0_child0_child0.set_flex_shrink(1_f32 as f32);
+    root_child0_child0_child0.set_flex_shrink(1_f32);
     root_child0_child0_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0_child0.set_min_height(StyleUnit::Auto);
     root_child0_child0.insert_child(&mut root_child0_child0_child0, 0);
