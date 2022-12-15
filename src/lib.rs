@@ -44,8 +44,8 @@ pub mod prelude;
 pub mod traits;
 pub mod types;
 
+pub use crate::types::*;
 use std::any::Any;
-pub use types::*;
 
 #[repr(C)]
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -108,7 +108,7 @@ impl Node {
     }
 
     pub fn apply_style(&mut self, style: &FlexStyle) {
-        use FlexStyle::*;
+        use crate::FlexStyle::*;
 
         match *style {
             AlignContent(align) => self.set_align_content(align),

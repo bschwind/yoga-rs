@@ -1,4 +1,4 @@
-use internal;
+use crate::internal;
 use ordered_float::OrderedFloat;
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, Clone)]

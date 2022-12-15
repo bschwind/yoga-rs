@@ -1,4 +1,4 @@
-use internal;
+use crate::internal;
 
 #[repr(C)]
 #[derive(Debug, PartialEq, PartialOrd, Copy, Clone)]
