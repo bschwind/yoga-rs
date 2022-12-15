@@ -81,14 +81,11 @@ Download the [ChromeDriver](http://chromedriver.chromium.org) binary and put it 
 $ cp chromedriver /usr/local/bin
 ```
 
-Install the required Ruby gem.
+Then run the following
 
-```
-$ sudo gem install watir
-```
-
-Generate the tests.
-
-```
-$ ruby gentest/gentest.rb
+```bash
+$ cd gentest
+$ bundle install # Install the required ruby gems
+$ ruby gentest/gentest.rb # Generate the tests
+$ cargo +nightly fmt # Format the tests for consistency
 ```
