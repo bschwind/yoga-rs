@@ -26,6 +26,7 @@ mod ffi_types {
     pub mod display;
     pub mod edge;
     pub mod flex_direction;
+    pub mod gutter;
     pub mod justify;
     pub mod log_level;
     pub mod measure_mode;
@@ -575,6 +576,48 @@ impl Node {
 
     pub fn get_flex_basis(&self) -> StyleUnit {
         unsafe { internal::YGNodeStyleGetFlexBasis(self.inner_node).into() }
+    }
+
+    pub fn set_row_gap(&mut self, gap: f32) {
+        unsafe {
+            internal::YGNodeStyleSetGap(
+                self.inner_node,
+                internal::YGGutter::from(Gutter::Row),
+                gap,
+            );
+        }
+    }
+
+    pub fn get_row_gap(&mut self) -> f32 {
+        unsafe {
+            internal::YGNodeStyleGetGap(self.inner_node, internal::YGGutter::from(Gutter::Row))
+        }
+    }
+
+    pub fn set_column_gap(&mut self, gap: f32) {
+        unsafe {
+            internal::YGNodeStyleSetGap(
+                self.inner_node,
+                internal::YGGutter::from(Gutter::Column),
+                gap,
+            );
+        }
+    }
+
+    pub fn get_column_gap(&mut self) -> f32 {
+        unsafe {
+            internal::YGNodeStyleGetGap(self.inner_node, internal::YGGutter::from(Gutter::Column))
+        }
+    }
+
+    pub fn set_gap(&mut self, gap_type: Gutter, gap: f32) {
+        unsafe {
+            internal::YGNodeStyleSetGap(self.inner_node, internal::YGGutter::from(gap_type), gap);
+        }
+    }
+
+    pub fn get_gap(&mut self, gap_type: Gutter) -> f32 {
+        unsafe { internal::YGNodeStyleGetGap(self.inner_node, internal::YGGutter::from(gap_type)) }
     }
 
     pub fn get_style_position_left(&self) -> StyleUnit {
