@@ -7,11 +7,11 @@ use std::{env, path::PathBuf, process::Command};
 
 fn main() {
     Command::new("git")
-        .args(&["submodule", "init"])
+        .args(["submodule", "init"])
         .status()
         .expect("Unable to initialize git submodules");
     Command::new("git")
-        .args(&["submodule", "update"])
+        .args(["submodule", "update"])
         .status()
         .expect("Unable to update the submodule repositories");
 

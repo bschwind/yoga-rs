@@ -16,7 +16,7 @@ fn test_android_news_feed() {
 
     let mut root = Node::new_with_config(&mut config);
     root.set_align_content(Align::Stretch);
-    root.set_width(StyleUnit::Point((1080 as f32).into()));
+    root.set_width(StyleUnit::Point(1080_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
     root_child0.set_min_width(StyleUnit::Auto);
@@ -39,8 +39,8 @@ fn test_android_news_feed() {
     root_child0_child0_child0_child0.set_flex_direction(FlexDirection::Row);
     root_child0_child0_child0_child0.set_align_content(Align::Stretch);
     root_child0_child0_child0_child0.set_align_items(Align::FlexStart);
-    root_child0_child0_child0_child0.set_margin(Edge::Start, StyleUnit::Point((36 as f32).into()));
-    root_child0_child0_child0_child0.set_margin(Edge::Top, StyleUnit::Point((24 as f32).into()));
+    root_child0_child0_child0_child0.set_margin(Edge::Start, StyleUnit::Point(36_f32.into()));
+    root_child0_child0_child0_child0.set_margin(Edge::Top, StyleUnit::Point(24_f32.into()));
     root_child0_child0_child0_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0_child0_child0.set_min_height(StyleUnit::Auto);
     root_child0_child0_child0.insert_child(&mut root_child0_child0_child0_child0, 0);
@@ -54,27 +54,25 @@ fn test_android_news_feed() {
 
     let mut root_child0_child0_child0_child0_child0_child0 = Node::new_with_config(&mut config);
     root_child0_child0_child0_child0_child0_child0.set_align_content(Align::Stretch);
-    root_child0_child0_child0_child0_child0_child0.set_width(StyleUnit::Point((120 as f32).into()));
+    root_child0_child0_child0_child0_child0_child0.set_width(StyleUnit::Point(120_f32.into()));
     root_child0_child0_child0_child0_child0_child0.set_min_width(StyleUnit::Auto);
-    root_child0_child0_child0_child0_child0_child0
-        .set_height(StyleUnit::Point((120 as f32).into()));
+    root_child0_child0_child0_child0_child0_child0.set_height(StyleUnit::Point(120_f32.into()));
     root_child0_child0_child0_child0_child0_child0.set_min_height(StyleUnit::Auto);
     root_child0_child0_child0_child0_child0
         .insert_child(&mut root_child0_child0_child0_child0_child0_child0, 0);
 
     let mut root_child0_child0_child0_child0_child1 = Node::new_with_config(&mut config);
     root_child0_child0_child0_child0_child1.set_align_content(Align::Stretch);
-    root_child0_child0_child0_child0_child1.set_flex_shrink(1 as f32 as f32);
+    root_child0_child0_child0_child0_child1.set_flex_shrink(1_f32 as f32);
     root_child0_child0_child0_child0_child1
-        .set_margin(Edge::Right, StyleUnit::Point((36 as f32).into()));
+        .set_margin(Edge::Right, StyleUnit::Point(36_f32.into()));
     root_child0_child0_child0_child0_child1
-        .set_padding(Edge::Left, StyleUnit::Point((36 as f32).into()));
+        .set_padding(Edge::Left, StyleUnit::Point(36_f32.into()));
+    root_child0_child0_child0_child0_child1.set_padding(Edge::Top, StyleUnit::Point(21_f32.into()));
     root_child0_child0_child0_child0_child1
-        .set_padding(Edge::Top, StyleUnit::Point((21 as f32).into()));
+        .set_padding(Edge::Right, StyleUnit::Point(36_f32.into()));
     root_child0_child0_child0_child0_child1
-        .set_padding(Edge::Right, StyleUnit::Point((36 as f32).into()));
-    root_child0_child0_child0_child0_child1
-        .set_padding(Edge::Bottom, StyleUnit::Point((18 as f32).into()));
+        .set_padding(Edge::Bottom, StyleUnit::Point(18_f32.into()));
     root_child0_child0_child0_child0_child1.set_min_width(StyleUnit::Auto);
     root_child0_child0_child0_child0_child1.set_min_height(StyleUnit::Auto);
     root_child0_child0_child0_child0.insert_child(&mut root_child0_child0_child0_child0_child1, 1);
@@ -82,7 +80,7 @@ fn test_android_news_feed() {
     let mut root_child0_child0_child0_child0_child1_child0 = Node::new_with_config(&mut config);
     root_child0_child0_child0_child0_child1_child0.set_flex_direction(FlexDirection::Row);
     root_child0_child0_child0_child0_child1_child0.set_align_content(Align::Stretch);
-    root_child0_child0_child0_child0_child1_child0.set_flex_shrink(1 as f32 as f32);
+    root_child0_child0_child0_child0_child1_child0.set_flex_shrink(1_f32 as f32);
     root_child0_child0_child0_child0_child1_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0_child0_child0_child1_child0.set_min_height(StyleUnit::Auto);
     root_child0_child0_child0_child0_child1
@@ -90,7 +88,7 @@ fn test_android_news_feed() {
 
     let mut root_child0_child0_child0_child0_child1_child1 = Node::new_with_config(&mut config);
     root_child0_child0_child0_child0_child1_child1.set_align_content(Align::Stretch);
-    root_child0_child0_child0_child0_child1_child1.set_flex_shrink(1 as f32 as f32);
+    root_child0_child0_child0_child0_child1_child1.set_flex_shrink(1_f32 as f32);
     root_child0_child0_child0_child0_child1_child1.set_min_width(StyleUnit::Auto);
     root_child0_child0_child0_child0_child1_child1.set_min_height(StyleUnit::Auto);
     root_child0_child0_child0_child0_child1
@@ -106,8 +104,8 @@ fn test_android_news_feed() {
     root_child0_child0_child1_child0.set_flex_direction(FlexDirection::Row);
     root_child0_child0_child1_child0.set_align_content(Align::Stretch);
     root_child0_child0_child1_child0.set_align_items(Align::FlexStart);
-    root_child0_child0_child1_child0.set_margin(Edge::Start, StyleUnit::Point((174 as f32).into()));
-    root_child0_child0_child1_child0.set_margin(Edge::Top, StyleUnit::Point((24 as f32).into()));
+    root_child0_child0_child1_child0.set_margin(Edge::Start, StyleUnit::Point(174_f32.into()));
+    root_child0_child0_child1_child0.set_margin(Edge::Top, StyleUnit::Point(24_f32.into()));
     root_child0_child0_child1_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0_child1_child0.set_min_height(StyleUnit::Auto);
     root_child0_child0_child1.insert_child(&mut root_child0_child0_child1_child0, 0);
@@ -121,26 +119,25 @@ fn test_android_news_feed() {
 
     let mut root_child0_child0_child1_child0_child0_child0 = Node::new_with_config(&mut config);
     root_child0_child0_child1_child0_child0_child0.set_align_content(Align::Stretch);
-    root_child0_child0_child1_child0_child0_child0.set_width(StyleUnit::Point((72 as f32).into()));
+    root_child0_child0_child1_child0_child0_child0.set_width(StyleUnit::Point(72_f32.into()));
     root_child0_child0_child1_child0_child0_child0.set_min_width(StyleUnit::Auto);
-    root_child0_child0_child1_child0_child0_child0.set_height(StyleUnit::Point((72 as f32).into()));
+    root_child0_child0_child1_child0_child0_child0.set_height(StyleUnit::Point(72_f32.into()));
     root_child0_child0_child1_child0_child0_child0.set_min_height(StyleUnit::Auto);
     root_child0_child0_child1_child0_child0
         .insert_child(&mut root_child0_child0_child1_child0_child0_child0, 0);
 
     let mut root_child0_child0_child1_child0_child1 = Node::new_with_config(&mut config);
     root_child0_child0_child1_child0_child1.set_align_content(Align::Stretch);
-    root_child0_child0_child1_child0_child1.set_flex_shrink(1 as f32 as f32);
+    root_child0_child0_child1_child0_child1.set_flex_shrink(1_f32 as f32);
     root_child0_child0_child1_child0_child1
-        .set_margin(Edge::Right, StyleUnit::Point((36 as f32).into()));
+        .set_margin(Edge::Right, StyleUnit::Point(36_f32.into()));
     root_child0_child0_child1_child0_child1
-        .set_padding(Edge::Left, StyleUnit::Point((36 as f32).into()));
+        .set_padding(Edge::Left, StyleUnit::Point(36_f32.into()));
+    root_child0_child0_child1_child0_child1.set_padding(Edge::Top, StyleUnit::Point(21_f32.into()));
     root_child0_child0_child1_child0_child1
-        .set_padding(Edge::Top, StyleUnit::Point((21 as f32).into()));
+        .set_padding(Edge::Right, StyleUnit::Point(36_f32.into()));
     root_child0_child0_child1_child0_child1
-        .set_padding(Edge::Right, StyleUnit::Point((36 as f32).into()));
-    root_child0_child0_child1_child0_child1
-        .set_padding(Edge::Bottom, StyleUnit::Point((18 as f32).into()));
+        .set_padding(Edge::Bottom, StyleUnit::Point(18_f32.into()));
     root_child0_child0_child1_child0_child1.set_min_width(StyleUnit::Auto);
     root_child0_child0_child1_child0_child1.set_min_height(StyleUnit::Auto);
     root_child0_child0_child1_child0.insert_child(&mut root_child0_child0_child1_child0_child1, 1);
@@ -148,7 +145,7 @@ fn test_android_news_feed() {
     let mut root_child0_child0_child1_child0_child1_child0 = Node::new_with_config(&mut config);
     root_child0_child0_child1_child0_child1_child0.set_flex_direction(FlexDirection::Row);
     root_child0_child0_child1_child0_child1_child0.set_align_content(Align::Stretch);
-    root_child0_child0_child1_child0_child1_child0.set_flex_shrink(1 as f32 as f32);
+    root_child0_child0_child1_child0_child1_child0.set_flex_shrink(1_f32 as f32);
     root_child0_child0_child1_child0_child1_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0_child1_child0_child1_child0.set_min_height(StyleUnit::Auto);
     root_child0_child0_child1_child0_child1
@@ -156,7 +153,7 @@ fn test_android_news_feed() {
 
     let mut root_child0_child0_child1_child0_child1_child1 = Node::new_with_config(&mut config);
     root_child0_child0_child1_child0_child1_child1.set_align_content(Align::Stretch);
-    root_child0_child0_child1_child0_child1_child1.set_flex_shrink(1 as f32 as f32);
+    root_child0_child0_child1_child0_child1_child1.set_flex_shrink(1_f32 as f32);
     root_child0_child0_child1_child0_child1_child1.set_min_width(StyleUnit::Auto);
     root_child0_child0_child1_child0_child1_child1.set_min_height(StyleUnit::Auto);
     root_child0_child0_child1_child0_child1
@@ -165,86 +162,86 @@ fn test_android_news_feed() {
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(1080 as f32, root.get_layout_width());
-    assert_eq!(240 as f32, root.get_layout_height());
+    assert_eq!(1080_f32, root.get_layout_width());
+    assert_eq!(240_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(1080 as f32, root_child0.get_layout_width());
-    assert_eq!(240 as f32, root_child0.get_layout_height());
+    assert_eq!(1080_f32, root_child0.get_layout_width());
+    assert_eq!(240_f32, root_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0.get_layout_top());
-    assert_eq!(1080 as f32, root_child0_child0.get_layout_width());
-    assert_eq!(240 as f32, root_child0_child0.get_layout_height());
+    assert_eq!(1080_f32, root_child0_child0.get_layout_width());
+    assert_eq!(240_f32, root_child0_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0_child0.get_layout_top());
-    assert_eq!(1080 as f32, root_child0_child0_child0.get_layout_width());
-    assert_eq!(144 as f32, root_child0_child0_child0.get_layout_height());
+    assert_eq!(1080_f32, root_child0_child0_child0.get_layout_width());
+    assert_eq!(144_f32, root_child0_child0_child0.get_layout_height());
 
-    assert_eq!(36 as f32, root_child0_child0_child0_child0.get_layout_left());
-    assert_eq!(24 as f32, root_child0_child0_child0_child0.get_layout_top());
-    assert_eq!(1044 as f32, root_child0_child0_child0_child0.get_layout_width());
-    assert_eq!(120 as f32, root_child0_child0_child0_child0.get_layout_height());
+    assert_eq!(36_f32, root_child0_child0_child0_child0.get_layout_left());
+    assert_eq!(24_f32, root_child0_child0_child0_child0.get_layout_top());
+    assert_eq!(1044_f32, root_child0_child0_child0_child0.get_layout_width());
+    assert_eq!(120_f32, root_child0_child0_child0_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child0.get_layout_top());
-    assert_eq!(120 as f32, root_child0_child0_child0_child0_child0.get_layout_width());
-    assert_eq!(120 as f32, root_child0_child0_child0_child0_child0.get_layout_height());
+    assert_eq!(120_f32, root_child0_child0_child0_child0_child0.get_layout_width());
+    assert_eq!(120_f32, root_child0_child0_child0_child0_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child0_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child0_child0.get_layout_top());
-    assert_eq!(120 as f32, root_child0_child0_child0_child0_child0_child0.get_layout_width());
-    assert_eq!(120 as f32, root_child0_child0_child0_child0_child0_child0.get_layout_height());
+    assert_eq!(120_f32, root_child0_child0_child0_child0_child0_child0.get_layout_width());
+    assert_eq!(120_f32, root_child0_child0_child0_child0_child0_child0.get_layout_height());
 
-    assert_eq!(120 as f32, root_child0_child0_child0_child0_child1.get_layout_left());
+    assert_eq!(120_f32, root_child0_child0_child0_child0_child1.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child1.get_layout_top());
-    assert_eq!(72 as f32, root_child0_child0_child0_child0_child1.get_layout_width());
-    assert_eq!(39 as f32, root_child0_child0_child0_child0_child1.get_layout_height());
+    assert_eq!(72_f32, root_child0_child0_child0_child0_child1.get_layout_width());
+    assert_eq!(39_f32, root_child0_child0_child0_child0_child1.get_layout_height());
 
-    assert_eq!(36 as f32, root_child0_child0_child0_child0_child1_child0.get_layout_left());
-    assert_eq!(21 as f32, root_child0_child0_child0_child0_child1_child0.get_layout_top());
+    assert_eq!(36_f32, root_child0_child0_child0_child0_child1_child0.get_layout_left());
+    assert_eq!(21_f32, root_child0_child0_child0_child0_child1_child0.get_layout_top());
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child1_child0.get_layout_width());
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child1_child0.get_layout_height());
 
-    assert_eq!(36 as f32, root_child0_child0_child0_child0_child1_child1.get_layout_left());
-    assert_eq!(21 as f32, root_child0_child0_child0_child0_child1_child1.get_layout_top());
+    assert_eq!(36_f32, root_child0_child0_child0_child0_child1_child1.get_layout_left());
+    assert_eq!(21_f32, root_child0_child0_child0_child0_child1_child1.get_layout_top());
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child1_child1.get_layout_width());
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child1_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0_child1.get_layout_left());
-    assert_eq!(144 as f32, root_child0_child0_child1.get_layout_top());
-    assert_eq!(1080 as f32, root_child0_child0_child1.get_layout_width());
-    assert_eq!(96 as f32, root_child0_child0_child1.get_layout_height());
+    assert_eq!(144_f32, root_child0_child0_child1.get_layout_top());
+    assert_eq!(1080_f32, root_child0_child0_child1.get_layout_width());
+    assert_eq!(96_f32, root_child0_child0_child1.get_layout_height());
 
-    assert_eq!(174 as f32, root_child0_child0_child1_child0.get_layout_left());
-    assert_eq!(24 as f32, root_child0_child0_child1_child0.get_layout_top());
-    assert_eq!(906 as f32, root_child0_child0_child1_child0.get_layout_width());
-    assert_eq!(72 as f32, root_child0_child0_child1_child0.get_layout_height());
+    assert_eq!(174_f32, root_child0_child0_child1_child0.get_layout_left());
+    assert_eq!(24_f32, root_child0_child0_child1_child0.get_layout_top());
+    assert_eq!(906_f32, root_child0_child0_child1_child0.get_layout_width());
+    assert_eq!(72_f32, root_child0_child0_child1_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child0.get_layout_top());
-    assert_eq!(72 as f32, root_child0_child0_child1_child0_child0.get_layout_width());
-    assert_eq!(72 as f32, root_child0_child0_child1_child0_child0.get_layout_height());
+    assert_eq!(72_f32, root_child0_child0_child1_child0_child0.get_layout_width());
+    assert_eq!(72_f32, root_child0_child0_child1_child0_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child0_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child0_child0.get_layout_top());
-    assert_eq!(72 as f32, root_child0_child0_child1_child0_child0_child0.get_layout_width());
-    assert_eq!(72 as f32, root_child0_child0_child1_child0_child0_child0.get_layout_height());
+    assert_eq!(72_f32, root_child0_child0_child1_child0_child0_child0.get_layout_width());
+    assert_eq!(72_f32, root_child0_child0_child1_child0_child0_child0.get_layout_height());
 
-    assert_eq!(72 as f32, root_child0_child0_child1_child0_child1.get_layout_left());
+    assert_eq!(72_f32, root_child0_child0_child1_child0_child1.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child1.get_layout_top());
-    assert_eq!(72 as f32, root_child0_child0_child1_child0_child1.get_layout_width());
-    assert_eq!(39 as f32, root_child0_child0_child1_child0_child1.get_layout_height());
+    assert_eq!(72_f32, root_child0_child0_child1_child0_child1.get_layout_width());
+    assert_eq!(39_f32, root_child0_child0_child1_child0_child1.get_layout_height());
 
-    assert_eq!(36 as f32, root_child0_child0_child1_child0_child1_child0.get_layout_left());
-    assert_eq!(21 as f32, root_child0_child0_child1_child0_child1_child0.get_layout_top());
+    assert_eq!(36_f32, root_child0_child0_child1_child0_child1_child0.get_layout_left());
+    assert_eq!(21_f32, root_child0_child0_child1_child0_child1_child0.get_layout_top());
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child1_child0.get_layout_width());
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child1_child0.get_layout_height());
 
-    assert_eq!(36 as f32, root_child0_child0_child1_child0_child1_child1.get_layout_left());
-    assert_eq!(21 as f32, root_child0_child0_child1_child0_child1_child1.get_layout_top());
+    assert_eq!(36_f32, root_child0_child0_child1_child0_child1_child1.get_layout_left());
+    assert_eq!(21_f32, root_child0_child0_child1_child0_child1_child1.get_layout_top());
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child1_child1.get_layout_width());
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child1_child1.get_layout_height());
 
@@ -252,86 +249,86 @@ fn test_android_news_feed() {
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(1080 as f32, root.get_layout_width());
-    assert_eq!(240 as f32, root.get_layout_height());
+    assert_eq!(1080_f32, root.get_layout_width());
+    assert_eq!(240_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(1080 as f32, root_child0.get_layout_width());
-    assert_eq!(240 as f32, root_child0.get_layout_height());
+    assert_eq!(1080_f32, root_child0.get_layout_width());
+    assert_eq!(240_f32, root_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0.get_layout_top());
-    assert_eq!(1080 as f32, root_child0_child0.get_layout_width());
-    assert_eq!(240 as f32, root_child0_child0.get_layout_height());
+    assert_eq!(1080_f32, root_child0_child0.get_layout_width());
+    assert_eq!(240_f32, root_child0_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0_child0.get_layout_top());
-    assert_eq!(1080 as f32, root_child0_child0_child0.get_layout_width());
-    assert_eq!(144 as f32, root_child0_child0_child0.get_layout_height());
+    assert_eq!(1080_f32, root_child0_child0_child0.get_layout_width());
+    assert_eq!(144_f32, root_child0_child0_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0_child0_child0.get_layout_left());
-    assert_eq!(24 as f32, root_child0_child0_child0_child0.get_layout_top());
-    assert_eq!(1044 as f32, root_child0_child0_child0_child0.get_layout_width());
-    assert_eq!(120 as f32, root_child0_child0_child0_child0.get_layout_height());
+    assert_eq!(24_f32, root_child0_child0_child0_child0.get_layout_top());
+    assert_eq!(1044_f32, root_child0_child0_child0_child0.get_layout_width());
+    assert_eq!(120_f32, root_child0_child0_child0_child0.get_layout_height());
 
-    assert_eq!(924 as f32, root_child0_child0_child0_child0_child0.get_layout_left());
+    assert_eq!(924_f32, root_child0_child0_child0_child0_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child0.get_layout_top());
-    assert_eq!(120 as f32, root_child0_child0_child0_child0_child0.get_layout_width());
-    assert_eq!(120 as f32, root_child0_child0_child0_child0_child0.get_layout_height());
+    assert_eq!(120_f32, root_child0_child0_child0_child0_child0.get_layout_width());
+    assert_eq!(120_f32, root_child0_child0_child0_child0_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child0_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child0_child0.get_layout_top());
-    assert_eq!(120 as f32, root_child0_child0_child0_child0_child0_child0.get_layout_width());
-    assert_eq!(120 as f32, root_child0_child0_child0_child0_child0_child0.get_layout_height());
+    assert_eq!(120_f32, root_child0_child0_child0_child0_child0_child0.get_layout_width());
+    assert_eq!(120_f32, root_child0_child0_child0_child0_child0_child0.get_layout_height());
 
-    assert_eq!(816 as f32, root_child0_child0_child0_child0_child1.get_layout_left());
+    assert_eq!(816_f32, root_child0_child0_child0_child0_child1.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child1.get_layout_top());
-    assert_eq!(72 as f32, root_child0_child0_child0_child0_child1.get_layout_width());
-    assert_eq!(39 as f32, root_child0_child0_child0_child0_child1.get_layout_height());
+    assert_eq!(72_f32, root_child0_child0_child0_child0_child1.get_layout_width());
+    assert_eq!(39_f32, root_child0_child0_child0_child0_child1.get_layout_height());
 
-    assert_eq!(36 as f32, root_child0_child0_child0_child0_child1_child0.get_layout_left());
-    assert_eq!(21 as f32, root_child0_child0_child0_child0_child1_child0.get_layout_top());
+    assert_eq!(36_f32, root_child0_child0_child0_child0_child1_child0.get_layout_left());
+    assert_eq!(21_f32, root_child0_child0_child0_child0_child1_child0.get_layout_top());
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child1_child0.get_layout_width());
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child1_child0.get_layout_height());
 
-    assert_eq!(36 as f32, root_child0_child0_child0_child0_child1_child1.get_layout_left());
-    assert_eq!(21 as f32, root_child0_child0_child0_child0_child1_child1.get_layout_top());
+    assert_eq!(36_f32, root_child0_child0_child0_child0_child1_child1.get_layout_left());
+    assert_eq!(21_f32, root_child0_child0_child0_child0_child1_child1.get_layout_top());
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child1_child1.get_layout_width());
     assert_eq!(0 as f32, root_child0_child0_child0_child0_child1_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0_child1.get_layout_left());
-    assert_eq!(144 as f32, root_child0_child0_child1.get_layout_top());
-    assert_eq!(1080 as f32, root_child0_child0_child1.get_layout_width());
-    assert_eq!(96 as f32, root_child0_child0_child1.get_layout_height());
+    assert_eq!(144_f32, root_child0_child0_child1.get_layout_top());
+    assert_eq!(1080_f32, root_child0_child0_child1.get_layout_width());
+    assert_eq!(96_f32, root_child0_child0_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0_child1_child0.get_layout_left());
-    assert_eq!(24 as f32, root_child0_child0_child1_child0.get_layout_top());
-    assert_eq!(906 as f32, root_child0_child0_child1_child0.get_layout_width());
-    assert_eq!(72 as f32, root_child0_child0_child1_child0.get_layout_height());
+    assert_eq!(24_f32, root_child0_child0_child1_child0.get_layout_top());
+    assert_eq!(906_f32, root_child0_child0_child1_child0.get_layout_width());
+    assert_eq!(72_f32, root_child0_child0_child1_child0.get_layout_height());
 
-    assert_eq!(834 as f32, root_child0_child0_child1_child0_child0.get_layout_left());
+    assert_eq!(834_f32, root_child0_child0_child1_child0_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child0.get_layout_top());
-    assert_eq!(72 as f32, root_child0_child0_child1_child0_child0.get_layout_width());
-    assert_eq!(72 as f32, root_child0_child0_child1_child0_child0.get_layout_height());
+    assert_eq!(72_f32, root_child0_child0_child1_child0_child0.get_layout_width());
+    assert_eq!(72_f32, root_child0_child0_child1_child0_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child0_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child0_child0.get_layout_top());
-    assert_eq!(72 as f32, root_child0_child0_child1_child0_child0_child0.get_layout_width());
-    assert_eq!(72 as f32, root_child0_child0_child1_child0_child0_child0.get_layout_height());
+    assert_eq!(72_f32, root_child0_child0_child1_child0_child0_child0.get_layout_width());
+    assert_eq!(72_f32, root_child0_child0_child1_child0_child0_child0.get_layout_height());
 
-    assert_eq!(726 as f32, root_child0_child0_child1_child0_child1.get_layout_left());
+    assert_eq!(726_f32, root_child0_child0_child1_child0_child1.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child1.get_layout_top());
-    assert_eq!(72 as f32, root_child0_child0_child1_child0_child1.get_layout_width());
-    assert_eq!(39 as f32, root_child0_child0_child1_child0_child1.get_layout_height());
+    assert_eq!(72_f32, root_child0_child0_child1_child0_child1.get_layout_width());
+    assert_eq!(39_f32, root_child0_child0_child1_child0_child1.get_layout_height());
 
-    assert_eq!(36 as f32, root_child0_child0_child1_child0_child1_child0.get_layout_left());
-    assert_eq!(21 as f32, root_child0_child0_child1_child0_child1_child0.get_layout_top());
+    assert_eq!(36_f32, root_child0_child0_child1_child0_child1_child0.get_layout_left());
+    assert_eq!(21_f32, root_child0_child0_child1_child0_child1_child0.get_layout_top());
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child1_child0.get_layout_width());
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child1_child0.get_layout_height());
 
-    assert_eq!(36 as f32, root_child0_child0_child1_child0_child1_child1.get_layout_left());
-    assert_eq!(21 as f32, root_child0_child0_child1_child0_child1_child1.get_layout_top());
+    assert_eq!(36_f32, root_child0_child0_child1_child0_child1_child1.get_layout_left());
+    assert_eq!(21_f32, root_child0_child0_child1_child0_child1_child1.get_layout_top());
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child1_child1.get_layout_width());
     assert_eq!(0 as f32, root_child0_child0_child1_child0_child1_child1.get_layout_height());
 }

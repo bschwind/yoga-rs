@@ -12,6 +12,7 @@ extern crate serde_derive;
 // API created by bindgen
 mod internal {
     #![allow(dead_code)]
+    #![allow(clippy::enum_variant_names)] // TODO(bschwind) - Possibly change the binding logic to name enums properly.
     include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
     pub use self::root::*;
 }
@@ -58,9 +59,21 @@ pub struct Node {
     inner_node: NodeRef,
 }
 
+impl Default for Config {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Config {
     pub fn new() -> Config {
         Config { inner_config: unsafe { internal::YGConfigNew() } }
+    }
+}
+
+impl Default for Node {
+    fn default() -> Self {
+        Self::new()
     }
 }
 
@@ -924,25 +937,25 @@ impl Node {
     pub fn set_context(&mut self, value: Option<Context>) {
         self.drop_context();
 
-        let raw = value.map_or_else(|| std::ptr::null_mut(), |context| context.into_raw());
+        let raw = value.map_or_else(std::ptr::null_mut, |context| context.into_raw());
         unsafe { internal::YGNodeSetContext(self.inner_node, raw) }
     }
 
-    pub fn get_context(node_ref: &NodeRef) -> Option<&Box<Any>> {
+    pub fn get_context(node_ref: &NodeRef) -> Option<&Box<dyn Any>> {
         let raw = unsafe { internal::YGNodeGetContext(*node_ref) };
         Context::get_inner_ref(raw)
     }
 
-    pub fn get_context_mut(node_ref: &NodeRef) -> Option<&mut Box<Any>> {
+    pub fn get_context_mut(node_ref: &NodeRef) -> Option<&mut Box<dyn Any>> {
         let raw = unsafe { internal::YGNodeGetContext(*node_ref) };
         Context::get_inner_mut(raw)
     }
 
-    pub fn get_own_context(&self) -> Option<&Box<Any>> {
+    pub fn get_own_context(&self) -> Option<&Box<dyn Any>> {
         Node::get_context(&self.inner_node)
     }
 
-    pub fn get_own_context_mut(&self) -> Option<&mut Box<Any>> {
+    pub fn get_own_context_mut(&self) -> Option<&mut Box<dyn Any>> {
         Node::get_context_mut(&self.inner_node)
     }
 

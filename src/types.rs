@@ -114,7 +114,7 @@ impl Layout {
 }
 
 #[derive(Debug)]
-pub struct Context(Box<Any>);
+pub struct Context(Box<dyn Any>);
 
 impl Context {
     pub fn new<T: Any>(value: T) -> Self {
@@ -126,30 +126,30 @@ impl Context {
         Box::into_raw(Box::new(self.0)) as *mut c_void
     }
 
-    pub(crate) fn get_inner_ref<'a>(raw: *mut c_void) -> Option<&'a Box<Any>> {
-        let ptr = raw as *const Box<Any>;
+    pub(crate) fn get_inner_ref<'a>(raw: *mut c_void) -> Option<&'a Box<dyn Any>> {
+        let ptr = raw as *const Box<dyn Any>;
         unsafe { ptr.as_ref() }
     }
 
-    pub(crate) fn get_inner_mut<'a>(raw: *mut c_void) -> Option<&'a mut Box<Any>> {
-        let ptr = raw as *mut Box<Any>;
+    pub(crate) fn get_inner_mut<'a>(raw: *mut c_void) -> Option<&'a mut Box<dyn Any>> {
+        let ptr = raw as *mut Box<dyn Any>;
         unsafe { ptr.as_mut() }
     }
 
     pub(crate) fn drop_raw(raw: *mut c_void) {
-        let ptr = raw as *mut Box<Any>;
+        let ptr = raw as *mut Box<dyn Any>;
         if !ptr.is_null() {
             unsafe {
-                Box::from_raw(ptr);
+                let _ = Box::from_raw(ptr);
             }
         }
     }
 }
 
 impl Deref for Context {
-    type Target = Box<Any>;
+    type Target = Box<dyn Any>;
 
-    fn deref(&self) -> &Box<Any> {
+    fn deref(&self) -> &Box<dyn Any> {
         &self.0
     }
 }

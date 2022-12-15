@@ -17,106 +17,106 @@ fn test_align_content_flex_start() {
     let mut root = Node::new_with_config(&mut config);
     root.set_flex_direction(FlexDirection::Row);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((130 as f32).into()));
-    root.set_height(StyleUnit::Point((100 as f32).into()));
+    root.set_width(StyleUnit::Point(130_f32.into()));
+    root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
-    root_child0.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child0.set_height(StyleUnit::Point(10_f32.into()));
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
-    root_child1.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child1.set_height(StyleUnit::Point(10_f32.into()));
     root_child1.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
-    root_child2.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_width(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_width(StyleUnit::Auto);
-    root_child2.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child2.set_height(StyleUnit::Point(10_f32.into()));
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
-    root_child3.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
-    root_child3.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child3.set_height(StyleUnit::Point(10_f32.into()));
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
-    root_child4.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_width(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_width(StyleUnit::Auto);
-    root_child4.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child4.set_height(StyleUnit::Point(10_f32.into()));
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
     root.calculate_layout(Undefined, Undefined, Direction::LTR);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(130 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(130_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(10 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(10_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(10 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(10_f32, root_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child2.get_layout_left());
-    assert_eq!(10 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(10 as f32, root_child2.get_layout_height());
+    assert_eq!(10_f32, root_child2.get_layout_top());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(10_f32, root_child2.get_layout_height());
 
-    assert_eq!(50 as f32, root_child3.get_layout_left());
-    assert_eq!(10 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(10 as f32, root_child3.get_layout_height());
+    assert_eq!(50_f32, root_child3.get_layout_left());
+    assert_eq!(10_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(10_f32, root_child3.get_layout_height());
 
     assert_eq!(0 as f32, root_child4.get_layout_left());
-    assert_eq!(20 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(10 as f32, root_child4.get_layout_height());
+    assert_eq!(20_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(10_f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(130 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(130_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
-    assert_eq!(80 as f32, root_child0.get_layout_left());
+    assert_eq!(80_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(10 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(10_f32, root_child0.get_layout_height());
 
-    assert_eq!(30 as f32, root_child1.get_layout_left());
+    assert_eq!(30_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(10 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(10_f32, root_child1.get_layout_height());
 
-    assert_eq!(80 as f32, root_child2.get_layout_left());
-    assert_eq!(10 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(10 as f32, root_child2.get_layout_height());
+    assert_eq!(80_f32, root_child2.get_layout_left());
+    assert_eq!(10_f32, root_child2.get_layout_top());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(10_f32, root_child2.get_layout_height());
 
-    assert_eq!(30 as f32, root_child3.get_layout_left());
-    assert_eq!(10 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(10 as f32, root_child3.get_layout_height());
+    assert_eq!(30_f32, root_child3.get_layout_left());
+    assert_eq!(10_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(10_f32, root_child3.get_layout_height());
 
-    assert_eq!(80 as f32, root_child4.get_layout_left());
-    assert_eq!(20 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(10 as f32, root_child4.get_layout_height());
+    assert_eq!(80_f32, root_child4.get_layout_left());
+    assert_eq!(20_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(10_f32, root_child4.get_layout_height());
 }
 
 #[test]
@@ -125,37 +125,37 @@ fn test_align_content_flex_start_without_height_on_children() {
 
     let mut root = Node::new_with_config(&mut config);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((100 as f32).into()));
-    root.set_height(StyleUnit::Point((100 as f32).into()));
+    root.set_width(StyleUnit::Point(100_f32.into()));
+    root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
-    root_child1.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child1.set_height(StyleUnit::Point(10_f32.into()));
     root_child1.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
-    root_child2.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_width(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_width(StyleUnit::Auto);
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
-    root_child3.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
-    root_child3.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child3.set_height(StyleUnit::Point(10_f32.into()));
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
-    root_child4.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_width(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_width(StyleUnit::Auto);
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
@@ -163,64 +163,64 @@ fn test_align_content_flex_start_without_height_on_children() {
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(100 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(100_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0.get_layout_width());
     assert_eq!(0 as f32, root_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(10 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(10_f32, root_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child2.get_layout_left());
-    assert_eq!(10 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
+    assert_eq!(10_f32, root_child2.get_layout_top());
+    assert_eq!(50_f32, root_child2.get_layout_width());
     assert_eq!(0 as f32, root_child2.get_layout_height());
 
     assert_eq!(0 as f32, root_child3.get_layout_left());
-    assert_eq!(10 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(10 as f32, root_child3.get_layout_height());
+    assert_eq!(10_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(10_f32, root_child3.get_layout_height());
 
     assert_eq!(0 as f32, root_child4.get_layout_left());
-    assert_eq!(20 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
+    assert_eq!(20_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
     assert_eq!(0 as f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(100 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(100_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
-    assert_eq!(50 as f32, root_child0.get_layout_left());
+    assert_eq!(50_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0.get_layout_width());
     assert_eq!(0 as f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(10 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(10_f32, root_child1.get_layout_height());
 
-    assert_eq!(50 as f32, root_child2.get_layout_left());
-    assert_eq!(10 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
+    assert_eq!(50_f32, root_child2.get_layout_left());
+    assert_eq!(10_f32, root_child2.get_layout_top());
+    assert_eq!(50_f32, root_child2.get_layout_width());
     assert_eq!(0 as f32, root_child2.get_layout_height());
 
-    assert_eq!(50 as f32, root_child3.get_layout_left());
-    assert_eq!(10 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(10 as f32, root_child3.get_layout_height());
+    assert_eq!(50_f32, root_child3.get_layout_left());
+    assert_eq!(10_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(10_f32, root_child3.get_layout_height());
 
-    assert_eq!(50 as f32, root_child4.get_layout_left());
-    assert_eq!(20 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
+    assert_eq!(50_f32, root_child4.get_layout_left());
+    assert_eq!(20_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
     assert_eq!(0 as f32, root_child4.get_layout_height());
 }
 
@@ -230,43 +230,43 @@ fn test_align_content_flex_start_with_flex() {
 
     let mut root = Node::new_with_config(&mut config);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((100 as f32).into()));
-    root.set_height(StyleUnit::Point((120 as f32).into()));
+    root.set_width(StyleUnit::Point(100_f32.into()));
+    root.set_height(StyleUnit::Point(120_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_flex_grow(1 as f32);
+    root_child0.set_flex_grow(1_f32);
     root_child0.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_flex_grow(1 as f32);
+    root_child1.set_flex_grow(1_f32);
     root_child1.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
-    root_child1.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child1.set_height(StyleUnit::Point(10_f32.into()));
     root_child1.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
-    root_child2.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_width(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_width(StyleUnit::Auto);
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
-    root_child3.set_flex_grow(1 as f32);
-    root_child3.set_flex_shrink(1 as f32 as f32);
+    root_child3.set_flex_grow(1_f32);
+    root_child3.set_flex_shrink(1_f32 as f32);
     root_child3.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
-    root_child3.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
-    root_child4.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_width(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_width(StyleUnit::Auto);
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
@@ -274,64 +274,64 @@ fn test_align_content_flex_start_with_flex() {
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(100 as f32, root.get_layout_width());
-    assert_eq!(120 as f32, root.get_layout_height());
+    assert_eq!(100_f32, root.get_layout_width());
+    assert_eq!(120_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(40 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(40_f32, root_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child1.get_layout_left());
-    assert_eq!(40 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(40 as f32, root_child1.get_layout_height());
+    assert_eq!(40_f32, root_child1.get_layout_top());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(40_f32, root_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child2.get_layout_left());
-    assert_eq!(80 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
+    assert_eq!(80_f32, root_child2.get_layout_top());
+    assert_eq!(50_f32, root_child2.get_layout_width());
     assert_eq!(0 as f32, root_child2.get_layout_height());
 
     assert_eq!(0 as f32, root_child3.get_layout_left());
-    assert_eq!(80 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(40 as f32, root_child3.get_layout_height());
+    assert_eq!(80_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(40_f32, root_child3.get_layout_height());
 
     assert_eq!(0 as f32, root_child4.get_layout_left());
-    assert_eq!(120 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
+    assert_eq!(120_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
     assert_eq!(0 as f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(100 as f32, root.get_layout_width());
-    assert_eq!(120 as f32, root.get_layout_height());
+    assert_eq!(100_f32, root.get_layout_width());
+    assert_eq!(120_f32, root.get_layout_height());
 
-    assert_eq!(50 as f32, root_child0.get_layout_left());
+    assert_eq!(50_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(40 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(40_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
-    assert_eq!(40 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(40 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_left());
+    assert_eq!(40_f32, root_child1.get_layout_top());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(40_f32, root_child1.get_layout_height());
 
-    assert_eq!(50 as f32, root_child2.get_layout_left());
-    assert_eq!(80 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
+    assert_eq!(50_f32, root_child2.get_layout_left());
+    assert_eq!(80_f32, root_child2.get_layout_top());
+    assert_eq!(50_f32, root_child2.get_layout_width());
     assert_eq!(0 as f32, root_child2.get_layout_height());
 
-    assert_eq!(50 as f32, root_child3.get_layout_left());
-    assert_eq!(80 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(40 as f32, root_child3.get_layout_height());
+    assert_eq!(50_f32, root_child3.get_layout_left());
+    assert_eq!(80_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(40_f32, root_child3.get_layout_height());
 
-    assert_eq!(50 as f32, root_child4.get_layout_left());
-    assert_eq!(120 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
+    assert_eq!(50_f32, root_child4.get_layout_left());
+    assert_eq!(120_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
     assert_eq!(0 as f32, root_child4.get_layout_height());
 }
 
@@ -342,106 +342,106 @@ fn test_align_content_flex_end() {
     let mut root = Node::new_with_config(&mut config);
     root.set_align_content(Align::FlexEnd);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((100 as f32).into()));
-    root.set_height(StyleUnit::Point((100 as f32).into()));
+    root.set_width(StyleUnit::Point(100_f32.into()));
+    root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
-    root_child0.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child0.set_height(StyleUnit::Point(10_f32.into()));
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
-    root_child1.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child1.set_height(StyleUnit::Point(10_f32.into()));
     root_child1.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
-    root_child2.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_width(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_width(StyleUnit::Auto);
-    root_child2.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child2.set_height(StyleUnit::Point(10_f32.into()));
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
-    root_child3.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
-    root_child3.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child3.set_height(StyleUnit::Point(10_f32.into()));
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
-    root_child4.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_width(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_width(StyleUnit::Auto);
-    root_child4.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child4.set_height(StyleUnit::Point(10_f32.into()));
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
     root.calculate_layout(Undefined, Undefined, Direction::LTR);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(100 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(100_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(10 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(10_f32, root_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child1.get_layout_left());
-    assert_eq!(10 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(10 as f32, root_child1.get_layout_height());
+    assert_eq!(10_f32, root_child1.get_layout_top());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(10_f32, root_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child2.get_layout_left());
-    assert_eq!(20 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(10 as f32, root_child2.get_layout_height());
+    assert_eq!(20_f32, root_child2.get_layout_top());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(10_f32, root_child2.get_layout_height());
 
     assert_eq!(0 as f32, root_child3.get_layout_left());
-    assert_eq!(30 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(10 as f32, root_child3.get_layout_height());
+    assert_eq!(30_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(10_f32, root_child3.get_layout_height());
 
     assert_eq!(0 as f32, root_child4.get_layout_left());
-    assert_eq!(40 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(10 as f32, root_child4.get_layout_height());
+    assert_eq!(40_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(10_f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(100 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(100_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
-    assert_eq!(50 as f32, root_child0.get_layout_left());
+    assert_eq!(50_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(10 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(10_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
-    assert_eq!(10 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(10 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_left());
+    assert_eq!(10_f32, root_child1.get_layout_top());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(10_f32, root_child1.get_layout_height());
 
-    assert_eq!(50 as f32, root_child2.get_layout_left());
-    assert_eq!(20 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(10 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_left());
+    assert_eq!(20_f32, root_child2.get_layout_top());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(10_f32, root_child2.get_layout_height());
 
-    assert_eq!(50 as f32, root_child3.get_layout_left());
-    assert_eq!(30 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(10 as f32, root_child3.get_layout_height());
+    assert_eq!(50_f32, root_child3.get_layout_left());
+    assert_eq!(30_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(10_f32, root_child3.get_layout_height());
 
-    assert_eq!(50 as f32, root_child4.get_layout_left());
-    assert_eq!(40 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(10 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_left());
+    assert_eq!(40_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(10_f32, root_child4.get_layout_height());
 }
 
 #[test]
@@ -451,35 +451,35 @@ fn test_align_content_stretch() {
     let mut root = Node::new_with_config(&mut config);
     root.set_align_content(Align::Stretch);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((150 as f32).into()));
-    root.set_height(StyleUnit::Point((100 as f32).into()));
+    root.set_width(StyleUnit::Point(150_f32.into()));
+    root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
     root_child1.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
-    root_child2.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_width(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_width(StyleUnit::Auto);
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
-    root_child3.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
-    root_child4.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_width(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_width(StyleUnit::Auto);
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
@@ -487,64 +487,64 @@ fn test_align_content_stretch() {
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0.get_layout_width());
     assert_eq!(0 as f32, root_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
+    assert_eq!(50_f32, root_child1.get_layout_width());
     assert_eq!(0 as f32, root_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
+    assert_eq!(50_f32, root_child2.get_layout_width());
     assert_eq!(0 as f32, root_child2.get_layout_height());
 
     assert_eq!(0 as f32, root_child3.get_layout_left());
     assert_eq!(0 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
+    assert_eq!(50_f32, root_child3.get_layout_width());
     assert_eq!(0 as f32, root_child3.get_layout_height());
 
     assert_eq!(0 as f32, root_child4.get_layout_left());
     assert_eq!(0 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
+    assert_eq!(50_f32, root_child4.get_layout_width());
     assert_eq!(0 as f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
-    assert_eq!(100 as f32, root_child0.get_layout_left());
+    assert_eq!(100_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0.get_layout_width());
     assert_eq!(0 as f32, root_child0.get_layout_height());
 
-    assert_eq!(100 as f32, root_child1.get_layout_left());
+    assert_eq!(100_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
+    assert_eq!(50_f32, root_child1.get_layout_width());
     assert_eq!(0 as f32, root_child1.get_layout_height());
 
-    assert_eq!(100 as f32, root_child2.get_layout_left());
+    assert_eq!(100_f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
+    assert_eq!(50_f32, root_child2.get_layout_width());
     assert_eq!(0 as f32, root_child2.get_layout_height());
 
-    assert_eq!(100 as f32, root_child3.get_layout_left());
+    assert_eq!(100_f32, root_child3.get_layout_left());
     assert_eq!(0 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
+    assert_eq!(50_f32, root_child3.get_layout_width());
     assert_eq!(0 as f32, root_child3.get_layout_height());
 
-    assert_eq!(100 as f32, root_child4.get_layout_left());
+    assert_eq!(100_f32, root_child4.get_layout_left());
     assert_eq!(0 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
+    assert_eq!(50_f32, root_child4.get_layout_width());
     assert_eq!(0 as f32, root_child4.get_layout_height());
 }
 
@@ -556,106 +556,106 @@ fn test_align_content_spacebetween() {
     root.set_flex_direction(FlexDirection::Row);
     root.set_align_content(Align::SpaceBetween);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((130 as f32).into()));
-    root.set_height(StyleUnit::Point((100 as f32).into()));
+    root.set_width(StyleUnit::Point(130_f32.into()));
+    root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
-    root_child0.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child0.set_height(StyleUnit::Point(10_f32.into()));
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
-    root_child1.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child1.set_height(StyleUnit::Point(10_f32.into()));
     root_child1.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
-    root_child2.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_width(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_width(StyleUnit::Auto);
-    root_child2.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child2.set_height(StyleUnit::Point(10_f32.into()));
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
-    root_child3.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
-    root_child3.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child3.set_height(StyleUnit::Point(10_f32.into()));
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
-    root_child4.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_width(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_width(StyleUnit::Auto);
-    root_child4.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child4.set_height(StyleUnit::Point(10_f32.into()));
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
     root.calculate_layout(Undefined, Undefined, Direction::LTR);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(130 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(130_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(10 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(10_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(10 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(10_f32, root_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child2.get_layout_left());
-    assert_eq!(45 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(10 as f32, root_child2.get_layout_height());
+    assert_eq!(45_f32, root_child2.get_layout_top());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(10_f32, root_child2.get_layout_height());
 
-    assert_eq!(50 as f32, root_child3.get_layout_left());
-    assert_eq!(45 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(10 as f32, root_child3.get_layout_height());
+    assert_eq!(50_f32, root_child3.get_layout_left());
+    assert_eq!(45_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(10_f32, root_child3.get_layout_height());
 
     assert_eq!(0 as f32, root_child4.get_layout_left());
-    assert_eq!(90 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(10 as f32, root_child4.get_layout_height());
+    assert_eq!(90_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(10_f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(130 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(130_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
-    assert_eq!(80 as f32, root_child0.get_layout_left());
+    assert_eq!(80_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(10 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(10_f32, root_child0.get_layout_height());
 
-    assert_eq!(30 as f32, root_child1.get_layout_left());
+    assert_eq!(30_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(10 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(10_f32, root_child1.get_layout_height());
 
-    assert_eq!(80 as f32, root_child2.get_layout_left());
-    assert_eq!(45 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(10 as f32, root_child2.get_layout_height());
+    assert_eq!(80_f32, root_child2.get_layout_left());
+    assert_eq!(45_f32, root_child2.get_layout_top());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(10_f32, root_child2.get_layout_height());
 
-    assert_eq!(30 as f32, root_child3.get_layout_left());
-    assert_eq!(45 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(10 as f32, root_child3.get_layout_height());
+    assert_eq!(30_f32, root_child3.get_layout_left());
+    assert_eq!(45_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(10_f32, root_child3.get_layout_height());
 
-    assert_eq!(80 as f32, root_child4.get_layout_left());
-    assert_eq!(90 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(10 as f32, root_child4.get_layout_height());
+    assert_eq!(80_f32, root_child4.get_layout_left());
+    assert_eq!(90_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(10_f32, root_child4.get_layout_height());
 }
 
 #[test]
@@ -666,106 +666,106 @@ fn test_align_content_spacearound() {
     root.set_flex_direction(FlexDirection::Row);
     root.set_align_content(Align::SpaceAround);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((140 as f32).into()));
-    root.set_height(StyleUnit::Point((120 as f32).into()));
+    root.set_width(StyleUnit::Point(140_f32.into()));
+    root.set_height(StyleUnit::Point(120_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
-    root_child0.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child0.set_height(StyleUnit::Point(10_f32.into()));
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
-    root_child1.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child1.set_height(StyleUnit::Point(10_f32.into()));
     root_child1.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
-    root_child2.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_width(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_width(StyleUnit::Auto);
-    root_child2.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child2.set_height(StyleUnit::Point(10_f32.into()));
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
-    root_child3.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
-    root_child3.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child3.set_height(StyleUnit::Point(10_f32.into()));
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
-    root_child4.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_width(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_width(StyleUnit::Auto);
-    root_child4.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child4.set_height(StyleUnit::Point(10_f32.into()));
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
     root.calculate_layout(Undefined, Undefined, Direction::LTR);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(140 as f32, root.get_layout_width());
-    assert_eq!(120 as f32, root.get_layout_height());
+    assert_eq!(140_f32, root.get_layout_width());
+    assert_eq!(120_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
-    assert_eq!(15 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(10 as f32, root_child0.get_layout_height());
+    assert_eq!(15_f32, root_child0.get_layout_top());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(10_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
-    assert_eq!(15 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(10 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_left());
+    assert_eq!(15_f32, root_child1.get_layout_top());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(10_f32, root_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child2.get_layout_left());
-    assert_eq!(55 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(10 as f32, root_child2.get_layout_height());
+    assert_eq!(55_f32, root_child2.get_layout_top());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(10_f32, root_child2.get_layout_height());
 
-    assert_eq!(50 as f32, root_child3.get_layout_left());
-    assert_eq!(55 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(10 as f32, root_child3.get_layout_height());
+    assert_eq!(50_f32, root_child3.get_layout_left());
+    assert_eq!(55_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(10_f32, root_child3.get_layout_height());
 
     assert_eq!(0 as f32, root_child4.get_layout_left());
-    assert_eq!(95 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(10 as f32, root_child4.get_layout_height());
+    assert_eq!(95_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(10_f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(140 as f32, root.get_layout_width());
-    assert_eq!(120 as f32, root.get_layout_height());
+    assert_eq!(140_f32, root.get_layout_width());
+    assert_eq!(120_f32, root.get_layout_height());
 
-    assert_eq!(90 as f32, root_child0.get_layout_left());
-    assert_eq!(15 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(10 as f32, root_child0.get_layout_height());
+    assert_eq!(90_f32, root_child0.get_layout_left());
+    assert_eq!(15_f32, root_child0.get_layout_top());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(10_f32, root_child0.get_layout_height());
 
-    assert_eq!(40 as f32, root_child1.get_layout_left());
-    assert_eq!(15 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(10 as f32, root_child1.get_layout_height());
+    assert_eq!(40_f32, root_child1.get_layout_left());
+    assert_eq!(15_f32, root_child1.get_layout_top());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(10_f32, root_child1.get_layout_height());
 
-    assert_eq!(90 as f32, root_child2.get_layout_left());
-    assert_eq!(55 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(10 as f32, root_child2.get_layout_height());
+    assert_eq!(90_f32, root_child2.get_layout_left());
+    assert_eq!(55_f32, root_child2.get_layout_top());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(10_f32, root_child2.get_layout_height());
 
-    assert_eq!(40 as f32, root_child3.get_layout_left());
-    assert_eq!(55 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(10 as f32, root_child3.get_layout_height());
+    assert_eq!(40_f32, root_child3.get_layout_left());
+    assert_eq!(55_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(10_f32, root_child3.get_layout_height());
 
-    assert_eq!(90 as f32, root_child4.get_layout_left());
-    assert_eq!(95 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(10 as f32, root_child4.get_layout_height());
+    assert_eq!(90_f32, root_child4.get_layout_left());
+    assert_eq!(95_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(10_f32, root_child4.get_layout_height());
 }
 
 #[test]
@@ -776,35 +776,35 @@ fn test_align_content_stretch_row() {
     root.set_flex_direction(FlexDirection::Row);
     root.set_align_content(Align::Stretch);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((150 as f32).into()));
-    root.set_height(StyleUnit::Point((100 as f32).into()));
+    root.set_width(StyleUnit::Point(150_f32.into()));
+    root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
     root_child1.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
-    root_child2.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_width(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_width(StyleUnit::Auto);
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
-    root_child3.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
-    root_child4.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_width(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_width(StyleUnit::Auto);
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
@@ -812,65 +812,65 @@ fn test_align_content_stretch_row() {
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(50 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(50 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(50_f32, root_child1.get_layout_height());
 
-    assert_eq!(100 as f32, root_child2.get_layout_left());
+    assert_eq!(100_f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(50 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(50_f32, root_child2.get_layout_height());
 
     assert_eq!(0 as f32, root_child3.get_layout_left());
-    assert_eq!(50 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(50 as f32, root_child3.get_layout_height());
+    assert_eq!(50_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(50_f32, root_child3.get_layout_height());
 
-    assert_eq!(50 as f32, root_child4.get_layout_left());
-    assert_eq!(50 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(50 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_left());
+    assert_eq!(50_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(50_f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
-    assert_eq!(100 as f32, root_child0.get_layout_left());
+    assert_eq!(100_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(50 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(50 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(50_f32, root_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(50 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(50_f32, root_child2.get_layout_height());
 
-    assert_eq!(100 as f32, root_child3.get_layout_left());
-    assert_eq!(50 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(50 as f32, root_child3.get_layout_height());
+    assert_eq!(100_f32, root_child3.get_layout_left());
+    assert_eq!(50_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(50_f32, root_child3.get_layout_height());
 
-    assert_eq!(50 as f32, root_child4.get_layout_left());
-    assert_eq!(50 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(50 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_left());
+    assert_eq!(50_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(50_f32, root_child4.get_layout_height());
 }
 
 #[test]
@@ -881,43 +881,43 @@ fn test_align_content_stretch_row_with_children() {
     root.set_flex_direction(FlexDirection::Row);
     root.set_align_content(Align::Stretch);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((150 as f32).into()));
-    root.set_height(StyleUnit::Point((100 as f32).into()));
+    root.set_width(StyleUnit::Point(150_f32.into()));
+    root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child0_child0 = Node::new_with_config(&mut config);
-    root_child0_child0.set_flex_grow(1 as f32);
-    root_child0_child0.set_flex_shrink(1 as f32 as f32);
+    root_child0_child0.set_flex_grow(1_f32);
+    root_child0_child0.set_flex_shrink(1_f32 as f32);
     root_child0_child0.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
     root_child0_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0.set_min_height(StyleUnit::Auto);
     root_child0.insert_child(&mut root_child0_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
     root_child1.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
-    root_child2.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_width(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_width(StyleUnit::Auto);
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
-    root_child3.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
-    root_child4.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_width(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_width(StyleUnit::Auto);
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
@@ -925,75 +925,75 @@ fn test_align_content_stretch_row_with_children() {
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(50 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0_child0.get_layout_width());
-    assert_eq!(50 as f32, root_child0_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(50 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(50_f32, root_child1.get_layout_height());
 
-    assert_eq!(100 as f32, root_child2.get_layout_left());
+    assert_eq!(100_f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(50 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(50_f32, root_child2.get_layout_height());
 
     assert_eq!(0 as f32, root_child3.get_layout_left());
-    assert_eq!(50 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(50 as f32, root_child3.get_layout_height());
+    assert_eq!(50_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(50_f32, root_child3.get_layout_height());
 
-    assert_eq!(50 as f32, root_child4.get_layout_left());
-    assert_eq!(50 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(50 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_left());
+    assert_eq!(50_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(50_f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
-    assert_eq!(100 as f32, root_child0.get_layout_left());
+    assert_eq!(100_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(50 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0_child0.get_layout_width());
-    assert_eq!(50 as f32, root_child0_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(50 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(50_f32, root_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(50 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(50_f32, root_child2.get_layout_height());
 
-    assert_eq!(100 as f32, root_child3.get_layout_left());
-    assert_eq!(50 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(50 as f32, root_child3.get_layout_height());
+    assert_eq!(100_f32, root_child3.get_layout_left());
+    assert_eq!(50_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(50_f32, root_child3.get_layout_height());
 
-    assert_eq!(50 as f32, root_child4.get_layout_left());
-    assert_eq!(50 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(50 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_left());
+    assert_eq!(50_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(50_f32, root_child4.get_layout_height());
 }
 
 #[test]
@@ -1004,41 +1004,41 @@ fn test_align_content_stretch_row_with_flex() {
     root.set_flex_direction(FlexDirection::Row);
     root.set_align_content(Align::Stretch);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((150 as f32).into()));
-    root.set_height(StyleUnit::Point((100 as f32).into()));
+    root.set_width(StyleUnit::Point(150_f32.into()));
+    root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_flex_grow(1 as f32);
-    root_child1.set_flex_shrink(1 as f32 as f32);
+    root_child1.set_flex_grow(1_f32);
+    root_child1.set_flex_shrink(1_f32 as f32);
     root_child1.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
     root_child1.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
-    root_child2.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_width(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_width(StyleUnit::Auto);
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
-    root_child3.set_flex_grow(1 as f32);
-    root_child3.set_flex_shrink(1 as f32 as f32);
+    root_child3.set_flex_grow(1_f32);
+    root_child3.set_flex_shrink(1_f32 as f32);
     root_child3.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
-    root_child3.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
-    root_child4.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_width(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_width(StyleUnit::Auto);
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
@@ -1046,65 +1046,65 @@ fn test_align_content_stretch_row_with_flex() {
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(100 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(100_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
     assert_eq!(0 as f32, root_child1.get_layout_width());
-    assert_eq!(100 as f32, root_child1.get_layout_height());
+    assert_eq!(100_f32, root_child1.get_layout_height());
 
-    assert_eq!(50 as f32, root_child2.get_layout_left());
+    assert_eq!(50_f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(100 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(100_f32, root_child2.get_layout_height());
 
-    assert_eq!(100 as f32, root_child3.get_layout_left());
+    assert_eq!(100_f32, root_child3.get_layout_left());
     assert_eq!(0 as f32, root_child3.get_layout_top());
     assert_eq!(0 as f32, root_child3.get_layout_width());
-    assert_eq!(100 as f32, root_child3.get_layout_height());
+    assert_eq!(100_f32, root_child3.get_layout_height());
 
-    assert_eq!(100 as f32, root_child4.get_layout_left());
+    assert_eq!(100_f32, root_child4.get_layout_left());
     assert_eq!(0 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(100 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(100_f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
-    assert_eq!(100 as f32, root_child0.get_layout_left());
+    assert_eq!(100_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(100 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(100_f32, root_child0.get_layout_height());
 
-    assert_eq!(100 as f32, root_child1.get_layout_left());
+    assert_eq!(100_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
     assert_eq!(0 as f32, root_child1.get_layout_width());
-    assert_eq!(100 as f32, root_child1.get_layout_height());
+    assert_eq!(100_f32, root_child1.get_layout_height());
 
-    assert_eq!(50 as f32, root_child2.get_layout_left());
+    assert_eq!(50_f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(100 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(100_f32, root_child2.get_layout_height());
 
-    assert_eq!(50 as f32, root_child3.get_layout_left());
+    assert_eq!(50_f32, root_child3.get_layout_left());
     assert_eq!(0 as f32, root_child3.get_layout_top());
     assert_eq!(0 as f32, root_child3.get_layout_width());
-    assert_eq!(100 as f32, root_child3.get_layout_height());
+    assert_eq!(100_f32, root_child3.get_layout_height());
 
     assert_eq!(0 as f32, root_child4.get_layout_left());
     assert_eq!(0 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(100 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(100_f32, root_child4.get_layout_height());
 }
 
 #[test]
@@ -1115,40 +1115,40 @@ fn test_align_content_stretch_row_with_flex_no_shrink() {
     root.set_flex_direction(FlexDirection::Row);
     root.set_align_content(Align::Stretch);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((150 as f32).into()));
-    root.set_height(StyleUnit::Point((100 as f32).into()));
+    root.set_width(StyleUnit::Point(150_f32.into()));
+    root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_flex_grow(1 as f32);
-    root_child1.set_flex_shrink(1 as f32 as f32);
+    root_child1.set_flex_grow(1_f32);
+    root_child1.set_flex_shrink(1_f32 as f32);
     root_child1.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
     root_child1.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
-    root_child2.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_width(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_width(StyleUnit::Auto);
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
-    root_child3.set_flex_grow(1 as f32);
+    root_child3.set_flex_grow(1_f32);
     root_child3.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
-    root_child3.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
-    root_child4.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_width(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_width(StyleUnit::Auto);
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
@@ -1156,65 +1156,65 @@ fn test_align_content_stretch_row_with_flex_no_shrink() {
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(100 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(100_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
     assert_eq!(0 as f32, root_child1.get_layout_width());
-    assert_eq!(100 as f32, root_child1.get_layout_height());
+    assert_eq!(100_f32, root_child1.get_layout_height());
 
-    assert_eq!(50 as f32, root_child2.get_layout_left());
+    assert_eq!(50_f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(100 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(100_f32, root_child2.get_layout_height());
 
-    assert_eq!(100 as f32, root_child3.get_layout_left());
+    assert_eq!(100_f32, root_child3.get_layout_left());
     assert_eq!(0 as f32, root_child3.get_layout_top());
     assert_eq!(0 as f32, root_child3.get_layout_width());
-    assert_eq!(100 as f32, root_child3.get_layout_height());
+    assert_eq!(100_f32, root_child3.get_layout_height());
 
-    assert_eq!(100 as f32, root_child4.get_layout_left());
+    assert_eq!(100_f32, root_child4.get_layout_left());
     assert_eq!(0 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(100 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(100_f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
-    assert_eq!(100 as f32, root_child0.get_layout_left());
+    assert_eq!(100_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(100 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(100_f32, root_child0.get_layout_height());
 
-    assert_eq!(100 as f32, root_child1.get_layout_left());
+    assert_eq!(100_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
     assert_eq!(0 as f32, root_child1.get_layout_width());
-    assert_eq!(100 as f32, root_child1.get_layout_height());
+    assert_eq!(100_f32, root_child1.get_layout_height());
 
-    assert_eq!(50 as f32, root_child2.get_layout_left());
+    assert_eq!(50_f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(100 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(100_f32, root_child2.get_layout_height());
 
-    assert_eq!(50 as f32, root_child3.get_layout_left());
+    assert_eq!(50_f32, root_child3.get_layout_left());
     assert_eq!(0 as f32, root_child3.get_layout_top());
     assert_eq!(0 as f32, root_child3.get_layout_width());
-    assert_eq!(100 as f32, root_child3.get_layout_height());
+    assert_eq!(100_f32, root_child3.get_layout_height());
 
     assert_eq!(0 as f32, root_child4.get_layout_left());
     assert_eq!(0 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(100 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(100_f32, root_child4.get_layout_height());
 }
 
 #[test]
@@ -1225,43 +1225,43 @@ fn test_align_content_stretch_row_with_margin() {
     root.set_flex_direction(FlexDirection::Row);
     root.set_align_content(Align::Stretch);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((150 as f32).into()));
-    root.set_height(StyleUnit::Point((100 as f32).into()));
+    root.set_width(StyleUnit::Point(150_f32.into()));
+    root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_margin(Edge::Left, StyleUnit::Point((10 as f32).into()));
-    root_child1.set_margin(Edge::Top, StyleUnit::Point((10 as f32).into()));
-    root_child1.set_margin(Edge::Right, StyleUnit::Point((10 as f32).into()));
-    root_child1.set_margin(Edge::Bottom, StyleUnit::Point((10 as f32).into()));
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_margin(Edge::Left, StyleUnit::Point(10_f32.into()));
+    root_child1.set_margin(Edge::Top, StyleUnit::Point(10_f32.into()));
+    root_child1.set_margin(Edge::Right, StyleUnit::Point(10_f32.into()));
+    root_child1.set_margin(Edge::Bottom, StyleUnit::Point(10_f32.into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
     root_child1.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
-    root_child2.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_width(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_width(StyleUnit::Auto);
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
-    root_child3.set_margin(Edge::Left, StyleUnit::Point((10 as f32).into()));
-    root_child3.set_margin(Edge::Top, StyleUnit::Point((10 as f32).into()));
-    root_child3.set_margin(Edge::Right, StyleUnit::Point((10 as f32).into()));
-    root_child3.set_margin(Edge::Bottom, StyleUnit::Point((10 as f32).into()));
-    root_child3.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_margin(Edge::Left, StyleUnit::Point(10_f32.into()));
+    root_child3.set_margin(Edge::Top, StyleUnit::Point(10_f32.into()));
+    root_child3.set_margin(Edge::Right, StyleUnit::Point(10_f32.into()));
+    root_child3.set_margin(Edge::Bottom, StyleUnit::Point(10_f32.into()));
+    root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
-    root_child4.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_width(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_width(StyleUnit::Auto);
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
@@ -1269,65 +1269,65 @@ fn test_align_content_stretch_row_with_margin() {
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(40 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(40_f32, root_child0.get_layout_height());
 
-    assert_eq!(60 as f32, root_child1.get_layout_left());
-    assert_eq!(10 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(20 as f32, root_child1.get_layout_height());
+    assert_eq!(60_f32, root_child1.get_layout_left());
+    assert_eq!(10_f32, root_child1.get_layout_top());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(20_f32, root_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child2.get_layout_left());
-    assert_eq!(40 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(40 as f32, root_child2.get_layout_height());
+    assert_eq!(40_f32, root_child2.get_layout_top());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(40_f32, root_child2.get_layout_height());
 
-    assert_eq!(60 as f32, root_child3.get_layout_left());
-    assert_eq!(50 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(20 as f32, root_child3.get_layout_height());
+    assert_eq!(60_f32, root_child3.get_layout_left());
+    assert_eq!(50_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(20_f32, root_child3.get_layout_height());
 
     assert_eq!(0 as f32, root_child4.get_layout_left());
-    assert_eq!(80 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(20 as f32, root_child4.get_layout_height());
+    assert_eq!(80_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(20_f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
-    assert_eq!(100 as f32, root_child0.get_layout_left());
+    assert_eq!(100_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(40 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(40_f32, root_child0.get_layout_height());
 
-    assert_eq!(40 as f32, root_child1.get_layout_left());
-    assert_eq!(10 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(20 as f32, root_child1.get_layout_height());
+    assert_eq!(40_f32, root_child1.get_layout_left());
+    assert_eq!(10_f32, root_child1.get_layout_top());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(20_f32, root_child1.get_layout_height());
 
-    assert_eq!(100 as f32, root_child2.get_layout_left());
-    assert_eq!(40 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(40 as f32, root_child2.get_layout_height());
+    assert_eq!(100_f32, root_child2.get_layout_left());
+    assert_eq!(40_f32, root_child2.get_layout_top());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(40_f32, root_child2.get_layout_height());
 
-    assert_eq!(40 as f32, root_child3.get_layout_left());
-    assert_eq!(50 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(20 as f32, root_child3.get_layout_height());
+    assert_eq!(40_f32, root_child3.get_layout_left());
+    assert_eq!(50_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(20_f32, root_child3.get_layout_height());
 
-    assert_eq!(100 as f32, root_child4.get_layout_left());
-    assert_eq!(80 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(20 as f32, root_child4.get_layout_height());
+    assert_eq!(100_f32, root_child4.get_layout_left());
+    assert_eq!(80_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(20_f32, root_child4.get_layout_height());
 }
 
 #[test]
@@ -1338,43 +1338,43 @@ fn test_align_content_stretch_row_with_padding() {
     root.set_flex_direction(FlexDirection::Row);
     root.set_align_content(Align::Stretch);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((150 as f32).into()));
-    root.set_height(StyleUnit::Point((100 as f32).into()));
+    root.set_width(StyleUnit::Point(150_f32.into()));
+    root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_padding(Edge::Left, StyleUnit::Point((10 as f32).into()));
-    root_child1.set_padding(Edge::Top, StyleUnit::Point((10 as f32).into()));
-    root_child1.set_padding(Edge::Right, StyleUnit::Point((10 as f32).into()));
-    root_child1.set_padding(Edge::Bottom, StyleUnit::Point((10 as f32).into()));
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_padding(Edge::Left, StyleUnit::Point(10_f32.into()));
+    root_child1.set_padding(Edge::Top, StyleUnit::Point(10_f32.into()));
+    root_child1.set_padding(Edge::Right, StyleUnit::Point(10_f32.into()));
+    root_child1.set_padding(Edge::Bottom, StyleUnit::Point(10_f32.into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
     root_child1.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
-    root_child2.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_width(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_width(StyleUnit::Auto);
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
-    root_child3.set_padding(Edge::Left, StyleUnit::Point((10 as f32).into()));
-    root_child3.set_padding(Edge::Top, StyleUnit::Point((10 as f32).into()));
-    root_child3.set_padding(Edge::Right, StyleUnit::Point((10 as f32).into()));
-    root_child3.set_padding(Edge::Bottom, StyleUnit::Point((10 as f32).into()));
-    root_child3.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_padding(Edge::Left, StyleUnit::Point(10_f32.into()));
+    root_child3.set_padding(Edge::Top, StyleUnit::Point(10_f32.into()));
+    root_child3.set_padding(Edge::Right, StyleUnit::Point(10_f32.into()));
+    root_child3.set_padding(Edge::Bottom, StyleUnit::Point(10_f32.into()));
+    root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
-    root_child4.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_width(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_width(StyleUnit::Auto);
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
@@ -1382,65 +1382,65 @@ fn test_align_content_stretch_row_with_padding() {
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(50 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(50 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(50_f32, root_child1.get_layout_height());
 
-    assert_eq!(100 as f32, root_child2.get_layout_left());
+    assert_eq!(100_f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(50 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(50_f32, root_child2.get_layout_height());
 
     assert_eq!(0 as f32, root_child3.get_layout_left());
-    assert_eq!(50 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(50 as f32, root_child3.get_layout_height());
+    assert_eq!(50_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(50_f32, root_child3.get_layout_height());
 
-    assert_eq!(50 as f32, root_child4.get_layout_left());
-    assert_eq!(50 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(50 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_left());
+    assert_eq!(50_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(50_f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
-    assert_eq!(100 as f32, root_child0.get_layout_left());
+    assert_eq!(100_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(50 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(50 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(50_f32, root_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(50 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(50_f32, root_child2.get_layout_height());
 
-    assert_eq!(100 as f32, root_child3.get_layout_left());
-    assert_eq!(50 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(50 as f32, root_child3.get_layout_height());
+    assert_eq!(100_f32, root_child3.get_layout_left());
+    assert_eq!(50_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(50_f32, root_child3.get_layout_height());
 
-    assert_eq!(50 as f32, root_child4.get_layout_left());
-    assert_eq!(50 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(50 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_left());
+    assert_eq!(50_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(50_f32, root_child4.get_layout_height());
 }
 
 #[test]
@@ -1451,17 +1451,17 @@ fn test_align_content_stretch_row_with_single_row() {
     root.set_flex_direction(FlexDirection::Row);
     root.set_align_content(Align::Stretch);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((150 as f32).into()));
-    root.set_height(StyleUnit::Point((100 as f32).into()));
+    root.set_width(StyleUnit::Point(150_f32.into()));
+    root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
     root_child1.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child1, 1);
@@ -1469,35 +1469,35 @@ fn test_align_content_stretch_row_with_single_row() {
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(100 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(100_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(100 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(100_f32, root_child1.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
-    assert_eq!(100 as f32, root_child0.get_layout_left());
+    assert_eq!(100_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(100 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(100_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(100 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(100_f32, root_child1.get_layout_height());
 }
 
 #[test]
@@ -1508,36 +1508,36 @@ fn test_align_content_stretch_row_with_fixed_height() {
     root.set_flex_direction(FlexDirection::Row);
     root.set_align_content(Align::Stretch);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((150 as f32).into()));
-    root.set_height(StyleUnit::Point((100 as f32).into()));
+    root.set_width(StyleUnit::Point(150_f32.into()));
+    root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
-    root_child1.set_height(StyleUnit::Point((60 as f32).into()));
+    root_child1.set_height(StyleUnit::Point(60_f32.into()));
     root_child1.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
-    root_child2.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_width(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_width(StyleUnit::Auto);
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
-    root_child3.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
-    root_child4.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_width(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_width(StyleUnit::Auto);
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
@@ -1545,65 +1545,65 @@ fn test_align_content_stretch_row_with_fixed_height() {
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(80 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(80_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(60 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(60_f32, root_child1.get_layout_height());
 
-    assert_eq!(100 as f32, root_child2.get_layout_left());
+    assert_eq!(100_f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(80 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(80_f32, root_child2.get_layout_height());
 
     assert_eq!(0 as f32, root_child3.get_layout_left());
-    assert_eq!(80 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(20 as f32, root_child3.get_layout_height());
+    assert_eq!(80_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(20_f32, root_child3.get_layout_height());
 
-    assert_eq!(50 as f32, root_child4.get_layout_left());
-    assert_eq!(80 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(20 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_left());
+    assert_eq!(80_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(20_f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
-    assert_eq!(100 as f32, root_child0.get_layout_left());
+    assert_eq!(100_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(80 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(80_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(60 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(60_f32, root_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(80 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(80_f32, root_child2.get_layout_height());
 
-    assert_eq!(100 as f32, root_child3.get_layout_left());
-    assert_eq!(80 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(20 as f32, root_child3.get_layout_height());
+    assert_eq!(100_f32, root_child3.get_layout_left());
+    assert_eq!(80_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(20_f32, root_child3.get_layout_height());
 
-    assert_eq!(50 as f32, root_child4.get_layout_left());
-    assert_eq!(80 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(20 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_left());
+    assert_eq!(80_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(20_f32, root_child4.get_layout_height());
 }
 
 #[test]
@@ -1614,36 +1614,36 @@ fn test_align_content_stretch_row_with_max_height() {
     root.set_flex_direction(FlexDirection::Row);
     root.set_align_content(Align::Stretch);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((150 as f32).into()));
-    root.set_height(StyleUnit::Point((100 as f32).into()));
+    root.set_width(StyleUnit::Point(150_f32.into()));
+    root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
     root_child1.set_min_height(StyleUnit::Auto);
-    root_child1.set_max_height(StyleUnit::Point((20 as f32).into()));
+    root_child1.set_max_height(StyleUnit::Point(20_f32.into()));
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
-    root_child2.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_width(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_width(StyleUnit::Auto);
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
-    root_child3.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
-    root_child4.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_width(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_width(StyleUnit::Auto);
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
@@ -1651,65 +1651,65 @@ fn test_align_content_stretch_row_with_max_height() {
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(50 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(20 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(20_f32, root_child1.get_layout_height());
 
-    assert_eq!(100 as f32, root_child2.get_layout_left());
+    assert_eq!(100_f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(50 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(50_f32, root_child2.get_layout_height());
 
     assert_eq!(0 as f32, root_child3.get_layout_left());
-    assert_eq!(50 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(50 as f32, root_child3.get_layout_height());
+    assert_eq!(50_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(50_f32, root_child3.get_layout_height());
 
-    assert_eq!(50 as f32, root_child4.get_layout_left());
-    assert_eq!(50 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(50 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_left());
+    assert_eq!(50_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(50_f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
-    assert_eq!(100 as f32, root_child0.get_layout_left());
+    assert_eq!(100_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(50 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(20 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(20_f32, root_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(50 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(50_f32, root_child2.get_layout_height());
 
-    assert_eq!(100 as f32, root_child3.get_layout_left());
-    assert_eq!(50 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(50 as f32, root_child3.get_layout_height());
+    assert_eq!(100_f32, root_child3.get_layout_left());
+    assert_eq!(50_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(50_f32, root_child3.get_layout_height());
 
-    assert_eq!(50 as f32, root_child4.get_layout_left());
-    assert_eq!(50 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(50 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_left());
+    assert_eq!(50_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(50_f32, root_child4.get_layout_height());
 }
 
 #[test]
@@ -1720,35 +1720,35 @@ fn test_align_content_stretch_row_with_min_height() {
     root.set_flex_direction(FlexDirection::Row);
     root.set_align_content(Align::Stretch);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((150 as f32).into()));
-    root.set_height(StyleUnit::Point((100 as f32).into()));
+    root.set_width(StyleUnit::Point(150_f32.into()));
+    root.set_height(StyleUnit::Point(100_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
-    root_child0.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_width(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_width(StyleUnit::Auto);
-    root_child1.set_min_height(StyleUnit::Point((80 as f32).into()));
+    root_child1.set_min_height(StyleUnit::Point(80_f32.into()));
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
-    root_child2.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_width(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_width(StyleUnit::Auto);
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
-    root_child3.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_width(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_width(StyleUnit::Auto);
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
-    root_child4.set_width(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_width(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_width(StyleUnit::Auto);
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
@@ -1756,65 +1756,65 @@ fn test_align_content_stretch_row_with_min_height() {
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(90 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(90_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(90 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(90_f32, root_child1.get_layout_height());
 
-    assert_eq!(100 as f32, root_child2.get_layout_left());
+    assert_eq!(100_f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(90 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(90_f32, root_child2.get_layout_height());
 
     assert_eq!(0 as f32, root_child3.get_layout_left());
-    assert_eq!(90 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(10 as f32, root_child3.get_layout_height());
+    assert_eq!(90_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(10_f32, root_child3.get_layout_height());
 
-    assert_eq!(50 as f32, root_child4.get_layout_left());
-    assert_eq!(90 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(10 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_left());
+    assert_eq!(90_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(10_f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(150 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(150_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
-    assert_eq!(100 as f32, root_child0.get_layout_left());
+    assert_eq!(100_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(90 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(90_f32, root_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_left());
     assert_eq!(0 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
-    assert_eq!(90 as f32, root_child1.get_layout_height());
+    assert_eq!(50_f32, root_child1.get_layout_width());
+    assert_eq!(90_f32, root_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child2.get_layout_left());
     assert_eq!(0 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(90 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(90_f32, root_child2.get_layout_height());
 
-    assert_eq!(100 as f32, root_child3.get_layout_left());
-    assert_eq!(90 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(10 as f32, root_child3.get_layout_height());
+    assert_eq!(100_f32, root_child3.get_layout_left());
+    assert_eq!(90_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(10_f32, root_child3.get_layout_height());
 
-    assert_eq!(50 as f32, root_child4.get_layout_left());
-    assert_eq!(90 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(10 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_left());
+    assert_eq!(90_f32, root_child4.get_layout_top());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(10_f32, root_child4.get_layout_height());
 }
 
 #[test]
@@ -1824,122 +1824,122 @@ fn test_align_content_stretch_column() {
     let mut root = Node::new_with_config(&mut config);
     root.set_align_content(Align::Stretch);
     root.set_flex_wrap(Wrap::Wrap);
-    root.set_width(StyleUnit::Point((100 as f32).into()));
-    root.set_height(StyleUnit::Point((150 as f32).into()));
+    root.set_width(StyleUnit::Point(100_f32.into()));
+    root.set_height(StyleUnit::Point(150_f32.into()));
 
     let mut root_child0 = Node::new_with_config(&mut config);
     root_child0.set_min_width(StyleUnit::Auto);
-    root_child0.set_height(StyleUnit::Point((50 as f32).into()));
+    root_child0.set_height(StyleUnit::Point(50_f32.into()));
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child0_child0 = Node::new_with_config(&mut config);
-    root_child0_child0.set_flex_grow(1 as f32);
-    root_child0_child0.set_flex_shrink(1 as f32 as f32);
+    root_child0_child0.set_flex_grow(1_f32);
+    root_child0_child0.set_flex_shrink(1_f32 as f32);
     root_child0_child0.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
     root_child0_child0.set_min_width(StyleUnit::Auto);
     root_child0_child0.set_min_height(StyleUnit::Auto);
     root_child0.insert_child(&mut root_child0_child0, 0);
 
     let mut root_child1 = Node::new_with_config(&mut config);
-    root_child1.set_flex_grow(1 as f32);
-    root_child1.set_flex_shrink(1 as f32 as f32);
+    root_child1.set_flex_grow(1_f32);
+    root_child1.set_flex_shrink(1_f32 as f32);
     root_child1.set_flex_basis(StyleUnit::Percent((0 as f32).into()));
     root_child1.set_min_width(StyleUnit::Auto);
-    root_child1.set_height(StyleUnit::Point((50 as f32).into()));
+    root_child1.set_height(StyleUnit::Point(50_f32.into()));
     root_child1.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child1, 1);
 
     let mut root_child2 = Node::new_with_config(&mut config);
     root_child2.set_min_width(StyleUnit::Auto);
-    root_child2.set_height(StyleUnit::Point((50 as f32).into()));
+    root_child2.set_height(StyleUnit::Point(50_f32.into()));
     root_child2.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child2, 2);
 
     let mut root_child3 = Node::new_with_config(&mut config);
     root_child3.set_min_width(StyleUnit::Auto);
-    root_child3.set_height(StyleUnit::Point((50 as f32).into()));
+    root_child3.set_height(StyleUnit::Point(50_f32.into()));
     root_child3.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child3, 3);
 
     let mut root_child4 = Node::new_with_config(&mut config);
     root_child4.set_min_width(StyleUnit::Auto);
-    root_child4.set_height(StyleUnit::Point((50 as f32).into()));
+    root_child4.set_height(StyleUnit::Point(50_f32.into()));
     root_child4.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child4, 4);
     root.calculate_layout(Undefined, Undefined, Direction::LTR);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(100 as f32, root.get_layout_width());
-    assert_eq!(150 as f32, root.get_layout_height());
+    assert_eq!(100_f32, root.get_layout_width());
+    assert_eq!(150_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(50 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0_child0.get_layout_width());
-    assert_eq!(50 as f32, root_child0_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child1.get_layout_left());
-    assert_eq!(50 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
+    assert_eq!(50_f32, root_child1.get_layout_top());
+    assert_eq!(50_f32, root_child1.get_layout_width());
     assert_eq!(0 as f32, root_child1.get_layout_height());
 
     assert_eq!(0 as f32, root_child2.get_layout_left());
-    assert_eq!(50 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(50 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_top());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(50_f32, root_child2.get_layout_height());
 
     assert_eq!(0 as f32, root_child3.get_layout_left());
-    assert_eq!(100 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(50 as f32, root_child3.get_layout_height());
+    assert_eq!(100_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(50_f32, root_child3.get_layout_height());
 
-    assert_eq!(50 as f32, root_child4.get_layout_left());
+    assert_eq!(50_f32, root_child4.get_layout_left());
     assert_eq!(0 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(50 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(50_f32, root_child4.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(100 as f32, root.get_layout_width());
-    assert_eq!(150 as f32, root.get_layout_height());
+    assert_eq!(100_f32, root.get_layout_width());
+    assert_eq!(150_f32, root.get_layout_height());
 
-    assert_eq!(50 as f32, root_child0.get_layout_left());
+    assert_eq!(50_f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0.get_layout_width());
-    assert_eq!(50 as f32, root_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0_child0.get_layout_top());
-    assert_eq!(50 as f32, root_child0_child0.get_layout_width());
-    assert_eq!(50 as f32, root_child0_child0.get_layout_height());
+    assert_eq!(50_f32, root_child0_child0.get_layout_width());
+    assert_eq!(50_f32, root_child0_child0.get_layout_height());
 
-    assert_eq!(50 as f32, root_child1.get_layout_left());
-    assert_eq!(50 as f32, root_child1.get_layout_top());
-    assert_eq!(50 as f32, root_child1.get_layout_width());
+    assert_eq!(50_f32, root_child1.get_layout_left());
+    assert_eq!(50_f32, root_child1.get_layout_top());
+    assert_eq!(50_f32, root_child1.get_layout_width());
     assert_eq!(0 as f32, root_child1.get_layout_height());
 
-    assert_eq!(50 as f32, root_child2.get_layout_left());
-    assert_eq!(50 as f32, root_child2.get_layout_top());
-    assert_eq!(50 as f32, root_child2.get_layout_width());
-    assert_eq!(50 as f32, root_child2.get_layout_height());
+    assert_eq!(50_f32, root_child2.get_layout_left());
+    assert_eq!(50_f32, root_child2.get_layout_top());
+    assert_eq!(50_f32, root_child2.get_layout_width());
+    assert_eq!(50_f32, root_child2.get_layout_height());
 
-    assert_eq!(50 as f32, root_child3.get_layout_left());
-    assert_eq!(100 as f32, root_child3.get_layout_top());
-    assert_eq!(50 as f32, root_child3.get_layout_width());
-    assert_eq!(50 as f32, root_child3.get_layout_height());
+    assert_eq!(50_f32, root_child3.get_layout_left());
+    assert_eq!(100_f32, root_child3.get_layout_top());
+    assert_eq!(50_f32, root_child3.get_layout_width());
+    assert_eq!(50_f32, root_child3.get_layout_height());
 
     assert_eq!(0 as f32, root_child4.get_layout_left());
     assert_eq!(0 as f32, root_child4.get_layout_top());
-    assert_eq!(50 as f32, root_child4.get_layout_width());
-    assert_eq!(50 as f32, root_child4.get_layout_height());
+    assert_eq!(50_f32, root_child4.get_layout_width());
+    assert_eq!(50_f32, root_child4.get_layout_height());
 }
 
 #[test]
@@ -1953,50 +1953,50 @@ fn test_align_content_stretch_is_not_overriding_align_items() {
     root_child0.set_flex_direction(FlexDirection::Row);
     root_child0.set_align_content(Align::Stretch);
     root_child0.set_align_items(Align::Center);
-    root_child0.set_width(StyleUnit::Point((100 as f32).into()));
+    root_child0.set_width(StyleUnit::Point(100_f32.into()));
     root_child0.set_min_width(StyleUnit::Auto);
-    root_child0.set_height(StyleUnit::Point((100 as f32).into()));
+    root_child0.set_height(StyleUnit::Point(100_f32.into()));
     root_child0.set_min_height(StyleUnit::Auto);
     root.insert_child(&mut root_child0, 0);
 
     let mut root_child0_child0 = Node::new_with_config(&mut config);
     root_child0_child0.set_align_content(Align::Stretch);
-    root_child0_child0.set_width(StyleUnit::Point((10 as f32).into()));
+    root_child0_child0.set_width(StyleUnit::Point(10_f32.into()));
     root_child0_child0.set_min_width(StyleUnit::Auto);
-    root_child0_child0.set_height(StyleUnit::Point((10 as f32).into()));
+    root_child0_child0.set_height(StyleUnit::Point(10_f32.into()));
     root_child0_child0.set_min_height(StyleUnit::Auto);
     root_child0.insert_child(&mut root_child0_child0, 0);
     root.calculate_layout(Undefined, Undefined, Direction::LTR);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(100 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(100_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(100 as f32, root_child0.get_layout_width());
-    assert_eq!(100 as f32, root_child0.get_layout_height());
+    assert_eq!(100_f32, root_child0.get_layout_width());
+    assert_eq!(100_f32, root_child0.get_layout_height());
 
     assert_eq!(0 as f32, root_child0_child0.get_layout_left());
-    assert_eq!(45 as f32, root_child0_child0.get_layout_top());
-    assert_eq!(10 as f32, root_child0_child0.get_layout_width());
-    assert_eq!(10 as f32, root_child0_child0.get_layout_height());
+    assert_eq!(45_f32, root_child0_child0.get_layout_top());
+    assert_eq!(10_f32, root_child0_child0.get_layout_width());
+    assert_eq!(10_f32, root_child0_child0.get_layout_height());
 
     root.calculate_layout(Undefined, Undefined, Direction::RTL);
 
     assert_eq!(0 as f32, root.get_layout_left());
     assert_eq!(0 as f32, root.get_layout_top());
-    assert_eq!(100 as f32, root.get_layout_width());
-    assert_eq!(100 as f32, root.get_layout_height());
+    assert_eq!(100_f32, root.get_layout_width());
+    assert_eq!(100_f32, root.get_layout_height());
 
     assert_eq!(0 as f32, root_child0.get_layout_left());
     assert_eq!(0 as f32, root_child0.get_layout_top());
-    assert_eq!(100 as f32, root_child0.get_layout_width());
-    assert_eq!(100 as f32, root_child0.get_layout_height());
+    assert_eq!(100_f32, root_child0.get_layout_width());
+    assert_eq!(100_f32, root_child0.get_layout_height());
 
-    assert_eq!(90 as f32, root_child0_child0.get_layout_left());
-    assert_eq!(45 as f32, root_child0_child0.get_layout_top());
-    assert_eq!(10 as f32, root_child0_child0.get_layout_width());
-    assert_eq!(10 as f32, root_child0_child0.get_layout_height());
+    assert_eq!(90_f32, root_child0_child0.get_layout_left());
+    assert_eq!(45_f32, root_child0_child0.get_layout_top());
+    assert_eq!(10_f32, root_child0_child0.get_layout_width());
+    assert_eq!(10_f32, root_child0_child0.get_layout_height());
 }
