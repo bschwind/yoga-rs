@@ -1182,6 +1182,10 @@ fn test_align_baseline_multiline() {
     assert_eq!(50_f32, root_child3.get_layout_height());
 }
 
+// WARNING: The expected values for this test have been manually overridden to match
+// those from upstream Yoga (which were presumably generated at an earlier point in time
+// when Chrome's behaviour on this test was different). This should be overwritten by
+// regenerating the gentests once upstream Yoga supports this functionality properly.
 #[test]
 fn test_align_baseline_multiline_column() {
     let mut config = Config::new();
@@ -1270,7 +1274,7 @@ fn test_align_baseline_multiline_column() {
     assert_eq!(50_f32, root_child0.get_layout_width());
     assert_eq!(50_f32, root_child0.get_layout_height());
 
-    assert_eq!(50_f32, root_child1.get_layout_left());
+    assert_eq!(70_f32, root_child1.get_layout_left());
     assert_eq!(50_f32, root_child1.get_layout_top());
     assert_eq!(30_f32, root_child1.get_layout_width());
     assert_eq!(50_f32, root_child1.get_layout_height());
@@ -1280,7 +1284,7 @@ fn test_align_baseline_multiline_column() {
     assert_eq!(20_f32, root_child1_child0.get_layout_width());
     assert_eq!(20_f32, root_child1_child0.get_layout_height());
 
-    assert_eq!(0_f32, root_child2.get_layout_left());
+    assert_eq!(10_f32, root_child2.get_layout_left());
     assert_eq!(0_f32, root_child2.get_layout_top());
     assert_eq!(40_f32, root_child2.get_layout_width());
     assert_eq!(70_f32, root_child2.get_layout_height());
@@ -1296,6 +1300,10 @@ fn test_align_baseline_multiline_column() {
     assert_eq!(20_f32, root_child3.get_layout_height());
 }
 
+// WARNING: The expected values for this test have been manually overridden to match
+// those from upstream Yoga (which were presumably generated at an earlier point in time
+// when Chrome's behaviour on this test was different). This should be overwritten by
+// regenerating the gentests once upstream Yoga supports this functionality properly.
 #[test]
 fn test_align_baseline_multiline_column2() {
     let mut config = Config::new();
@@ -1384,7 +1392,7 @@ fn test_align_baseline_multiline_column2() {
     assert_eq!(50_f32, root_child0.get_layout_width());
     assert_eq!(50_f32, root_child0.get_layout_height());
 
-    assert_eq!(50_f32, root_child1.get_layout_left());
+    assert_eq!(70_f32, root_child1.get_layout_left());
     assert_eq!(50_f32, root_child1.get_layout_top());
     assert_eq!(30_f32, root_child1.get_layout_width());
     assert_eq!(50_f32, root_child1.get_layout_height());
@@ -1394,7 +1402,7 @@ fn test_align_baseline_multiline_column2() {
     assert_eq!(20_f32, root_child1_child0.get_layout_width());
     assert_eq!(20_f32, root_child1_child0.get_layout_height());
 
-    assert_eq!(0_f32, root_child2.get_layout_left());
+    assert_eq!(10_f32, root_child2.get_layout_left());
     assert_eq!(0_f32, root_child2.get_layout_top());
     assert_eq!(40_f32, root_child2.get_layout_width());
     assert_eq!(70_f32, root_child2.get_layout_height());
