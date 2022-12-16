@@ -7,8 +7,13 @@ jobs:
     name: Cargo Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: dtolnay/rust-toolchain@stable
+      - name: Checkout repository and submodules
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Install rust
+        uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: stable
-      - run: cargo test
+      - name: Run Tests
+        run: cargo test
