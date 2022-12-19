@@ -13,10 +13,10 @@ default = []
 serde_support = ["serde", "serde_derive", "ordered-float/serde"]
 
 [build-dependencies]
-cc = "1.0.17"
 bindgen = "0.63.0"
+cc = "1.0.78"
 
 [dependencies]
-serde = { version = "1.0.27", optional = true }
-serde_derive = { version = "1.0.27", optional = true }
 ordered-float = "3.4.0"
+serde = { version = "1.0.151", optional = true }
+serde_derive = { version = "1.0.151", optional = true }
