@@ -7,14 +7,14 @@ jobs:
     name: Cargo Clippy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
+      - name: Checkout repository and submodules
+        uses: actions/checkout@v2
         with:
-          profile: minimal
+          submodules: recursive
+      - name: Install rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
           toolchain: stable
-          override: true
           components: clippy
-      - uses: actions-rs/cargo@v1
-        with:
-          command: clippy
-          args: --all-targets -- -D warnings
+      - name: Clippy
+        run: cargo clippy --all-targets -- -D warnings

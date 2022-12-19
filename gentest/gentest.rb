@@ -1,15 +1,16 @@
 #!/usr/bin/env ruby
 
 require 'watir'
+require 'webdrivers'
 require 'fileutils'
 
-caps = Selenium::WebDriver::Remote::Capabilities.chrome(
-  "loggingPrefs"=>{
-    "browser"=>"ALL",
-    "performance"=>"ALL"
-  }
-)
-browser = Watir::Browser.new(:chrome, :desired_capabilities => caps, :switches => ['--force-device-scale-factor=1', '--window-position=0,0'])
+browser = Watir::Browser.new(:chrome, options: {
+  "goog:loggingPrefs" => {
+    "browser" => "ALL",
+    "performance" => "ALL"
+  },
+  args: ['--force-device-scale-factor=1', '--window-position=0,0']
+})
 
 Dir.chdir(File.dirname($0))
 
@@ -35,7 +36,7 @@ Dir['../src/yoga/gentest/fixtures/*.html'].each do |file|
   FileUtils.copy('test.html', "#{name}.html") if $DEBUG
 
   browser.goto('file://' + Dir.pwd + '/test.html')
-  logs = browser.driver.manage.logs.get(:browser)
+  logs = browser.driver.logs.get(:browser)
   puts logs[1]
   
   f = File.open("../tests/#{name[2..-1].gsub!(/(.)([A-Z])/,'\1_\2').downcase}.rs", 'w')

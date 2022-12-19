@@ -1,3 +1,1 @@
-use crate::internal;
-
-pub const Undefined: f32 = internal::YGUndefined as f32;
+pub const Undefined: f32 = f32::NAN;
