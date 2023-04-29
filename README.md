@@ -10,6 +10,7 @@ Dependencies
 ------------
 - cargo
 - rustc
+- libc++-dev (LLVM’s libc++)
 
 Build
 -----
