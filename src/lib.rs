@@ -34,7 +34,6 @@ mod ffi_types {
     pub mod node_type;
     pub mod overflow;
     pub mod position_type;
-    pub mod print_options;
     pub mod size;
     pub mod style_unit;
     pub mod undefined;
@@ -166,7 +165,7 @@ impl Node {
         }
     }
 
-    pub fn insert_child(&mut self, child: &mut Node, index: u32) {
+    pub fn insert_child(&mut self, child: &mut Node, index: usize) {
         unsafe {
             internal::YGNodeInsertChild(self.inner_node, child.inner_node, index);
         }
@@ -178,7 +177,7 @@ impl Node {
         }
     }
 
-    pub fn child_count(&self) -> u32 {
+    pub fn child_count(&self) -> usize {
         unsafe { internal::YGNodeGetChildCount(self.inner_node) }
     }
 
@@ -522,11 +521,11 @@ impl Node {
         }
     }
 
-    pub fn get_child_count(&self) -> u32 {
+    pub fn get_child_count(&self) -> usize {
         unsafe { internal::YGNodeGetChildCount(self.inner_node) }
     }
 
-    pub fn get_child(&self, index: u32) -> NodeRef {
+    pub fn get_child(&self, index: usize) -> NodeRef {
         unsafe { internal::YGNodeGetChild(self.inner_node, index) }
     }
 
@@ -949,7 +948,7 @@ impl Node {
         match func {
             Some(f) => unsafe {
                 type Callback = unsafe extern "C" fn(
-                    internal::YGNodeRef,
+                    internal::YGNodeConstRef,
                     f32,
                     internal::YGMeasureMode,
                     f32,
@@ -967,7 +966,7 @@ impl Node {
     pub fn set_baseline_func(&mut self, func: BaselineFunc) {
         match func {
             Some(f) => unsafe {
-                type Callback = unsafe extern "C" fn(internal::YGNodeRef, f32, f32) -> f32;
+                type Callback = unsafe extern "C" fn(internal::YGNodeConstRef, f32, f32) -> f32;
                 let casted_func: Callback = std::mem::transmute(f as usize);
                 internal::YGNodeSetBaselineFunc(self.inner_node, Some(casted_func));
             },

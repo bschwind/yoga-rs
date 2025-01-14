@@ -3,7 +3,12 @@ extern crate cc;
 
 use bindgen::{NonCopyUnionStyle, RustTarget};
 use cc::Build;
-use std::{env, path::PathBuf, process::Command};
+use std::{
+    env,
+    fs::{read_to_string, write},
+    path::PathBuf,
+    process::Command,
+};
 
 fn main() {
     println!("cargo:rerun-if-changed=src/yoga/yoga");
@@ -60,7 +65,6 @@ fn main() {
         .clang_arg("-std=c++20")
         .clang_arg("-stdlib=libc++")
         .clang_arg("-Isrc/yoga")
-        .no_convert_floats()
         .enable_cxx_namespaces()
         .allowlist_type("YG.*")
         .allowlist_function("YG.*")
@@ -75,6 +79,15 @@ fn main() {
         .expect("Unable to generate bindings");
 
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
+    let out_file = out_path.join("bindings.rs");
 
-    bindings.write_to_file(out_path.join("bindings.rs")).expect("Unable to write bindings!");
+    bindings.write_to_file(&out_file).expect("Unable to write bindings!");
+
+    // Patch bindings because bindgen is incorecctly detected float type
+    let buf = read_to_string(&out_file).expect("Unable to read bindings");
+    let patched = buf.replace(
+        "pub const YGUndefined: f32 = f64::NAN;",
+        "pub const YGUndefined: f32 = f32::NAN;",
+    );
+    write(&out_file, patched).expect("Unable to write patched bindings")
 }

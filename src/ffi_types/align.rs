@@ -12,6 +12,7 @@ pub enum Align {
     Baseline = 5,
     SpaceBetween = 6,
     SpaceAround = 7,
+    SpaceEvenly = 8,
 }
 
 impl From<Align> for internal::YGAlign {
@@ -25,6 +26,7 @@ impl From<Align> for internal::YGAlign {
             Align::Baseline => internal::YGAlign::YGAlignBaseline,
             Align::SpaceBetween => internal::YGAlign::YGAlignSpaceBetween,
             Align::SpaceAround => internal::YGAlign::YGAlignSpaceAround,
+            Align::SpaceEvenly => internal::YGAlign::YGAlignSpaceEvenly,
         }
     }
 }
@@ -40,6 +42,7 @@ impl From<internal::YGAlign> for Align {
             internal::YGAlign::YGAlignBaseline => Align::Baseline,
             internal::YGAlign::YGAlignSpaceBetween => Align::SpaceBetween,
             internal::YGAlign::YGAlignSpaceAround => Align::SpaceAround,
+            internal::YGAlign::YGAlignSpaceEvenly => Align::SpaceEvenly,
         }
     }
 }
