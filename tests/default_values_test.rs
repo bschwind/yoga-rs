@@ -17,7 +17,7 @@ fn test_assert_default_values() {
     assert_eq!(Align::FlexStart, root.get_align_content());
     assert_eq!(Align::Stretch, root.get_align_items());
     assert_eq!(Align::Auto, root.get_align_self());
-    assert_eq!(PositionType::Static, root.get_position_type());
+    assert_eq!(PositionType::Relative, root.get_position_type());
     assert_eq!(Wrap::NoWrap, root.get_flex_wrap());
     assert_eq!(Overflow::Visible, root.get_overflow());
     assert_eq!(0.0, root.get_flex_grow());
