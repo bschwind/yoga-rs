@@ -38,6 +38,7 @@ mod ffi_types {
     pub type PositionType = internal::YGPositionType;
     pub type Size = internal::YGSize;
     pub type Wrap = internal::YGWrap;
+    pub type BoxSizing = internal::YGBoxSizing;
 
     pub const Undefined: f32 = f32::NAN;
 
@@ -150,6 +151,7 @@ impl Node {
             Border(b) => self.set_border(Edge::All, b.into_inner()),
             Bottom(b) => self.set_position(Edge::Bottom, b),
             Display(d) => self.set_display(d),
+            BoxSizing(d) => self.set_box_sizing(d),
             End(e) => self.set_position(Edge::End, e),
             Flex(f) => self.set_flex(f.into_inner()),
             FlexBasis(f) => self.set_flex_basis(f),
@@ -816,6 +818,12 @@ impl Node {
     pub fn set_display(&mut self, display: Display) {
         unsafe {
             internal::YGNodeStyleSetDisplay(self.inner_node, display);
+        }
+    }
+
+    pub fn set_box_sizing(&mut self, box_sizing: BoxSizing) {
+        unsafe {
+            internal::YGNodeStyleSetBoxSizing(self.inner_node, box_sizing);
         }
     }
 

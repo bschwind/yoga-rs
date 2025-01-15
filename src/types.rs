@@ -21,6 +21,7 @@ pub enum FlexStyle {
     Border(OrderedFloat<f32>),
     Bottom(StyleUnit),
     Display(Display),
+    BoxSizing(BoxSizing),
     End(StyleUnit),
     Flex(OrderedFloat<f32>),
     FlexBasis(StyleUnit),
