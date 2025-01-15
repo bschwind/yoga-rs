@@ -1,18 +1,27 @@
 function toRustValue (value) {
-  var valueString = value.toString()
-  var n = value.toString().replace('px', '').replace('%', '')
+  if (value === undefined) {
+    throw new Error("Undefined value found. This likely means a new enum variant lookup needs to be added");
+  }
 
-  if (valueString.includes('px')) {
+  var n = value.replace('px', '').replace('%', '')
+
+  if (value.includes('px')) {
     return 'StyleUnit::Point(' + n + '_f32.into())'
   }
 
-  if (valueString.includes('%')) {
+  if (value.includes('%')) {
     return 'StyleUnit::Percent(' + n + '_f32.into())'
+  }
+
+  // Handle aspect ratio values in "1 / 3" form
+  if (value.includes('/')) {
+    const [numerator, denominator] = value.split('/');
+    return toRustNumber(numerator) + ' / ' + toRustNumber(denominator);
   }
 
   var number = Number(n)
   if (isNaN(number)) {
-    return valueString
+    return value
   }
   return number + '_f32'
 }
@@ -40,6 +49,7 @@ RustEmitter.prototype = Object.create(Emitter.prototype, {
       this.push([
         'extern crate ordered_float;',
         'extern crate yoga;',
+        'mod test_utils;',
         '',
         'use yoga::*;',
         ''
@@ -54,16 +64,17 @@ RustEmitter.prototype = Object.create(Emitter.prototype, {
   },
 
   emitTestPrologue: {
-    value: function (name, experiments) {
-      this.push([
-        '#[test]',
-        'fn test_' + name + '() {'
-      ])
-      this.pushIndent()
+    value: function (name, experiments, disabled) {
+      this.push('#[test]');
+      if (disabled) {
+        this.push('#[ignore]');
+      }
+      this.push('fn test_' + name + '() {');
+      this.pushIndent();
       this.push([
         'let mut config = Config::new();',
         ''
-      ])
+      ]);
     }
   },
 
@@ -100,6 +111,7 @@ RustEmitter.prototype = Object.create(Emitter.prototype, {
   YGAlignStretch: { value: 'Align::Stretch' },
   YGAlignSpaceBetween: { value: 'Align::SpaceBetween' },
   YGAlignSpaceAround: { value: 'Align::SpaceAround' },
+  YGAlignSpaceEvenly: { value: 'Align::SpaceEvenly' },
   YGAlignBaseline: { value: 'Align::Baseline' },
 
   YGDirectionInherit: { value: 'Direction::Inherit' },
@@ -131,9 +143,11 @@ RustEmitter.prototype = Object.create(Emitter.prototype, {
 
   YGOverflowHidden: { value: 'Overflow::Hidden' },
   YGOverflowVisible: { value: 'Overflow::Visible' },
+  YGOverflowScroll: { value: 'Overflow::Scroll' },
 
   YGPositionTypeAbsolute: { value: 'PositionType::Absolute' },
   YGPositionTypeRelative: { value: 'PositionType::Relative' },
+  YGPositionTypeStatic: { value: 'PositionType::Static' },
 
   YGUndefined: { value: 'StyleUnit::UndefinedValue' },
 
@@ -141,10 +155,14 @@ RustEmitter.prototype = Object.create(Emitter.prototype, {
 
   YGDisplayFlex: { value: 'Display::Flex' },
   YGDisplayNone: { value: 'Display::None' },
+  YGDisplayContents: { value: 'Display::Contents' },
 
   YGWrapNoWrap: { value: 'Wrap::NoWrap' },
   YGWrapWrap: { value: 'Wrap::Wrap' },
   YGWrapWrapReverse: { value: 'Wrap::WrapReverse' },
+
+  YGBoxSizingBorderBox: {value: 'BoxSizing::BorderBox'},
+  YGBoxSizingContentBox: {value: 'BoxSizing::ContentBox'},
 
   YGNodeCalculateLayout: {
     value: function (node, dir, experiments) {
@@ -198,6 +216,12 @@ RustEmitter.prototype = Object.create(Emitter.prototype, {
     value: function (nodeName, value) {
       this.push(nodeName + '.set_align_self(' + value + ');')
     }
+  },
+
+  YGNodeStyleSetAspectRatio: {
+    value: function (nodeName, value) {
+      this.push(nodeName + '.set_aspect_ratio(' + toRustValue(value) + ');');
+    },
   },
 
   YGNodeStyleSetBorder: {
@@ -322,6 +346,21 @@ RustEmitter.prototype = Object.create(Emitter.prototype, {
   },
 
   YGNodeStyleSetGap:{value:function(nodeName, gap, value) {
-    this.push(nodeName + '.set_gap('+ toRustValue(gap) + ', ' + toRustNumber(value) + ');');
+    this.push(nodeName + '.set_gap('+ gap + ', ' + toRustValue(value) + ');');
   }},
+
+  YGNodeStyleSetBoxSizing: {
+    value: function (nodeName, value) {
+      this.push(nodeName + '.set_box_sizing(' + toRustValue(value) + ');');
+    },
+  },
+
+  YGNodeSetMeasureFunc: {
+    value: function (nodeName, innerText) {
+      this.push(`${nodeName}.set_context(Some(Context::new(String::from("${innerText}"))));`);
+      this.push(
+        `${nodeName}.set_measure_func(Some(test_utils::intrinsic_measure_function));`,
+      );
+    },
+  },
 })

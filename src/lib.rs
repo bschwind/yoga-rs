@@ -32,7 +32,8 @@ mod ffi_types {
     pub type Justify = internal::YGJustify;
     pub type LogLevel = internal::YGLogLevel;
     pub type MeasureMode = internal::YGMeasureMode;
-    pub type NodeRef = internal::YGNodeRef;
+    pub type NodeMut = internal::YGNodeRef;
+    pub type NodeRef = internal::YGNodeConstRef;
     pub type NodeType = internal::YGNodeType;
     pub type Overflow = internal::YGOverflow;
     pub type PositionType = internal::YGPositionType;
@@ -74,7 +75,7 @@ impl Config {
 #[repr(C)]
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Node {
-    inner_node: NodeRef,
+    inner_node: NodeMut,
 }
 
 impl Default for Node {
@@ -92,7 +93,7 @@ impl Drop for Node {
             // YGNodeFree does not mark the parent as dirty, but YGNodeRemoveChild does.
             // TODO remove the following lines when upgrading to a more recent revision of yoga.
             let parent = internal::YGNodeGetParent(self.inner_node);
-            if parent != 0 as NodeRef {
+            if parent != 0 as NodeMut {
                 internal::YGNodeRemoveChild(
                     internal::YGNodeGetParent(self.inner_node),
                     self.inner_node,
@@ -515,7 +516,7 @@ impl Node {
         unsafe { internal::YGNodeGetChildCount(self.inner_node) }
     }
 
-    pub fn get_child(&self, index: usize) -> NodeRef {
+    pub fn get_child(&self, index: usize) -> NodeMut {
         unsafe { internal::YGNodeGetChild(self.inner_node, index) }
     }
 
@@ -834,17 +835,10 @@ impl Node {
         }
     }
 
-    pub fn set_measure_func(&mut self, func: MeasureFunc) {
+    pub fn set_measure_func(&mut self, func: Option<MeasureFunc>) {
         match func {
             Some(f) => unsafe {
-                type Callback = unsafe extern "C" fn(
-                    internal::YGNodeConstRef,
-                    f32,
-                    internal::YGMeasureMode,
-                    f32,
-                    internal::YGMeasureMode,
-                ) -> internal::YGSize;
-                let casted_func: Callback = std::mem::transmute(f as usize);
+                let casted_func: UnsafeMeasureFunc = std::mem::transmute(f as usize);
                 internal::YGNodeSetMeasureFunc(self.inner_node, Some(casted_func));
             },
             None => unsafe {
@@ -853,11 +847,10 @@ impl Node {
         }
     }
 
-    pub fn set_baseline_func(&mut self, func: BaselineFunc) {
+    pub fn set_baseline_func(&mut self, func: Option<BaselineFunc>) {
         match func {
             Some(f) => unsafe {
-                type Callback = unsafe extern "C" fn(internal::YGNodeConstRef, f32, f32) -> f32;
-                let casted_func: Callback = std::mem::transmute(f as usize);
+                let casted_func: UnsafeBaselineFunc = std::mem::transmute(f as usize);
                 internal::YGNodeSetBaselineFunc(self.inner_node, Some(casted_func));
             },
             None => unsafe {
@@ -873,26 +866,28 @@ impl Node {
         unsafe { internal::YGNodeSetContext(self.inner_node, raw) }
     }
 
-    pub fn get_context(node_ref: &NodeRef) -> Option<&Box<dyn Any>> {
-        let raw = unsafe { internal::YGNodeGetContext(*node_ref) };
+    pub fn get_context(&self) -> Option<&Box<dyn Any>> {
+        let raw = unsafe { internal::YGNodeGetContext(self.inner_node) };
         Context::get_inner_ref(raw)
     }
 
-    pub fn get_context_mut(node_ref: &NodeRef) -> Option<&mut Box<dyn Any>> {
-        let raw = unsafe { internal::YGNodeGetContext(*node_ref) };
+    pub fn get_context_mut(&self) -> Option<&mut Box<dyn Any>> {
+        let raw = unsafe { internal::YGNodeGetContext(self.inner_node) };
         Context::get_inner_mut(raw)
-    }
-
-    pub fn get_own_context(&self) -> Option<&Box<dyn Any>> {
-        Node::get_context(&self.inner_node)
-    }
-
-    pub fn get_own_context_mut(&self) -> Option<&mut Box<dyn Any>> {
-        Node::get_context_mut(&self.inner_node)
     }
 
     pub fn drop_context(&mut self) {
         let prev_raw = unsafe { internal::YGNodeGetContext(self.inner_node) };
         Context::drop_raw(prev_raw);
     }
+}
+
+pub fn get_node_ref_context(node_ref: &NodeRef) -> Option<&Box<dyn Any>> {
+    let raw = unsafe { internal::YGNodeGetContext(*node_ref) };
+    Context::get_inner_ref(raw)
+}
+
+pub fn get_node_ref_context_mut(node_mut: &mut NodeMut) -> Option<&mut Box<dyn Any>> {
+    let raw = unsafe { internal::YGNodeGetContext(*node_mut as NodeRef) };
+    Context::get_inner_mut(raw)
 }

@@ -1,13 +1,13 @@
 extern crate yoga;
 
 use std::{cell::RefCell, rc::Rc};
-use yoga::{Context, Direction, MeasureMode, Node, NodeRef, Size, Undefined};
+use yoga::{get_node_ref_context, Context, Direction, MeasureMode, Node, NodeRef, Size, Undefined};
 
 #[test]
 fn test_context_0() {
     let root = Node::new();
-    assert!(root.get_own_context().is_none());
-    assert!(root.get_own_context_mut().is_none());
+    assert!(root.get_context().is_none());
+    assert!(root.get_context_mut().is_none());
 }
 
 #[test]
@@ -15,7 +15,7 @@ fn test_context_1() {
     let mut root = Node::new();
     root.set_context(Some(Context::new("test".to_string())));
 
-    let context = root.get_own_context().unwrap();
+    let context = root.get_context().unwrap();
     assert!(context.downcast_ref::<bool>().is_none());
     assert!(context.downcast_ref::<&str>().is_none());
     assert_eq!(context.downcast_ref::<String>().unwrap(), "test");
@@ -33,7 +33,7 @@ fn test_context_2_safe_check() {
         _: f32,
         _: MeasureMode,
     ) -> Size {
-        let context = Node::get_context(&node_ref).unwrap().downcast_ref::<Bogus>();
+        let context = get_node_ref_context(&node_ref).unwrap().downcast_ref::<Bogus>();
 
         assert_eq!(context, None);
 
@@ -64,7 +64,7 @@ fn test_context_2() {
         _: f32,
         _: MeasureMode,
     ) -> Size {
-        let context = Node::get_context(&node_ref).unwrap().downcast_ref::<String>().unwrap();
+        let context = get_node_ref_context(&node_ref).unwrap().downcast_ref::<String>().unwrap();
 
         Size { width: context.len() as f32, height: if context == "test" { 1.0 } else { 0.0 } }
     }
@@ -104,7 +104,7 @@ fn test_context_3() {
         _: MeasureMode,
     ) -> Size {
         let context =
-            Node::get_context(&node_ref).unwrap().downcast_ref::<LocalCustomData>().unwrap();
+            get_node_ref_context(&node_ref).unwrap().downcast_ref::<LocalCustomData>().unwrap();
 
         let text = &context.text;
         let font = context.font.borrow();
@@ -171,7 +171,7 @@ extern "C" fn external_measure(
     _: MeasureMode,
 ) -> Size {
     let context =
-        Node::get_context(&node_ref).unwrap().downcast_ref::<ExternalCustomData>().unwrap();
+        get_node_ref_context(&node_ref).unwrap().downcast_ref::<ExternalCustomData>().unwrap();
 
     let text = &context.text;
     let font = context.font.borrow();

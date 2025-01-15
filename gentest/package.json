@@ -1,0 +1,25 @@
+{
+  "name": "gentest",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "gentest": "node --disable-warning=ExperimentalWarning --loader=babel-register-esm ./gentest-driver.ts",
+    "gentest-validate": "node --disable-warning=ExperimentalWarning --loader=babel-register-esm ./gentest-validate.ts"
+  },
+  "type": "module",
+  "dependencies": {
+    "minimist": "^1.2.8",
+    "selenium-webdriver": "^4.16.0",
+    "signedsource": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-typescript": "^7.23.0",
+    "@tsconfig/node18": "^18.2.2",
+    "@types/minimist": "^1.2.5",
+    "@types/node": "^20.10.3",
+    "@types/selenium-webdriver": "^4.1.21",
+    "babel-register-esm": "^1.2.5",
+    "glob": "^10.4.2"
+  }
+}

@@ -2,8 +2,11 @@ pub use crate::ffi_types::*;
 use ordered_float::OrderedFloat;
 use std::{any::Any, ops::Deref, os::raw::c_void};
 
-pub type BaselineFunc = Option<extern "C" fn(NodeRef, f32, f32) -> f32>;
-pub type MeasureFunc = Option<extern "C" fn(NodeRef, f32, MeasureMode, f32, MeasureMode) -> Size>;
+pub type BaselineFunc = extern "C" fn(NodeRef, f32, f32) -> f32;
+pub(crate) type UnsafeBaselineFunc = unsafe extern "C" fn(NodeRef, f32, f32) -> f32;
+pub type MeasureFunc = extern "C" fn(NodeRef, f32, MeasureMode, f32, MeasureMode) -> Size;
+pub(crate) type UnsafeMeasureFunc =
+    unsafe extern "C" fn(NodeRef, f32, MeasureMode, f32, MeasureMode) -> Size;
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, Clone)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
