@@ -1,7 +1,10 @@
 extern crate bindgen;
 extern crate cc;
 
-use bindgen::{NonCopyUnionStyle, RustTarget};
+use bindgen::{
+    callbacks::{ParseCallbacks, TypeKind},
+    NonCopyUnionStyle, RustTarget,
+};
 use cc::Build;
 use std::{
     env,
@@ -9,6 +12,36 @@ use std::{
     path::PathBuf,
     process::Command,
 };
+
+#[derive(Debug)]
+struct BindgenCallbacks;
+
+impl ParseCallbacks for BindgenCallbacks {
+    fn enum_variant_name(
+        &self,
+        enum_name: Option<&str>,
+        original_variant_name: &str,
+        _variant_value: bindgen::callbacks::EnumVariantValue,
+    ) -> Option<String> {
+        enum_name.map(|name| original_variant_name.replace(name, ""))
+    }
+
+    fn add_derives(&self, info: &bindgen::callbacks::DeriveInfo<'_>) -> Vec<String> {
+        if info.kind == TypeKind::Enum {
+            ["PartialOrd", "Ord"].into_iter().map(String::from).collect()
+        } else {
+            vec![]
+        }
+    }
+
+    fn add_attributes(&self, info: &bindgen::callbacks::AttributeInfo<'_>) -> Vec<String> {
+        if info.kind == TypeKind::Enum {
+            vec![r#"#[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]"#.into()]
+        } else {
+            vec![]
+        }
+    }
+}
 
 fn main() {
     println!("cargo:rerun-if-changed=src/yoga/yoga");
@@ -72,6 +105,8 @@ fn main() {
         .layout_tests(false)
         .formatter(bindgen::Formatter::Rustfmt)
         .rustified_enum("YG.*")
+        .prepend_enum_name(false)
+        .parse_callbacks(Box::new(BindgenCallbacks))
         .manually_drop_union(".*")
         .default_non_copy_union_style(NonCopyUnionStyle::ManuallyDrop)
         .header("src/wrapper.hpp")
@@ -89,5 +124,7 @@ fn main() {
         "pub const YGUndefined: f32 = f64::NAN;",
         "pub const YGUndefined: f32 = f32::NAN;",
     );
-    write(&out_file, patched).expect("Unable to write patched bindings")
+    write(&out_file, patched).expect("Unable to write patched bindings");
+
+    println!("Bindings written to {}", &out_file.display());
 }

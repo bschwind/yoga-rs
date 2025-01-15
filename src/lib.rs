@@ -19,25 +19,29 @@ mod internal {
 
 // Public re-exports of Yoga enums
 mod ffi_types {
-    pub mod align;
-    pub mod config_ref;
-    pub mod dimension;
-    pub mod direction;
-    pub mod display;
-    pub mod edge;
-    pub mod flex_direction;
-    pub mod gutter;
-    pub mod justify;
-    pub mod log_level;
-    pub mod measure_mode;
-    pub mod node_ref;
-    pub mod node_type;
-    pub mod overflow;
-    pub mod position_type;
-    pub mod size;
-    pub mod style_unit;
-    pub mod undefined;
-    pub mod wrap;
+    use crate::internal;
+    pub type Align = internal::YGAlign;
+    pub type ConfigRef = internal::YGConfigRef;
+    pub type Dimension = internal::YGDimension;
+    pub type Direction = internal::YGDirection;
+    pub type Display = internal::YGDisplay;
+    pub type Edge = internal::YGEdge;
+    pub type FlexDirection = internal::YGFlexDirection;
+    pub type Gutter = internal::YGGutter;
+    pub type Justify = internal::YGJustify;
+    pub type LogLevel = internal::YGLogLevel;
+    pub type MeasureMode = internal::YGMeasureMode;
+    pub type NodeRef = internal::YGNodeRef;
+    pub type NodeType = internal::YGNodeType;
+    pub type Overflow = internal::YGOverflow;
+    pub type PositionType = internal::YGPositionType;
+    pub type Size = internal::YGSize;
+    pub type Wrap = internal::YGWrap;
+
+    pub const Undefined: f32 = f32::NAN;
+
+    mod style_unit;
+    pub use style_unit::StyleUnit;
 }
 
 pub mod prelude;
