@@ -13,6 +13,7 @@ extern crate serde_derive;
 mod internal {
     #![allow(dead_code)]
     #![allow(clippy::enum_variant_names)] // TODO(bschwind) - Possibly change the binding logic to name enums properly.
+    #![allow(clippy::upper_case_acronyms)] // TODO - consider renaming
     include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
     pub use self::root::*;
 }
