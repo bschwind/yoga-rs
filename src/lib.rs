@@ -159,6 +159,9 @@ impl Node {
             FlexDirection(flex_direction) => self.set_flex_direction(flex_direction),
             FlexShrink(f) => self.set_flex_shrink(f.into_inner()),
             FlexWrap(wrap) => self.set_flex_wrap(wrap),
+            Gap(g) => self.set_gap(Gutter::All, g),
+            RowGap(g) => self.set_row_gap(g),
+            ColumnGap(g) => self.set_column_gap(g),
             Height(h) => self.set_height(h),
             JustifyContent(justify) => self.set_justify_content(justify),
             Left(l) => self.set_position(Edge::Left, l),
@@ -564,29 +567,33 @@ impl Node {
         unsafe { internal::YGNodeStyleGetFlexBasis(self.inner_node).into() }
     }
 
-    pub fn set_row_gap(&mut self, gap: f32) {
-        unsafe {
-            internal::YGNodeStyleSetGap(self.inner_node, Gutter::Row, gap);
-        }
+    pub fn set_row_gap(&mut self, gap: StyleUnit) {
+        self.set_gap(Gutter::Row, gap);
     }
 
     pub fn get_row_gap(&mut self) -> f32 {
         unsafe { internal::YGNodeStyleGetGap(self.inner_node, Gutter::Row) }
     }
 
-    pub fn set_column_gap(&mut self, gap: f32) {
-        unsafe {
-            internal::YGNodeStyleSetGap(self.inner_node, Gutter::Column, gap);
-        }
+    pub fn set_column_gap(&mut self, gap: StyleUnit) {
+        self.set_gap(Gutter::Column, gap);
     }
 
     pub fn get_column_gap(&mut self) -> f32 {
         unsafe { internal::YGNodeStyleGetGap(self.inner_node, Gutter::Column) }
     }
 
-    pub fn set_gap(&mut self, gap_type: Gutter, gap: f32) {
-        unsafe {
-            internal::YGNodeStyleSetGap(self.inner_node, gap_type, gap);
+    pub fn set_gap(&mut self, gap_type: Gutter, gap: StyleUnit) {
+        match gap {
+            StyleUnit::Point(val) => unsafe {
+                internal::YGNodeStyleSetGap(self.inner_node, gap_type, val.into_inner());
+            },
+            StyleUnit::Percent(val) => unsafe {
+                internal::YGNodeStyleSetGapPercent(self.inner_node, gap_type, val.into_inner());
+            },
+            StyleUnit::UndefinedValue | StyleUnit::Auto => unsafe {
+                internal::YGNodeStyleSetGap(self.inner_node, gap_type, 0.0);
+            },
         }
     }
 
