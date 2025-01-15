@@ -88,8 +88,8 @@ fn main() {
 		.file("src/yoga/yoga/YGNodeStyle.cpp")
 		.file("src/yoga/yoga/YGPixelGrid.cpp")
 		.file("src/yoga/yoga/YGValue.cpp")
-        .cargo_debug(true)
-		// .file("src/yoga/yoga/Yoga.cpp")
+        // Enable if debugging this script
+        // .cargo_debug(true)
 		.compile("libyoga");
 
     let bindings = bindgen::Builder::default()
