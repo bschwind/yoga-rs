@@ -17,6 +17,6 @@ bindgen = "0.71"
 cc = "1.2.9"
 
 [dependencies]
-ordered-float = "3.4.0"
+ordered-float = "4"
 serde = { version = "1.0.151", optional = true }
 serde_derive = { version = "1.0.151", optional = true }
