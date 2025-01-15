@@ -69,7 +69,6 @@ impl Config {
     }
 }
 
-
 #[repr(C)]
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Node {
