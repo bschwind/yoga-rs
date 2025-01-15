@@ -94,7 +94,7 @@ fn main() {
 
     let bindings = bindgen::Builder::default()
         .rust_target(RustTarget::stable(47, 0).unwrap_or_default())
-        .clang_args(&["-x", "c++", "-std=c++20", "-stdlib=libc++", "-Isrc/yoga"])
+        .clang_args(&["-x", "c++", "-std=c++20", "-Isrc/yoga"])
         .enable_cxx_namespaces()
         .allowlist_type("YG.*")
         .allowlist_function("YG.*")
