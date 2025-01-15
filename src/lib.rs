@@ -57,12 +57,6 @@ pub struct Config {
     inner_config: ConfigRef,
 }
 
-#[repr(C)]
-#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
-pub struct Node {
-    inner_node: NodeRef,
-}
-
 impl Default for Config {
     fn default() -> Self {
         Self::new()
@@ -75,9 +69,37 @@ impl Config {
     }
 }
 
+
+#[repr(C)]
+#[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+pub struct Node {
+    inner_node: NodeRef,
+}
+
 impl Default for Node {
     fn default() -> Self {
         Self::new()
+    }
+}
+
+impl Drop for Node {
+    fn drop(&mut self) {
+        self.set_context(None);
+
+        unsafe {
+            // In the current revision (a20bde8444474e7a34352a78073de23c26e08fc5),
+            // YGNodeFree does not mark the parent as dirty, but YGNodeRemoveChild does.
+            // TODO remove the following lines when upgrading to a more recent revision of yoga.
+            let parent = internal::YGNodeGetParent(self.inner_node);
+            if parent != 0 as NodeRef {
+                internal::YGNodeRemoveChild(
+                    internal::YGNodeGetParent(self.inner_node),
+                    self.inner_node,
+                );
+            }
+
+            internal::YGNodeFree(self.inner_node);
+        }
     }
 }
 
@@ -857,26 +879,5 @@ impl Node {
     pub fn drop_context(&mut self) {
         let prev_raw = unsafe { internal::YGNodeGetContext(self.inner_node) };
         Context::drop_raw(prev_raw);
-    }
-}
-
-impl Drop for Node {
-    fn drop(&mut self) {
-        self.set_context(None);
-
-        unsafe {
-            // In the current revision (a20bde8444474e7a34352a78073de23c26e08fc5),
-            // YGNodeFree does not mark the parent as dirty, but YGNodeRemoveChild does.
-            // TODO remove the following lines when upgrading to a more recent revision of yoga.
-            let parent = internal::YGNodeGetParent(self.inner_node);
-            if parent != 0 as NodeRef {
-                internal::YGNodeRemoveChild(
-                    internal::YGNodeGetParent(self.inner_node),
-                    self.inner_node,
-                );
-            }
-
-            internal::YGNodeFree(self.inner_node);
-        }
     }
 }
