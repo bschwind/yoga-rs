@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.0
+Released: 17th Jan 2025
+
+- Upgrade to Yoga  [v3.2.1](https://github.com/facebook/yoga/commit/042f5013152eb81c1552dec945b88f7b95ca350f) (committed on: 13th Dec 2024)
+- Added `Absolute` variant to `PositionType` enum
+- Added `Contents` variant to `Display` enum
+- Support percentage gaps
+- Support `BoxSizing`
+- Updated dependencies:
+  - `ordered_float` from `3.x` to `4.x`
+  - `bindgen` from `0.63.x` to `0.71.x`
+
 ## 0.4.0
 Released: Dec 20th 2022
 
