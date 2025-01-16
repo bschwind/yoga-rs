@@ -46,6 +46,7 @@ impl ParseCallbacks for BindgenCallbacks {
 fn main() {
     println!("cargo:rerun-if-changed=src/yoga/yoga");
 
+    // Update submodule
     Command::new("git")
         .args(["submodule", "init"])
         .status()
@@ -55,16 +56,16 @@ fn main() {
         .status()
         .expect("Unable to update the submodule repositories");
 
+    // Build Yoga using cc crate
     Build::new()
+        // Build configuation
+        // See https://github.com/facebook/yoga/blob/9591210a7ac5289fa00f15d5068383612d3225b9/cmake/project-defaults.cmake
 		.cpp(true)
-		// https://github.com/facebook/yoga/blob/c5f826de8306e5fbe5963f944c75add827e096c3/BUCK#L13
 		.std("c++20")
-		// https://github.com/facebook/yoga/blob/c5f826de8306e5fbe5963f944c75add827e096c3/yoga_defs.bzl#L49-L56
 		.flag("-fno-omit-frame-pointer")
 		.flag("-fexceptions")
 		.flag("-Wall")
 		.flag("-O3")
-		// https://github.com/facebook/yoga/blob/c5f826de8306e5fbe5963f944c75add827e096c3/yoga_defs.bzl#L58-L60
 		.flag("-fPIC")
 		// Include path
 		.include("src/yoga")
@@ -92,6 +93,7 @@ fn main() {
         // .cargo_debug(true)
 		.compile("libyoga");
 
+    // Generate bindings using bindgen
     let bindings = bindgen::Builder::default()
         .rust_target(RustTarget::stable(47, 0).unwrap_or_default())
         .clang_args(&["-x", "c++", "-std=c++20", "-Isrc/yoga"])
@@ -109,10 +111,8 @@ fn main() {
         .header("src/wrapper.hpp")
         .generate()
         .expect("Unable to generate bindings");
-
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
     let out_file = out_path.join("bindings.rs");
-
     bindings.write_to_file(&out_file).expect("Unable to write bindings!");
 
     // Patch bindings because bindgen is incorecctly detected float type
