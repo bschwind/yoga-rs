@@ -1,10 +1,13 @@
 Yoga-rs
 =======
-[![Build Status](https://travis-ci.org/bschwind/yoga-rs.svg?branch=master)](https://travis-ci.org/bschwind/yoga-rs)
 
-A Rust wrapper for Facebook's Yoga layout library.
+[![Github CI](https://github.com/bschwind/yoga-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/bschwind/yoga-rs/workflows/ci.yml)
+[![crates.io](https://img.shields.io/crates/v/yoga.svg)](https://crates.io/crates/yoga)
+[![docs.rs](https://img.shields.io/docsrs/yoga)](https://docs.rs/yoga)
 
-You may also want to check out [taffy](https://github.com/dioxuslabs/taffy) (a revived fork of the abandoned [stretch](https://github.com/vislyhq/stretch)) as it is a pure Rust implementation.
+A Rust wrapper for Facebook's [Yoga](https://github.com/facebook/yoga) layout library.
+
+You may also want to check out [Taffy](https://github.com/dioxuslabs/taffy) (a revived fork of the abandoned [stretch](https://github.com/vislyhq/stretch)) as it is a pure Rust implementation.
 
 Dependencies
 ------------
@@ -82,11 +85,13 @@ Download the [ChromeDriver](http://chromedriver.chromium.org) binary and put it 
 $ cp chromedriver /usr/local/bin
 ```
 
+Chromedriver can also be installed via homebrew.
+
 Then run the following
 
 ```bash
 $ cd gentest
-$ bundle install # Install the required ruby gems
-$ ruby gentest/gentest.rb # Generate the tests
+$ npm install # Install the required node modules
+$ npm run gentest # Generate the tests
 $ cargo +nightly fmt # Format the tests for consistency
 ```
