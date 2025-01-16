@@ -47,9 +47,7 @@ fn main() {
 
     let bindings = bindgen::Builder::default()
         .rust_target(RustTarget::Stable_1_47)
-        .clang_arg("--language=c++")
-        .clang_arg("-std=c++11")
-        .clang_arg("-stdlib=libc++")
+        .clang_args(&["-x", "c++", "-std=c++11"])
         .no_convert_floats()
         .enable_cxx_namespaces()
         .allowlist_type("YG.*")

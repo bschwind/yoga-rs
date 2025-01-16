@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.1
+Released: 16th Jan 2025
+
+- Fix docs.rs build
+
 ## 0.4.0
 Released: Dec 20th 2022
 
