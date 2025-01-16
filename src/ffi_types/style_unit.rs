@@ -13,10 +13,10 @@ pub enum StyleUnit {
 impl From<StyleUnit> for internal::YGUnit {
     fn from(s: StyleUnit) -> internal::YGUnit {
         match s {
-            StyleUnit::UndefinedValue => internal::YGUnit::YGUnitUndefined,
-            StyleUnit::Point(_) => internal::YGUnit::YGUnitPoint,
-            StyleUnit::Percent(_) => internal::YGUnit::YGUnitPercent,
-            StyleUnit::Auto => internal::YGUnit::YGUnitAuto,
+            StyleUnit::UndefinedValue => internal::YGUnit::Undefined,
+            StyleUnit::Point(_) => internal::YGUnit::Point,
+            StyleUnit::Percent(_) => internal::YGUnit::Percent,
+            StyleUnit::Auto => internal::YGUnit::Auto,
         }
     }
 }
@@ -24,10 +24,10 @@ impl From<StyleUnit> for internal::YGUnit {
 impl From<internal::YGValue> for StyleUnit {
     fn from(v: internal::YGValue) -> StyleUnit {
         match v.unit {
-            internal::YGUnit::YGUnitUndefined => StyleUnit::UndefinedValue,
-            internal::YGUnit::YGUnitPoint => StyleUnit::Point(OrderedFloat(v.value)),
-            internal::YGUnit::YGUnitPercent => StyleUnit::Percent(OrderedFloat(v.value)),
-            internal::YGUnit::YGUnitAuto => StyleUnit::Auto,
+            internal::YGUnit::Undefined => StyleUnit::UndefinedValue,
+            internal::YGUnit::Point => StyleUnit::Point(OrderedFloat(v.value)),
+            internal::YGUnit::Percent => StyleUnit::Percent(OrderedFloat(v.value)),
+            internal::YGUnit::Auto => StyleUnit::Auto,
         }
     }
 }

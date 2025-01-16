@@ -1,13 +1,12 @@
-pub use crate::ffi_types::{
-    align::*, config_ref::*, dimension::*, direction::*, display::*, edge::*, flex_direction::*,
-    gutter::*, justify::*, log_level::*, measure_mode::*, node_ref::*, node_type::*, overflow::*,
-    position_type::*, print_options::*, size::*, style_unit::*, undefined::*, wrap::*,
-};
+pub use crate::ffi_types::*;
 use ordered_float::OrderedFloat;
 use std::{any::Any, ops::Deref, os::raw::c_void};
 
-pub type BaselineFunc = Option<extern "C" fn(NodeRef, f32, f32) -> f32>;
-pub type MeasureFunc = Option<extern "C" fn(NodeRef, f32, MeasureMode, f32, MeasureMode) -> Size>;
+pub type BaselineFunc = extern "C" fn(NodeRef, f32, f32) -> f32;
+pub(crate) type UnsafeBaselineFunc = unsafe extern "C" fn(NodeRef, f32, f32) -> f32;
+pub type MeasureFunc = extern "C" fn(NodeRef, f32, MeasureMode, f32, MeasureMode) -> Size;
+pub(crate) type UnsafeMeasureFunc =
+    unsafe extern "C" fn(NodeRef, f32, MeasureMode, f32, MeasureMode) -> Size;
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, Clone)]
 #[cfg_attr(feature = "serde_support", derive(Serialize, Deserialize))]
@@ -25,6 +24,7 @@ pub enum FlexStyle {
     Border(OrderedFloat<f32>),
     Bottom(StyleUnit),
     Display(Display),
+    BoxSizing(BoxSizing),
     End(StyleUnit),
     Flex(OrderedFloat<f32>),
     FlexBasis(StyleUnit),
@@ -49,6 +49,9 @@ pub enum FlexStyle {
     MinHeight(StyleUnit),
     MinWidth(StyleUnit),
     Overflow(Overflow),
+    Gap(StyleUnit),
+    RowGap(StyleUnit),
+    ColumnGap(StyleUnit),
     Padding(StyleUnit),
     PaddingBottom(StyleUnit),
     PaddingEnd(StyleUnit),
