@@ -115,6 +115,12 @@ fn main() {
     let out_file = out_path.join("bindings.rs");
     bindings.write_to_file(&out_file).expect("Unable to write bindings!");
 
+    // Format file so patch works reliably
+    Command::new("rustfmt")
+        .args([&out_file])
+        .status()
+        .expect("Unable to format bindings");
+
     // Patch bindings because bindgen is incorecctly detected float type
     let buf = read_to_string(&out_file).expect("Unable to read bindings");
     let patched = buf.replace(
