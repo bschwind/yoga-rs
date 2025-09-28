@@ -6,12 +6,7 @@ use bindgen::{
     NonCopyUnionStyle, RustTarget,
 };
 use cc::Build;
-use std::{
-    env,
-    fs::{read_to_string, write},
-    path::PathBuf,
-    process::Command,
-};
+use std::{env, path::PathBuf, process::Command};
 
 #[derive(Debug)]
 struct BindgenCallbacks;
@@ -111,23 +106,11 @@ fn main() {
         .header("src/wrapper.hpp")
         .generate()
         .expect("Unable to generate bindings");
+
+    // Write bindings to file
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
     let out_file = out_path.join("bindings.rs");
     bindings.write_to_file(&out_file).expect("Unable to write bindings!");
-
-    // Format file so patch works reliably
-    Command::new("rustfmt")
-        .args([&out_file])
-        .status()
-        .expect("Unable to format bindings");
-
-    // Patch bindings because bindgen is incorecctly detected float type
-    let buf = read_to_string(&out_file).expect("Unable to read bindings");
-    let patched = buf.replace(
-        "pub const YGUndefined: f32 = f64::NAN;",
-        "pub const YGUndefined: f32 = f32::NAN;",
-    );
-    write(&out_file, patched).expect("Unable to write patched bindings");
 
     println!("Bindings written to {}", out_file.display());
 }

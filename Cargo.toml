@@ -13,7 +13,7 @@ default = []
 serde_support = ["serde", "serde_derive", "ordered-float/serde"]
 
 [build-dependencies]
-bindgen = "0.72.1"
+bindgen = { git = "https://github.com/nicoburns/rust-bindgen", rev = "144e2c4f4bb88b445895c08821ab393fcd5a4614" }
 cc = "1.2.9"
 
 [dependencies]
