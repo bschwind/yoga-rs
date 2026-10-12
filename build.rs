@@ -60,16 +60,16 @@ fn main() {
     Build::new()
         // Build configuation
         // See https://github.com/facebook/yoga/blob/9591210a7ac5289fa00f15d5068383612d3225b9/cmake/project-defaults.cmake
-		.cpp(true)
-		.std("c++20")
-		.flag("-fno-omit-frame-pointer")
-		.flag("-fexceptions")
-		.flag("-Wall")
-		.flag("-O3")
-		.flag("-fPIC")
-		// Include path
-		.include("src/yoga")
-		// C++ Files
+        .cpp(true)
+        .std("c++20")
+        .flag("-fno-omit-frame-pointer")
+        .flag("-fexceptions")
+        .flag("-Wall")
+        .flag("-O3")
+        .flag("-fPIC")
+        // Include path
+        .include("src/yoga")
+        // C++ Files
         .file("src/yoga/yoga/algorithm/AbsoluteLayout.cpp")
         .file("src/yoga/yoga/algorithm/Baseline.cpp")
         .file("src/yoga/yoga/algorithm/Cache.cpp")
@@ -82,16 +82,16 @@ fn main() {
         .file("src/yoga/yoga/debug/Log.cpp")
         .file("src/yoga/yoga/node/LayoutResults.cpp")
         .file("src/yoga/yoga/node/Node.cpp")
-		.file("src/yoga/yoga/YGConfig.cpp")
-		.file("src/yoga/yoga/YGEnums.cpp")
-		.file("src/yoga/yoga/YGNode.cpp")
-		.file("src/yoga/yoga/YGNodeLayout.cpp")
-		.file("src/yoga/yoga/YGNodeStyle.cpp")
-		.file("src/yoga/yoga/YGPixelGrid.cpp")
-		.file("src/yoga/yoga/YGValue.cpp")
+        .file("src/yoga/yoga/YGConfig.cpp")
+        .file("src/yoga/yoga/YGEnums.cpp")
+        .file("src/yoga/yoga/YGNode.cpp")
+        .file("src/yoga/yoga/YGNodeLayout.cpp")
+        .file("src/yoga/yoga/YGNodeStyle.cpp")
+        .file("src/yoga/yoga/YGPixelGrid.cpp")
+        .file("src/yoga/yoga/YGValue.cpp")
         // Enable if debugging this script
         // .cargo_debug(true)
-		.compile("libyoga");
+        .compile("libyoga");
 
     // Generate bindings using bindgen
     let bindings = bindgen::Builder::default()
@@ -123,5 +123,5 @@ fn main() {
     );
     write(&out_file, patched).expect("Unable to write patched bindings");
 
-    println!("Bindings written to {}", &out_file.display());
+    println!("Bindings written to {}", out_file.display());
 }
