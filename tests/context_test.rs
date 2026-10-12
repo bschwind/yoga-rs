@@ -5,9 +5,19 @@ use yoga::{get_node_ref_context, Context, Direction, MeasureMode, Node, NodeRef,
 
 #[test]
 fn test_context_0() {
-    let root = Node::new();
+    let mut root = Node::new();
     assert!(root.get_context().is_none());
     assert!(root.get_context_mut().is_none());
+}
+
+#[test]
+fn test_context_mut() {
+    let mut root = Node::new();
+    root.set_context(Some(Context::new("test".to_string())));
+
+    root.get_context_mut().unwrap().downcast_mut::<String>().unwrap().push_str("ing");
+
+    assert_eq!(root.get_context().unwrap().downcast_ref::<String>().unwrap(), "testing");
 }
 
 #[test]
