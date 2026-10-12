@@ -869,8 +869,7 @@ impl Node {
         Context::get_inner_ref(raw)
     }
 
-    #[allow(clippy::mut_from_ref)]
-    pub fn get_context_mut(&self) -> Option<&mut Box<dyn Any>> {
+    pub fn get_context_mut(&mut self) -> Option<&mut Box<dyn Any>> {
         let raw = unsafe { internal::YGNodeGetContext(self.inner_node) };
         Context::get_inner_mut(raw)
     }
